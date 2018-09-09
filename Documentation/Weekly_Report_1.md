@@ -7,7 +7,7 @@ This week I focused on two aspects of the project:
 ## Setting up the Project
 I created a maven / JavaFX project in Netbeans and a Github repository to house it. I also attended the opening session of the course.
 
-## Implementing a crude version of the algorithm.
+## Implementing a crude version of the algorithm
 As a proof of concept, I created a rudimentary (and very inefficient) search algorithm to find all solutions to the 6x10 board in Python. The algorithm terminated in 10 minutes or so and gave the correct number of solutions.
 
 # Next Steps
