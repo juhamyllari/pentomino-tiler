@@ -14,7 +14,7 @@ The application will output the number of solutions to the problem. The user wil
 
 ## Algorithms
 
-All heavy lifting will be performed by an exhaustive search algorithm. The time (and space) complexity of the algorithm will likely be O(2^n) (n being the number of pentominoes used), as it recurses O(n) times with a branching factor bounded by a constant.
+All heavy lifting will be performed by an exhaustive search algorithm. The time (and space) complexity of the algorithm will likely be O(2^n) (n being the number of pentominoes used), as it recurses O(n) times with a branching factor bounded by a constant. This analysis is only conceptual; as stated above, the input size accepted by the application is fixed.
 
 Heuristics used by the search algorithm may require sorting small arrays of integers. For this purpose a trivial sorting algorithm (possibly insertion sort) of time complexity O(n^2) and space complexity O(n) will be implemented.
 
