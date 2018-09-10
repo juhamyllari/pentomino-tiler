@@ -26,8 +26,20 @@ public class Block {
         this.col = col;
     }
     
-    public Block translate(int rowOffset, int colOffset) {
+    public Block move(int rowOffset, int colOffset) {
         return new Block(row + rowOffset, col + colOffset);
+    }
+    
+    public Block flipOverX() {
+        return new Block(-row, col);
+    }
+    
+    public Block flipOverY() {
+        return new Block(row, -col);
+    }
+    
+    public Block rotate90() {
+        return new Block(col, -row);
     }
     
 }

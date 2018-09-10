@@ -1,5 +1,7 @@
 package fi.tira.pentominotiler;
 
+import fi.tira.pentominotiler.logic.ArrayPiece;
+import fi.tira.pentominotiler.logic.Block;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -22,4 +24,5 @@ public class FXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+  
 }
