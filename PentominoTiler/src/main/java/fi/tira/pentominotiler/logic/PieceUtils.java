@@ -3,8 +3,17 @@ package fi.tira.pentominotiler.logic;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A utility class for handling ArrayPiece objects
+ * @author juha
+ */
 public class PieceUtils {
     
+    /**
+     * Converts a string representation of a piece to an ArrayPiece.
+     * @param str
+     * @return an ArrayPiece
+     */
     public ArrayPiece stringToArrayPiece(String str) {
         Block[] blocks = new Block[5];
         int blockIndex = 0;
@@ -18,6 +27,11 @@ public class PieceUtils {
         return new ArrayPiece(blocks);
     }
     
+    /**
+     * Creates all the 8 orientations of an ArrayPiece.
+     * @param piece
+     * @return list of all orientations
+     */
     public List<ArrayPiece> allOrientations(ArrayPiece piece) {
         ArrayList<ArrayPiece> pieces = new ArrayList<>();
         ArrayPiece flipped = piece.flipOverX();
