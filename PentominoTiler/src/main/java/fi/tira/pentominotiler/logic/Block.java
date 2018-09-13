@@ -89,6 +89,11 @@ public class Block {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Block{" + "row=" + row + ", col=" + col + '}';
+    }
     
     
     

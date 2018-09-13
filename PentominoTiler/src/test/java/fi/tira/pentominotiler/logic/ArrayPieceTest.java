@@ -32,7 +32,7 @@ public class ArrayPieceTest {
     public void tearDown() {
     }
 
-    @org.junit.Test
+    @Test
     public void testGetBlocks() {
         Block[] input = new Block[5];
         for (int i = 0; i < 5; i++) {
@@ -44,7 +44,7 @@ public class ArrayPieceTest {
         assertArrayEquals(input, got);
     }
 
-    @org.junit.Test
+    @Test
     public void testSetBlocks() {
         Block[] firstInput = new Block[5];
         for (int i = 0; i < 5; i++) {
@@ -62,7 +62,7 @@ public class ArrayPieceTest {
         assertArrayEquals(secondInput, got);
     }
 
-    @org.junit.Test
+    @Test
     public void testMove() {
 
         int rowOffset = -1;
@@ -82,7 +82,7 @@ public class ArrayPieceTest {
         assertArrayEquals(expected, piece.getBlocks());
     }
 
-    @org.junit.Test
+    @Test
     public void testTouchAxes() {
 
         Block[] input = new Block[5];
@@ -95,7 +95,7 @@ public class ArrayPieceTest {
         assertArrayEquals(input, piece.touchAxes().getBlocks());
     }
 
-    @org.junit.Test
+    @Test
     public void testToString() {
         Block[] input = new Block[5];
         for (int i = 0; i < 5; i++) {
@@ -103,18 +103,32 @@ public class ArrayPieceTest {
         }
 
         ArrayPiece piece = new ArrayPiece(input);
-        
+
         String expected = "#0000#0000#0000#0000#0000";
         String result = piece.toString();
         assertEquals(expected, result);
     }
 
-    @org.junit.Test
+    @Test
     public void testFlipOverX() {
+        String input = "#0000####0000000000000000";
+        String flippedInput = "####0#0000000000000000000";
+        ArrayPiece pieceFlipped = PieceUtils.stringToArrayPiece(input).flipOverX();
+        String flippedPieceString = pieceFlipped.toString();
+        assertEquals(flippedInput, flippedPieceString);
     }
 
-    @org.junit.Test
+    @Test
     public void testRotate90() {
+        Block[] input1 = new Block[5];
+        for (int i = 0; i < 5; i++) {
+            input1[i] = new Block(i, 0);
+        }
+        Block[] input2 = new Block[5];
+        for (int i = 0; i < 5; i++) {
+            input2[i] = new Block(0, i);
+        }
+        assertEquals(new ArrayPiece(input1).rotate90().toString(), new ArrayPiece(input2).toString());
     }
 
 }

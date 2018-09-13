@@ -14,7 +14,7 @@ public class PieceUtils {
      * @param str
      * @return an ArrayPiece
      */
-    public ArrayPiece stringToArrayPiece(String str) {
+    public static ArrayPiece stringToArrayPiece(String str) {
         Block[] blocks = new Block[5];
         int blockIndex = 0;
         for (int i = 0; i < str.length(); i++) {
@@ -32,7 +32,7 @@ public class PieceUtils {
      * @param piece
      * @return list of all orientations
      */
-    public List<ArrayPiece> allOrientations(ArrayPiece piece) {
+    public static List<ArrayPiece> allOrientations(ArrayPiece piece) {
         ArrayList<ArrayPiece> pieces = new ArrayList<>();
         ArrayPiece flipped = piece.flipOverX();
         pieces.add(piece);
