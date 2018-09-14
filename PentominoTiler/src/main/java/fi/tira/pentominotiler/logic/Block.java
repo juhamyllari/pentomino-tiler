@@ -92,7 +92,7 @@ public class Block {
 
     @Override
     public String toString() {
-        return "Block{" + "row=" + row + ", col=" + col + '}';
+        return "(" + row + ", " + col + ")";
     }
     
     
