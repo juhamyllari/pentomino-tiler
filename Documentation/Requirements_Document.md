@@ -21,3 +21,6 @@ Heuristics used by the search algorithm may require sorting small arrays of inte
 ## Data Structures
 
 In addition to arrays, the application will require implementing a hash table which will likely do double duty as a hash map and as a hash set. The hash set will store intermediate solutions for the purpose of pruning search tree branches leading to duplicate solutions. As each pentomino piece (with one exception) can be placed on the board in a number of orientations, a hash map may be used to associate each oriented piece to its abstract identity.
+
+**Added on week 2:**
+ArrayLists, while not strictly necessary for the project, have turned out to be quite convenient, so I will implement my own in due course.
