@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A utility class for handling ArrayPiece objects
+ * A utility class for handling ArrayPiece objects.
  * @author juha
  */
 public class PieceUtils {
