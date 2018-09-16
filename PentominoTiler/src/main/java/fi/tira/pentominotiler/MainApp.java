@@ -34,7 +34,12 @@ public class MainApp extends Application {
                 .map(p -> PieceUtils.nonRedundant(p))
                 .collect(Collectors.toList());
         
-        orientations.forEach(l -> l.forEach(p -> p.printPiece()));
+        for (int i = 0; i < orientations.size(); i++) {
+            System.out.println("\nPiece " + i);
+            for (int j = 0; j < orientations.get(i).size(); j++) {
+                orientations.get(i).get(j).printPiece();
+            }
+        }
         
         /*
         The testing ground ends here.
