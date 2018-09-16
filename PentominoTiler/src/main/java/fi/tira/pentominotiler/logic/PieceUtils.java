@@ -11,7 +11,8 @@ public class PieceUtils {
     
     /**
      * Converts a string representation of a piece to an ArrayPiece.
-     * @param str
+     * The validity of the piece is not checked.
+     * @param str a String of length 25 with "0" for "no block" and "#" for "block"
      * @return an ArrayPiece
      */
     public static ArrayPiece stringToArrayPiece(String str) {
@@ -28,11 +29,33 @@ public class PieceUtils {
     }
     
     /**
+     * Create all the 12 pentominoes from strings (provided internally).
+     * @return an ArrayList of the pieces.
+     */
+    public static List<ArrayPiece> allPieces() {
+        ArrayList<ArrayPiece> pieces = new ArrayList<>();
+        pieces.add(stringToArrayPiece("0#000###000#0000000000000"));
+        pieces.add(stringToArrayPiece("#####00000000000000000000"));
+        pieces.add(stringToArrayPiece("0#0000#000###000000000000"));
+        pieces.add(stringToArrayPiece("00#0000#00###000000000000"));
+        pieces.add(stringToArrayPiece("0##00##000#00000000000000"));
+        pieces.add(stringToArrayPiece("00#00###00#00000000000000"));
+        pieces.add(stringToArrayPiece("##000#0000##0000000000000"));
+        pieces.add(stringToArrayPiece("##000##000#00000000000000"));
+        pieces.add(stringToArrayPiece("##0000###0000000000000000"));
+        pieces.add(stringToArrayPiece("##0000#0000#0000#00000000"));
+        pieces.add(stringToArrayPiece("0#000##0000##000000000000"));
+        pieces.add(stringToArrayPiece("0#000####0000000000000000"));
+        return pieces;
+    }
+    
+    /**
      * Creates all the 8 orientations of an ArrayPiece.
-     * @param piece
+     * @param piece a valid pentomino
      * @return list of all orientations
      */
     public static List<ArrayPiece> allOrientations(ArrayPiece piece) {
+        piece = piece.align();
         ArrayList<ArrayPiece> pieces = new ArrayList<>();
         ArrayPiece flipped = piece.flipOverX();
         pieces.add(piece);
@@ -44,6 +67,29 @@ public class PieceUtils {
         pieces.add(flipped.rotate90().rotate90());
         pieces.add(flipped.rotate90().rotate90().rotate90());
         return pieces;
+    }
+    
+    /**
+     * Creates all the non-redundant orientations of an ArrayPiece. (There are 1–8, depending on the piece.)
+     * @param piece a valid pentomino
+     * @return an ArrayList of length 1–8
+     */
+    public static List<ArrayPiece> nonRedundant(ArrayPiece piece) {
+        List<ArrayPiece> all = allOrientations(piece);
+        List<ArrayPiece> unique = new ArrayList<>();
+        for (ArrayPiece candidate : all) {
+            boolean found = false;
+            for (ArrayPiece p : unique) {
+                if (candidate.toString().equals(p.toString())) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                unique.add(candidate);
+            }
+        }
+        return unique;
     }
 
 

@@ -64,7 +64,7 @@ public class ArrayPiece implements OrientedPiece {
      * Create a new pieced translated to touch both axes in the first quadrant.
      * @return a new ArrayPiece
      */
-    public ArrayPiece touchAxes() {
+    public ArrayPiece align() {
         Block[] newArray = new Block[5];
         return this.move(-this.minRow(), -this.minCol());
     }
@@ -111,11 +111,11 @@ public class ArrayPiece implements OrientedPiece {
      * @return a new ArrayPiece
      */
     public ArrayPiece flipOverX() {
-        ArrayPiece aligned = this.touchAxes();
+        ArrayPiece aligned = this.align();
         Block[] newBlocks = Arrays.stream(aligned.blocks)
                 .map(block -> block.flipOverX())
                 .toArray(Block[]::new);
-        return new ArrayPiece(newBlocks).touchAxes();
+        return new ArrayPiece(newBlocks).align();
     }
     
     /**
@@ -123,11 +123,22 @@ public class ArrayPiece implements OrientedPiece {
      * @return a new ArrayPiece
      */
     public ArrayPiece rotate90() {
-        ArrayPiece aligned = this.touchAxes();
+        ArrayPiece aligned = this.align();
         Block[] newBlocks = Arrays.stream(aligned.blocks)
                 .map(block -> block.rotate90())
                 .toArray(Block[]::new);
-        return new ArrayPiece(newBlocks).touchAxes();
+        return new ArrayPiece(newBlocks).align();
+    }
+    
+    public void printPiece() {
+        String stringForm = this.toString();
+        for (int i = 0; i < stringForm.length(); i++) {
+            if (i % 5 == 0) {
+                System.out.println("");
+            }
+            System.out.print(stringForm.charAt(i));
+        }
+        System.out.println("");
     }
 
 }

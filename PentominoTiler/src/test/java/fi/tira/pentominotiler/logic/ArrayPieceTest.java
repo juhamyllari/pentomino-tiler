@@ -92,7 +92,7 @@ public class ArrayPieceTest {
 
         ArrayPiece piece = new ArrayPiece(input).move(7, -2);
 
-        assertArrayEquals(input, piece.touchAxes().getBlocks());
+        assertArrayEquals(input, piece.align().getBlocks());
     }
 
     @Test

@@ -1,5 +1,9 @@
 package fi.tira.pentominotiler;
 
+import fi.tira.pentominotiler.logic.ArrayPiece;
+import fi.tira.pentominotiler.logic.PieceUtils;
+import java.util.List;
+import java.util.stream.Collectors;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +23,24 @@ public class MainApp extends Application {
         
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
+        
+        /*
+        The GUI does not do anything interesting yet. This is a testing ground for elements of the program logic.
+        */
+        List<ArrayPiece> pieces = PieceUtils.allPieces();
+        
+        List<List<ArrayPiece>> orientations = pieces
+                .stream()
+                .map(p -> PieceUtils.nonRedundant(p))
+                .collect(Collectors.toList());
+        
+        orientations.forEach(l -> l.forEach(p -> p.printPiece()));
+        
+        /*
+        The testing ground ends here.
+        
+        */
+        // Uncomment the line below to activate the GUI
         stage.show();
     }
 
