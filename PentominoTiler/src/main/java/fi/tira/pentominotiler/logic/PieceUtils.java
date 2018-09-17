@@ -91,6 +91,14 @@ public class PieceUtils {
         }
         return unique;
     }
+    
+    public static List<ArrayPiece> centered(ArrayPiece piece) {
+        List<ArrayPiece> result = new ArrayList<>();
+        for (Block block : piece.getBlocks()) {
+            result.add(piece.move(-block.getRow(), -block.getCol()));
+        }
+        return result;
+    } 
 
 
 }

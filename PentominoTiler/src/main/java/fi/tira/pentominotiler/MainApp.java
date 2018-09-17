@@ -29,17 +29,26 @@ public class MainApp extends Application {
         */
         List<ArrayPiece> pieces = PieceUtils.allPieces();
         
+        pieces.forEach(p -> p.printPiece());
+        
         List<List<ArrayPiece>> orientations = pieces
                 .stream()
                 .map(p -> PieceUtils.nonRedundant(p))
                 .collect(Collectors.toList());
         
-        for (int i = 0; i < orientations.size(); i++) {
-            System.out.println("\nPiece " + i);
-            for (int j = 0; j < orientations.get(i).size(); j++) {
-                orientations.get(i).get(j).printPiece();
-            }
-        }
+//        ArrayPiece x = pieces.get(0);
+//        for (ArrayPiece piece : PieceUtils.centered(x)) {
+//            piece.move(2, 2).printPiece();
+//        }
+        
+//        for (int i = 0; i < orientations.size(); i++) {
+//            System.out.println("\nPiece " + i);
+//            for (int j = 0; j < orientations.get(i).size(); j++) {
+//                orientations.get(i).get(j).printPiece();
+//            }
+//        }
+
+
         
         /*
         The testing ground ends here.
