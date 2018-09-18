@@ -1,6 +1,7 @@
 package fi.tira.pentominotiler;
 
 import fi.tira.pentominotiler.logic.ArrayPiece;
+import fi.tira.pentominotiler.logic.Board;
 import fi.tira.pentominotiler.logic.PieceUtils;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,14 +30,26 @@ public class MainApp extends Application {
         */
         List<ArrayPiece> pieces = PieceUtils.allPieces();
         
-        pieces.forEach(p -> p.printPiece());
+//        pieces.forEach(p -> p.printPiece());
         
         List<List<ArrayPiece>> orientations = pieces
                 .stream()
                 .map(p -> PieceUtils.nonRedundant(p))
                 .collect(Collectors.toList());
         
-//        ArrayPiece x = pieces.get(0);
+        ArrayPiece x = pieces.get(0);
+        x.printPiece();
+        
+        Board b = new Board(6, 10, Board.LETTER_SYMBOLS);
+        System.out.println("Can place x on b? " + b.canPlace(x, 0, 0));
+        b.placePiece(x, 0, 0, 0);
+        b.printBoard();
+        
+        String[] s = b.symmetryStrings();
+        for (String string : s) {
+            System.out.println(string);
+        }
+        
 //        for (ArrayPiece piece : PieceUtils.centered(x)) {
 //            piece.move(2, 2).printPiece();
 //        }
