@@ -174,4 +174,10 @@ public class Board {
         return rows;
     }
 
+    public char charAtLinearIndex(int index) {
+        int row = index / cols;
+        int col = index % cols;
+        return array[row][col];
+    }
+
 }

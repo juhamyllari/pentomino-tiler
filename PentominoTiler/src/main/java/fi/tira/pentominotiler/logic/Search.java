@@ -2,10 +2,12 @@ package fi.tira.pentominotiler.logic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  *
@@ -17,6 +19,7 @@ public class Search {
     private List<Board> solutions;
     private Set<String> tried;
     private final List<List<ArrayPiece>> pieces;
+    private final int[] indexOrder;
 
     public Search(Board initialBoard) {
         this.initialBoard = initialBoard;
@@ -32,6 +35,7 @@ public class Search {
                     return centered;
                 })
                 .collect(Collectors.toList());
+        this.indexOrder = createOrderIndex(initialBoard);
     }
 
     public void runSearch() {
@@ -54,7 +58,7 @@ public class Search {
             solutions.add(board);
             return;
         }
-        int index = board.getNextIndex();
+        int index = getNextIndex(board);
         int row = index / board.getCols();
         int col = index % board.getCols();
         for (int i = 0; i < 12; i++) {
@@ -72,5 +76,44 @@ public class Search {
             }
         }
     }
+    
+    private int getNextIndex(Board bd) {
+        int boardSize = bd.getRows() * bd.getCols();
+        for (int i = 0; i < boardSize; i++) {
+            if (bd.charAtLinearIndex(indexOrder[i]) == 0) {
+                return indexOrder[i];
+            }
+        }
+        return -1;
+    }
+
+    private int[] createOrderIndex(Board bd) {
+        int boardSize = bd.getRows() * bd.getCols();
+        int[] indexArray = IntStream
+                .rangeClosed(0, boardSize - 1)
+                .boxed()
+                .sorted((i1, i2) -> compareIndices(i1, i2, bd.getCols()))
+                .mapToInt(i -> i)
+                .toArray();
+        return indexArray;
+    }
+    
+    private int compareIndices(int i1, int i2, int cols) {
+        int row1 = i1 / cols;
+        int row2 = i2 / cols;
+        int col1 = i1 % cols;
+        int col2 = i2 % cols;
+        double cmp = Math.sqrt(row1*row1 + col1*col1) - Math.sqrt(row2*row2 + col2*col2);
+        if (cmp < 0) {
+            return -1;
+        }
+        else if (cmp > 0) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+
 
 }

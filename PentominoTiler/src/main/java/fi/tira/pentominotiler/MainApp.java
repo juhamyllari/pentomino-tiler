@@ -33,7 +33,7 @@ public class MainApp extends Application {
         Search mySearch = new Search(new Board(6, 10, Board.LETTER_SYMBOLS));
         // Uncomment the line below to run the search. WARNING: May run out of
         // memory or otherwise fail horribly.
-//        mySearch.runSearch();
+        mySearch.runSearch();
 
         
         /*
