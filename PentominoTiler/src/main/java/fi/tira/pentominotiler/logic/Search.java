@@ -21,6 +21,10 @@ public class Search {
     private final List<List<ArrayPiece>> pieces;
     private final int[] indexOrder;
 
+    /**
+     * A Search object represents a single tiling problem.
+     * @param initialBoard
+     */
     public Search(Board initialBoard) {
         this.initialBoard = initialBoard;
         this.solutions = new ArrayList<>();
@@ -38,6 +42,10 @@ public class Search {
         this.indexOrder = createOrderIndex(initialBoard);
     }
 
+    /**
+     * Finds all solutions to the tiling problem. Preplaces the "x" pentomino
+     * in each of its legal positions in the first quadrant.
+     */
     public void runSearch() {
         // Hard coded for 6x10 boards! Refactor later.
         ArrayPiece centeredX = pieces.get(0).get(2);

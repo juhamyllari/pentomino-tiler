@@ -4,12 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Represents a pentomino board.
  *
  * @author juha
  */
 public class Board {
 
+    /**
+     * Hexadecimal symbols (1 to C) for the 12 pentomino pieces.
+     */
     public static final char[] HEX_SYMBOLS = {'1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C'};
+
+    /**
+     * Traditional capital letter symbols for the 12 pentomino pieces.
+     */
     public static final char[] LETTER_SYMBOLS = {'X', 'I', 'T', 'V', 'W', 'Z', 'U', 'P', 'N', 'L', 'F', 'Y'};
 
     private char[][] array;
@@ -28,6 +36,15 @@ public class Board {
         this.symbols = symbols;
     }
 
+    /**
+     * Constructs a Board object of the specified dimensions with the specified
+     * set of symbols for the pieces. Two symbol arrays are provided in the
+     * class.
+     *
+     * @param rows
+     * @param cols
+     * @param symbols
+     */
     public Board(int rows, int cols, char[] symbols) {
         this.array = new char[rows][cols];
         this.rows = rows;
@@ -37,13 +54,12 @@ public class Board {
         this.symbols = symbols;
     }
 
+    /**
+     * Prints the Board.
+     * Blocks are represented with the symbol of the corresponding piece. Empty
+     * squares are shown as '0'.
+     */
     public void printBoard() {
-        printArray(array, rows, cols);
-    }
-
-    public static void printArray(char[][] array, int rows, int cols) {
-        /* Temporarily public for testing purposes. Will be made private or moved into
-        the printBoard method.*/
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 char c = array[i][j] == 0 ? '0' : array[i][j];
@@ -54,6 +70,13 @@ public class Board {
         System.out.println("");
     }
 
+    /**
+     * Returns true if the piece can be placed in the specified location.
+     * @param piece
+     * @param row
+     * @param col
+     * @return can place
+     */
     public boolean canPlace(ArrayPiece piece, int row, int col) {
         boolean allowed = true;
         for (Block block : piece.getBlocks()) {
@@ -71,6 +94,15 @@ public class Board {
         return allowed;
     }
 
+    /**
+     * Returns a new Board with the piece placed in the specified location.
+     * The symbol of the piece is symbols[symbolIndex].
+     * @param piece
+     * @param row
+     * @param col
+     * @param symbolIndex
+     * @return a new Board
+     */
     public Board placePiece(ArrayPiece piece, int row, int col, int symbolIndex) {
         char[][] newArray = copyBoardArray(this);
         for (Block block : piece.getBlocks()) {
@@ -131,10 +163,21 @@ public class Board {
         return sb.toString();
     }
 
+    /**
+     * Returns a String representation of the Board.
+     * Blocks are represented with the symbol of the corresponding piece. Empty
+     * squares are shown as '0'.
+     * @return a String representation
+     */
     public String toString() {
         return arrayToString(array);
     }
 
+    /**
+     * Returns a list containing String representations of the Board in each of
+     * its four symmetries.
+     * @return a list of Strings
+     */
     public List<String> symmetryStrings() {
         List<String> symmetries = new ArrayList<>();
         char[][] flippedOverX = flipArrayOverX(array);
@@ -145,25 +188,22 @@ public class Board {
         return symmetries;
     }
 
+    /**
+     * Returns the number of pieces not yet placed on the board.
+     * @return number of unused pieces
+     */
     public int getUnused() {
         return unused;
     }
 
+    /**
+     * Returns true if the piece has already been placed.
+     * The piece is specified by its symbol index (0-11).
+     * @param index
+     * @return true if piece has been placed
+     */
     public boolean isUsed(int index) {
         return used[index];
-    }
-
-    public int getNextIndex() {
-        return findNextIndex(0);
-    }
-
-    private int findNextIndex(int start) {
-        for (int i = start; i < rows * cols; i++) {
-            if (array[i / cols][i % cols] == 0) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     public int getCols() {
@@ -174,6 +214,11 @@ public class Board {
         return rows;
     }
 
+    /**
+     * Returns the contents of the board square specified by a linear index.
+     * @param index
+     * @return array[index / ncols][index % ncols]
+     */
     public char charAtLinearIndex(int index) {
         int row = index / cols;
         int col = index % cols;

@@ -6,7 +6,7 @@ import java.util.Arrays;
  * The ArrayPiece class implements a pentomino piece as an array of Block objects.
  * @author juha
  */
-public class ArrayPiece implements OrientedPiece {
+public class ArrayPiece {
 
     private Block[] blocks;
     private int numberOfBlocks;
@@ -31,7 +31,7 @@ public class ArrayPiece implements OrientedPiece {
     }
 
     /**
-     * 
+     * Getter for the Block array.
      * @return the Block array
      */
     public Block[] getBlocks() {
@@ -70,8 +70,8 @@ public class ArrayPiece implements OrientedPiece {
     }
 
     /**
-     *
-     * @return min(row value of all blocks)
+     * Returns the smallest row value of any block in the piece.
+     * @return min(row values of all blocks)
      */
     private int minRow() {
         int min = Integer.MAX_VALUE;
@@ -82,8 +82,8 @@ public class ArrayPiece implements OrientedPiece {
     }
 
     /**
-     *
-     * @return max(row value of all blocks)
+     * Returns the smallest column value of any block in the piece.
+     * @return min(col value of all blocks)
      */
     private int minCol() {
         int min = Integer.MAX_VALUE;
