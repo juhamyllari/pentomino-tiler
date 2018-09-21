@@ -125,5 +125,8 @@ public class Search {
         }
     }
 
+    public List<Board> getSolutions() {
+        return solutions;
+    }
 
 }
