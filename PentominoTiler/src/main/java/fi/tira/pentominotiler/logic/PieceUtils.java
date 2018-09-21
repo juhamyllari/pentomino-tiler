@@ -70,7 +70,8 @@ public class PieceUtils {
     }
     
     /**
-     * Creates all the non-redundant orientations of an ArrayPiece. (There are 1–8, depending on the piece.)
+     * Creates all the non-redundant orientations of an ArrayPiece.
+     * (There are 1–8, depending on the piece.)
      * @param piece a valid pentomino
      * @return an ArrayList of length 1–8
      */

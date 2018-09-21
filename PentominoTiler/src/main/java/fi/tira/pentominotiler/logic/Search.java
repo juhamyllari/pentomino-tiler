@@ -22,8 +22,10 @@ public class Search {
     private final int[] indexOrder;
 
     /**
-     * 
-     * @param initialBoard
+     * Constructs a Search object.
+     * The shape of the Board object defines the search problem. The board
+     * must be empty (i.e. no pieces may be placed on it).
+     * @param initialBoard an empty Board
      */
     public Search(Board initialBoard) {
         this.initialBoard = initialBoard;
@@ -126,6 +128,10 @@ public class Search {
         }
     }
 
+    /**
+     * Returns the solutions to the problem.
+     * @return solutions
+     */
     public List<Board> getSolutions() {
         return solutions;
     }
