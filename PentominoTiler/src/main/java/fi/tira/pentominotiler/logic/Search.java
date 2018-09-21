@@ -50,6 +50,7 @@ public class Search {
     private void search(Board board) {
         if (board.getUnused() == 0) {
             System.out.println("Found solution number " + solutions.size());
+            board.printBoard();
             solutions.add(board);
             return;
         }
