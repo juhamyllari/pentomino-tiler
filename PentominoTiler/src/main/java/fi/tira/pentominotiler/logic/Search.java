@@ -44,23 +44,18 @@ public class Search {
 
     /**
      * Finds all solutions to the tiling problem. Preplaces the "x" pentomino
-     * in each of its legal positions in the first quadrant.
+     * in each of its legal positions in the first quadrant. Pieces are placed
+     * on squares of increasing Euclidian distance from the origin.
      */
     public void runSearch() {
         // Hard coded for 6x10 boards! Refactor later.
         ArrayPiece centeredX = pieces.get(0).get(2);
         search(initialBoard.placePiece(centeredX, 2, 4, 0));
-        System.out.println("Size of 'tried' set: " + tried.size());
         search(initialBoard.placePiece(centeredX, 2, 3, 0));
-        System.out.println("Size of 'tried' set: " + tried.size());
         search(initialBoard.placePiece(centeredX, 1, 4, 0));
-        System.out.println("Size of 'tried' set: " + tried.size());
         search(initialBoard.placePiece(centeredX, 1, 3, 0));
-        System.out.println("Size of 'tried' set: " + tried.size());
         search(initialBoard.placePiece(centeredX, 2, 2, 0));
-        System.out.println("Size of 'tried' set: " + tried.size());
         search(initialBoard.placePiece(centeredX, 1, 2, 0));
-        System.out.println("Size of 'tried' set: " + tried.size());
         search(initialBoard.placePiece(centeredX, 2, 1, 0));
         System.out.println("Size of 'tried' set: " + tried.size());
         System.out.println("Search finished. Found " + solutions.size() + " solutions.");
