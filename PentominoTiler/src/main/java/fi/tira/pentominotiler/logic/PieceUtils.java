@@ -92,6 +92,13 @@ public class PieceUtils {
         return unique;
     }
     
+    /**
+     * For each block in the piece, the method centers the piece on that block.
+     * The output is a list of 5 distinct copies of the piece, each translated
+     * so as to move a single block to the origin.
+     * @param piece
+     * @return a list of 5 translations of the piece
+     */
     public static List<ArrayPiece> centered(ArrayPiece piece) {
         List<ArrayPiece> result = new ArrayList<>();
         for (Block block : piece.getBlocks()) {
