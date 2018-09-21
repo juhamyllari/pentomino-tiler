@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- *
+ * A Search object represents a single tiling problem.
  * @author juha
  */
 public class Search {
@@ -22,7 +22,7 @@ public class Search {
     private final int[] indexOrder;
 
     /**
-     * A Search object represents a single tiling problem.
+     * 
      * @param initialBoard
      */
     public Search(Board initialBoard) {
@@ -44,7 +44,8 @@ public class Search {
 
     /**
      * Finds all solutions to the tiling problem. Preplaces the "x" pentomino
-     * in each of its legal positions in the first quadrant. Pieces are placed
+     * in each of its legal positions in the first quadrant and calls search
+     * separately on each placement. In the search proper, pieces are placed
      * on squares of increasing Euclidian distance from the origin.
      */
     public void runSearch() {
