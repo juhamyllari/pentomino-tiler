@@ -24,7 +24,7 @@ public class Search {
     public Search(Board initialBoard) {
         this.initialBoard = initialBoard;
         this.solutions = new ArrayList<>();
-        this.tried = new HashSet<>();
+        this.tried = new HashSet<>(30000000);
         this.pieces = PieceUtils
                 .allPieces()
                 .stream()
@@ -41,20 +41,27 @@ public class Search {
     public void runSearch() {
         // Hard coded for 6x10 boards! Refactor later.
         ArrayPiece centeredX = pieces.get(0).get(2);
-        search(initialBoard.placePiece(centeredX, 1, 2, 0));
-        search(initialBoard.placePiece(centeredX, 1, 3, 0));
-        search(initialBoard.placePiece(centeredX, 1, 4, 0));
-        search(initialBoard.placePiece(centeredX, 2, 1, 0));
-        search(initialBoard.placePiece(centeredX, 2, 2, 0));
-        search(initialBoard.placePiece(centeredX, 2, 3, 0));
         search(initialBoard.placePiece(centeredX, 2, 4, 0));
+        System.out.println("Size of 'tried' set: " + tried.size());
+        search(initialBoard.placePiece(centeredX, 2, 3, 0));
+        System.out.println("Size of 'tried' set: " + tried.size());
+        search(initialBoard.placePiece(centeredX, 1, 4, 0));
+        System.out.println("Size of 'tried' set: " + tried.size());
+        search(initialBoard.placePiece(centeredX, 1, 3, 0));
+        System.out.println("Size of 'tried' set: " + tried.size());
+        search(initialBoard.placePiece(centeredX, 2, 2, 0));
+        System.out.println("Size of 'tried' set: " + tried.size());
+        search(initialBoard.placePiece(centeredX, 1, 2, 0));
+        System.out.println("Size of 'tried' set: " + tried.size());
+        search(initialBoard.placePiece(centeredX, 2, 1, 0));
+        System.out.println("Size of 'tried' set: " + tried.size());
         System.out.println("Search finished. Found " + solutions.size() + " solutions.");
     }
 
     private void search(Board board) {
         if (board.getUnused() == 0) {
             System.out.println("Found solution number " + solutions.size());
-            board.printBoard();
+//            board.printBoard();
             solutions.add(board);
             return;
         }
