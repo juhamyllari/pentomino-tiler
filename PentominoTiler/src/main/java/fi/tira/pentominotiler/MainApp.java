@@ -31,32 +31,11 @@ public class MainApp extends Application {
          */
         
         Search mySearch = new Search(new Board(6, 10, Board.LETTER_SYMBOLS));
+        // Uncomment the line below to run the search. WARNING: May run out of
+        // memory or otherwise fail horribly.
 //        mySearch.runSearch();
 
-
         
-//        ArrayPiece x = pieces.get(0);
-//        x.printPiece();
-//
-//        Board b = new Board(6, 10, Board.LETTER_SYMBOLS);
-//        System.out.println("Can place x on b? " + b.canPlace(x, 0, 0));
-//        b.placePiece(x, 0, 0, 0);
-//        b.printBoard();
-//
-//        String[] s = b.symmetryStrings();
-//        for (String string : s) {
-//            System.out.println(string);
-//        }
-
-//        for (ArrayPiece piece : PieceUtils.centered(x)) {
-//            piece.move(2, 2).printPiece();
-//        }
-//        for (int i = 0; i < orientations.size(); i++) {
-//            System.out.println("\nPiece " + i);
-//            for (int j = 0; j < orientations.get(i).size(); j++) {
-//                orientations.get(i).get(j).printPiece();
-//            }
-//        }
         /*
         The testing ground ends here.
         
