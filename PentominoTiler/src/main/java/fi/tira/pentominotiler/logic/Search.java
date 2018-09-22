@@ -11,6 +11,7 @@ import java.util.stream.IntStream;
 
 /**
  * A Search object represents a single tiling problem.
+ *
  * @author juha
  */
 public class Search {
@@ -22,9 +23,10 @@ public class Search {
     private final int[] indexOrder;
 
     /**
-     * Constructs a Search object.
-     * The shape of the Board object defines the search problem. The board
-     * must be empty (i.e. no pieces may be placed on it).
+     * Constructs a Search object. The shape of the Board object defines the
+     * search problem. The board must be empty (i.e. no pieces may be placed on
+     * it).
+     *
      * @param initialBoard an empty Board
      */
     public Search(Board initialBoard) {
@@ -45,10 +47,10 @@ public class Search {
     }
 
     /**
-     * Finds all solutions to the tiling problem. Preplaces the "x" pentomino
-     * in each of its legal positions in the first quadrant and calls search
-     * separately on each placement. In the search proper, pieces are placed
-     * on squares of increasing Euclidian distance from the origin.
+     * Finds all solutions to the tiling problem. Preplaces the "x" pentomino in
+     * each of its legal positions in the first quadrant and calls search
+     * separately on each placement. In the search proper, pieces are placed on
+     * squares of increasing Euclidian distance from the origin.
      */
     public void runSearch() {
         // Hard coded for 6x10 boards! Refactor later.
@@ -89,7 +91,7 @@ public class Search {
             }
         }
     }
-    
+
     private int getNextIndex(Board bd) {
         int boardSize = bd.getRows() * bd.getCols();
         for (int i = 0; i < boardSize; i++) {
@@ -110,30 +112,39 @@ public class Search {
                 .toArray();
         return indexArray;
     }
-    
+
     private int compareIndices(int i1, int i2, int cols) {
         int row1 = i1 / cols;
         int row2 = i2 / cols;
         int col1 = i1 % cols;
         int col2 = i2 % cols;
-        double cmp = Math.sqrt(row1*row1 + col1*col1) - Math.sqrt(row2*row2 + col2*col2);
+        double cmp = Math.sqrt(row1 * row1 + col1 * col1) - Math.sqrt(row2 * row2 + col2 * col2);
         if (cmp < 0) {
             return -1;
-        }
-        else if (cmp > 0) {
+        } else if (cmp > 0) {
             return 1;
-        }
-        else {
+        } else {
             return 0;
         }
     }
 
     /**
      * Returns the solutions to the problem.
+     *
      * @return solutions
      */
     public List<Board> getSolutions() {
         return solutions;
+    }
+
+    /**
+     * Returns the tried set.
+     * This method exists for troubleshooting purposes and will likely be
+     * removed later.
+     * @return the symmetry strings of placements tried
+     */
+    public Set<String> getTried() {
+        return tried;
     }
 
 }

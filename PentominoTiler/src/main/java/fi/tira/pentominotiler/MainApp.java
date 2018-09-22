@@ -5,7 +5,9 @@ import fi.tira.pentominotiler.logic.Board;
 import fi.tira.pentominotiler.logic.PieceUtils;
 import fi.tira.pentominotiler.logic.Search;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -33,8 +35,8 @@ public class MainApp extends Application {
         Search mySearch = new Search(new Board(6, 10, Board.LETTER_SYMBOLS));
         // Uncomment the line below to run the search. WARNING: May run out of
         // memory or otherwise fail horribly.
-//        mySearch.runSearch();
-
+        mySearch.runSearch();
+        
         
         /*
         The testing ground ends here.

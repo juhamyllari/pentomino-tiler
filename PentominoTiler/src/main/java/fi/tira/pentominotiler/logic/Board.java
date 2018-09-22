@@ -175,13 +175,13 @@ public class Board {
 
     /**
      * Returns a list containing String representations of the Board in each of
-     * its four symmetries.
+     * its three alternative symmetries. The original (not mirrored) version
+     * is always unique and is therefore omitted.
      * @return a list of Strings
      */
     public List<String> symmetryStrings() {
         List<String> symmetries = new ArrayList<>();
         char[][] flippedOverX = flipArrayOverX(array);
-        symmetries.add(arrayToString(array));
         symmetries.add(arrayToString(flippedOverX));
         symmetries.add(arrayToString(flipArrayOverY(array)));
         symmetries.add(arrayToString(flipArrayOverY(flippedOverX)));
