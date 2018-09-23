@@ -1,4 +1,4 @@
-package DataStructures;
+package fi.tira.pentominotiler.datastructures;
 
 import java.util.AbstractList;
 
