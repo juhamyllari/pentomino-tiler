@@ -46,6 +46,12 @@ public class Board {
      * @param symbols
      */
     public Board(int rows, int cols, char[] symbols) {
+        if (rows * cols != 60
+                || rows > cols
+                || rows < 3) {
+            throw new IllegalArgumentException("Invalid board dimensions"
+                    + " (" + rows + ", " + cols + ")." );
+        }
         this.array = new char[rows][cols];
         this.rows = rows;
         this.cols = cols;
@@ -55,9 +61,8 @@ public class Board {
     }
 
     /**
-     * Prints the Board.
-     * Blocks are represented with the symbol of the corresponding piece. Empty
-     * squares are shown as '0'.
+     * Prints the Board. Blocks are represented with the symbol of the
+     * corresponding piece. Empty squares are shown as '0'.
      */
     public void printBoard() {
         for (int i = 0; i < rows; i++) {
@@ -72,6 +77,7 @@ public class Board {
 
     /**
      * Returns true if the piece can be placed in the specified location.
+     *
      * @param piece
      * @param row
      * @param col
@@ -95,8 +101,9 @@ public class Board {
     }
 
     /**
-     * Returns a new Board with the piece placed in the specified location.
-     * The symbol of the piece is symbols[symbolIndex].
+     * Returns a new Board with the piece placed in the specified location. The
+     * symbol of the piece is symbols[symbolIndex].
+     *
      * @param piece
      * @param row
      * @param col
@@ -164,9 +171,9 @@ public class Board {
     }
 
     /**
-     * Returns a String representation of the Board.
-     * Blocks are represented with the symbol of the corresponding piece. Empty
-     * squares are shown as '0'.
+     * Returns a String representation of the Board. Blocks are represented with
+     * the symbol of the corresponding piece. Empty squares are shown as '0'.
+     *
      * @return a String representation
      */
     public String toString() {
@@ -175,8 +182,9 @@ public class Board {
 
     /**
      * Returns a list containing String representations of the Board in each of
-     * its three alternative symmetries. The original (not mirrored) version
-     * is always unique and is therefore omitted.
+     * its three alternative symmetries. The original (not mirrored) version is
+     * always unique and is therefore omitted.
+     *
      * @return a list of Strings
      */
     public List<String> symmetryStrings() {
@@ -190,6 +198,7 @@ public class Board {
 
     /**
      * Returns the number of pieces not yet placed on the board.
+     *
      * @return number of unused pieces
      */
     public int getUnused() {
@@ -197,8 +206,9 @@ public class Board {
     }
 
     /**
-     * Returns true if the piece has already been placed.
-     * The piece is specified by its symbol index (0-11).
+     * Returns true if the piece has already been placed. The piece is specified
+     * by its symbol index (0-11).
+     *
      * @param index
      * @return true if piece has been placed
      */
@@ -216,6 +226,7 @@ public class Board {
 
     /**
      * Returns the contents of the board square specified by a linear index.
+     *
      * @param index
      * @return array[index / ncols][index % ncols]
      */

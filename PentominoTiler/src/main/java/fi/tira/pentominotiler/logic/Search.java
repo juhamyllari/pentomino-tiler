@@ -1,8 +1,8 @@
 package fi.tira.pentominotiler.logic;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -48,27 +48,53 @@ public class Search {
 
     /**
      * Finds all solutions to the tiling problem. Preplaces the "x" pentomino in
-     * each of its legal positions in the first quadrant and calls search
-     * separately on each placement. In the search proper, pieces are placed on
-     * squares of increasing Euclidian distance from the origin.
+     * each of its legal positions in the first quadrant (some positions may be
+     * outside the first quadrant if the number of rows or columns is odd) and
+     * calls search  separately on each placement. In the search proper, pieces
+     * are placed on squares of increasing Euclidian distance from the origin.
      */
     public void runSearch() {
-        // Hard coded for 6x10 boards! Refactor later.
+        
+        int rows = initialBoard.getRows();
+        int cols = initialBoard.getCols();
+
+        int rowsToCover = rows % 2 == 0 ? rows / 2 : rows / 2 + 1;
+        int colsToCover = cols % 2 == 0 ? cols / 2 : cols / 2 + 1;
+
         ArrayPiece centeredX = pieces.get(0).get(2);
-        search(initialBoard.placePiece(centeredX, 2, 4, 0));
-        search(initialBoard.placePiece(centeredX, 2, 3, 0));
-        search(initialBoard.placePiece(centeredX, 1, 4, 0));
-        search(initialBoard.placePiece(centeredX, 1, 3, 0));
-        search(initialBoard.placePiece(centeredX, 2, 2, 0));
-        search(initialBoard.placePiece(centeredX, 1, 2, 0));
-        search(initialBoard.placePiece(centeredX, 2, 1, 0));
+        
+        Instant startTime = Instant.now();
+
+        for (int row = 1; row < rowsToCover; row++) {
+            for (int col = 1; col < colsToCover; col++) {
+                if (!(row == 1 && col == 1)) {
+                    timedSearch(initialBoard.placePiece(centeredX, row, col, 0));
+                }
+            }
+        }
+        
+        Instant stopTime = Instant.now();
+
         System.out.println("Size of 'tried' set: " + tried.size());
         System.out.println("Search finished. Found " + solutions.size() + " solutions.");
+        System.out.println("The search took " + Duration.between(startTime, stopTime).toMillis() + " milliseconds.");
+    }
+
+    public void runWithoutPreplacement() {
+        timedSearch(initialBoard);
+    }
+
+    private void timedSearch(Board board) {
+        Instant startTime = Instant.now();
+        search(board);
+        Instant stopTime = Instant.now();
+        long timeElapsed = Duration.between(startTime, stopTime).toMillis();
+        System.out.println("Subsearch took " + timeElapsed + " milliseconds.");
     }
 
     private void search(Board board) {
         if (board.getUnused() == 0) {
-            System.out.println("Found solution number " + solutions.size());
+            System.out.println("Found solution number " + (solutions.size() + 1));
 //            board.printBoard();
             solutions.add(board);
             return;
@@ -138,9 +164,9 @@ public class Search {
     }
 
     /**
-     * Returns the tried set.
-     * This method exists for troubleshooting purposes and will likely be
-     * removed later.
+     * Returns the tried set. This method exists for troubleshooting purposes
+     * and will likely be removed later.
+     *
      * @return the symmetry strings of placements tried
      */
     public Set<String> getTried() {
