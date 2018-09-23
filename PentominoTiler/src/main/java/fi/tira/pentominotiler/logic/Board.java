@@ -1,6 +1,6 @@
 package fi.tira.pentominotiler.logic;
 
-import java.util.ArrayList;
+import fi.tira.pentominotiler.datastructures.MyArrayList;
 import java.util.List;
 
 /**
@@ -188,7 +188,7 @@ public class Board {
      * @return a list of Strings
      */
     public List<String> symmetryStrings() {
-        List<String> symmetries = new ArrayList<>();
+        List<String> symmetries = new MyArrayList<>();
         char[][] flippedOverX = flipArrayOverX(array);
         symmetries.add(arrayToString(flippedOverX));
         symmetries.add(arrayToString(flipArrayOverY(array)));

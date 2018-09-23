@@ -1,5 +1,6 @@
 package fi.tira.pentominotiler.logic;
 
+import fi.tira.pentominotiler.datastructures.MyArrayList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,10 +31,10 @@ public class PieceUtils {
     
     /**
      * Create all the 12 pentominoes from strings (provided internally).
-     * @return an ArrayList of the pieces.
+     * @return the 12 pieces
      */
     public static List<ArrayPiece> allPieces() {
-        ArrayList<ArrayPiece> pieces = new ArrayList<>();
+        MyArrayList<ArrayPiece> pieces = new MyArrayList<>();
         pieces.add(stringToArrayPiece("0#000###000#0000000000000"));
         pieces.add(stringToArrayPiece("#####00000000000000000000"));
         pieces.add(stringToArrayPiece("0#0000#000###000000000000"));
@@ -52,11 +53,11 @@ public class PieceUtils {
     /**
      * Creates all the 8 orientations of an ArrayPiece.
      * @param piece a valid pentomino
-     * @return list of all orientations
+     * @return all orientations of the piece
      */
     public static List<ArrayPiece> allOrientations(ArrayPiece piece) {
         piece = piece.align();
-        ArrayList<ArrayPiece> pieces = new ArrayList<>();
+        MyArrayList<ArrayPiece> pieces = new MyArrayList<>();
         ArrayPiece flipped = piece.flipOverX();
         pieces.add(piece);
         pieces.add(flipped);
@@ -73,11 +74,11 @@ public class PieceUtils {
      * Creates all the non-redundant orientations of an ArrayPiece.
      * (There are 1–8, depending on the piece.)
      * @param piece a valid pentomino
-     * @return an ArrayList of length 1–8
+     * @return the 1–8 non-redundant orientations of the piece
      */
     public static List<ArrayPiece> nonRedundant(ArrayPiece piece) {
         List<ArrayPiece> all = allOrientations(piece);
-        List<ArrayPiece> unique = new ArrayList<>();
+        List<ArrayPiece> unique = new MyArrayList<>();
         for (ArrayPiece candidate : all) {
             boolean found = false;
             for (ArrayPiece p : unique) {
@@ -101,7 +102,7 @@ public class PieceUtils {
      * @return a list of 5 translations of the piece
      */
     public static List<ArrayPiece> centered(ArrayPiece piece) {
-        List<ArrayPiece> result = new ArrayList<>();
+        List<ArrayPiece> result = new MyArrayList<>();
         for (Block block : piece.getBlocks()) {
             result.add(piece.move(-block.getRow(), -block.getCol()));
         }

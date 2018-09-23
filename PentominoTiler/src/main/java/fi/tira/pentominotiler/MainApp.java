@@ -1,14 +1,7 @@
 package fi.tira.pentominotiler;
 
-import fi.tira.pentominotiler.logic.ArrayPiece;
 import fi.tira.pentominotiler.logic.Board;
-import fi.tira.pentominotiler.logic.PieceUtils;
 import fi.tira.pentominotiler.logic.Search;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -32,7 +25,7 @@ public class MainApp extends Application {
         The GUI does not do anything interesting yet. This is a testing ground for elements of the program logic.
          */
         
-        Search mySearch = new Search(new Board(5, 12, Board.LETTER_SYMBOLS));
+        Search mySearch = new Search(new Board(6, 10, Board.LETTER_SYMBOLS));
         mySearch.runSearch();
         // Uncomment the line below to show all solutions.
 //        mySearch.getSolutions().forEach(b -> b.printBoard());

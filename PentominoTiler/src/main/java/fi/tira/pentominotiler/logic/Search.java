@@ -1,8 +1,8 @@
 package fi.tira.pentominotiler.logic;
 
+import fi.tira.pentominotiler.datastructures.MyArrayList;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,14 +31,14 @@ public class Search {
      */
     public Search(Board initialBoard) {
         this.initialBoard = initialBoard;
-        this.solutions = new ArrayList<>();
+        this.solutions = new MyArrayList<>();
         this.tried = new HashSet<>(30000000);
         this.pieces = PieceUtils
                 .allPieces()
                 .stream()
                 .map(p -> {
                     List<ArrayPiece> orientations = PieceUtils.nonRedundant(p);
-                    List<ArrayPiece> centered = new ArrayList<>();
+                    List<ArrayPiece> centered = new MyArrayList<>();
                     orientations.forEach(pc -> centered.addAll(PieceUtils.centered(pc)));
                     return centered;
                 })
