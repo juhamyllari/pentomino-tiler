@@ -28,10 +28,10 @@ public class Search {
      *
      * @param initialBoard an empty Board
      */
-    public Search(Board initialBoard) {
+    public Search(Board initialBoard, int triedSetSize) {
         this.initialBoard = initialBoard;
         this.solutions = new MyArrayList<>();
-        this.tried = new MyHashSet<>();
+        this.tried = new MyHashSet<>(triedSetSize);
         this.pieces = PieceUtils
                 .allPieces()
                 .stream()
@@ -45,15 +45,19 @@ public class Search {
         this.indexOrder = createOrderIndex(initialBoard);
     }
 
+    public Search(Board initialBoard) {
+        this(initialBoard, 1000000);
+    }
+
     /**
      * Finds all solutions to the tiling problem. Preplaces the "x" pentomino in
      * each of its legal positions in the first quadrant (some positions may be
      * outside the first quadrant if the number of rows or columns is odd) and
-     * calls search  separately on each placement. In the search proper, pieces
+     * calls search separately on each placement. In the search proper, pieces
      * are placed on squares of increasing Euclidian distance from the origin.
      */
     public void runSearch() {
-        
+
         int rows = initialBoard.getRows();
         int cols = initialBoard.getCols();
 
@@ -61,7 +65,7 @@ public class Search {
         int colsToCover = cols % 2 == 0 ? cols / 2 : cols / 2 + 1;
 
         ArrayPiece centeredX = pieces.get(0).get(2);
-        
+
         Instant startTime = Instant.now();
 
         for (int row = 1; row < rowsToCover; row++) {
@@ -71,7 +75,7 @@ public class Search {
                 }
             }
         }
-        
+
         Instant stopTime = Instant.now();
 
         System.out.println("Size of 'tried' set: " + tried.size());
@@ -94,7 +98,7 @@ public class Search {
     private void search(Board board) {
         if (board.getUnused() == 0) {
             System.out.println("Found solution number " + (solutions.size() + 1));
-//            board.printBoard();
+            System.out.println("Tried set size is " + tried.size());
             solutions.add(board);
             return;
         }

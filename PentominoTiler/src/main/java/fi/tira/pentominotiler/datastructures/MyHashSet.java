@@ -4,7 +4,7 @@ import java.util.Collection;
 
 /**
  * A simple set implemented using a hash table.
- * 
+ *
  * @author juha
  * @param <E> element type
  */
@@ -17,7 +17,11 @@ public class MyHashSet<E> {
     private int size;
 
     public MyHashSet() {
-        this.buckets = new MyArrayList[INITIAL_ARRAY_SIZE];
+        this(INITIAL_ARRAY_SIZE);
+    }
+
+    public MyHashSet(int initialSize) {
+        this.buckets = new MyArrayList[initialSize];
         this.size = 0;
         for (int i = 0; i < buckets.length; i++) {
             buckets[i] = new MyArrayList();
@@ -38,7 +42,7 @@ public class MyHashSet<E> {
             return true;
         }
     }
-    
+
     public void addAll(Collection c) {
         c.forEach((element) -> add((E) element));
     }
@@ -65,7 +69,7 @@ public class MyHashSet<E> {
     public int size() {
         return size;
     }
-    
+
     private int hash(E element, int arrayLength) {
         return Math.abs(element.hashCode()) % arrayLength;
     }
