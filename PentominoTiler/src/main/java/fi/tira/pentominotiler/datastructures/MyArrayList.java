@@ -9,7 +9,7 @@ import java.util.AbstractList;
  */
 public class MyArrayList<T> extends AbstractList<T> {
     
-    private static final int DEFAULT_SIZE = 8;
+    private static final int DEFAULT_SIZE = 4;
     
     private int nextIndex;
     private T[] array;

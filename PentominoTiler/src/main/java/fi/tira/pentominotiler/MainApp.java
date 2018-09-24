@@ -24,13 +24,11 @@ public class MainApp extends Application {
         /*
         The GUI does not do anything interesting yet. This is a testing ground for elements of the program logic.
          */
-        
-        Search mySearch = new Search(new Board(5, 12, Board.LETTER_SYMBOLS), 2000000);
+        Search mySearch = new Search(new Board(6, 10, Board.LETTER_SYMBOLS), 18000000);
         mySearch.runSearch();
         // Uncomment the line below to show all solutions.
-//        mySearch.getSolutions().forEach(b -> b.printBoard());
-        
-        
+        System.out.println("max bucket size: " + mySearch.getTried().maxBucketSize());
+
         /*
         The testing ground ends here.
         

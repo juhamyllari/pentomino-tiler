@@ -74,4 +74,13 @@ public class MyHashSet<E> {
         return Math.abs(element.hashCode()) % arrayLength;
     }
 
+    public int maxBucketSize() {
+        int max = 0;
+        for (MyArrayList bucket : buckets) {
+            if (bucket.size() > max) {
+                max = bucket.size();
+            }
+        }
+        return max;
+    }
 }
