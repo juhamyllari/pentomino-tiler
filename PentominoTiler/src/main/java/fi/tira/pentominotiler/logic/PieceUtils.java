@@ -1,7 +1,6 @@
 package fi.tira.pentominotiler.logic;
 
 import fi.tira.pentominotiler.datastructures.MyArrayList;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

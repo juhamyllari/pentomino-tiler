@@ -1,11 +1,10 @@
 package fi.tira.pentominotiler.logic;
 
 import fi.tira.pentominotiler.datastructures.MyArrayList;
+import fi.tira.pentominotiler.datastructures.MyHashSet;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -18,7 +17,7 @@ public class Search {
 
     private Board initialBoard;
     private List<Board> solutions;
-    private Set<String> tried;
+    private MyHashSet<String> tried;
     private final List<List<ArrayPiece>> pieces;
     private final int[] indexOrder;
 
@@ -32,7 +31,7 @@ public class Search {
     public Search(Board initialBoard) {
         this.initialBoard = initialBoard;
         this.solutions = new MyArrayList<>();
-        this.tried = new HashSet<>(30000000);
+        this.tried = new MyHashSet<>();
         this.pieces = PieceUtils
                 .allPieces()
                 .stream()
@@ -169,7 +168,7 @@ public class Search {
      *
      * @return the symmetry strings of placements tried
      */
-    public Set<String> getTried() {
+    public MyHashSet<String> getTried() {
         return tried;
     }
 
