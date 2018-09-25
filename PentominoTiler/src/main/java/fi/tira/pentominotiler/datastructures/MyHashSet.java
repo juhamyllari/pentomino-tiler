@@ -10,26 +10,28 @@ import java.util.Collection;
  */
 public class MyHashSet<E> {
 
-    private static final int INITIAL_ARRAY_SIZE = 11;
-    private static final double THRESHOLD = .75;
+    private static final int DEFAULT_INITIAL_ARRAY_SIZE = 11;
+    private static final double DEFAULT_THRESHOLD = 3.0;
 
     private MyArrayList[] buckets;
     private int size;
+    private double threshold;
 
     public MyHashSet() {
-        this(INITIAL_ARRAY_SIZE);
+        this(DEFAULT_INITIAL_ARRAY_SIZE, DEFAULT_THRESHOLD);
     }
 
-    public MyHashSet(int initialSize) {
+    public MyHashSet(int initialSize, double threshold) {
         this.buckets = new MyArrayList[initialSize];
         this.size = 0;
         for (int i = 0; i < buckets.length; i++) {
             buckets[i] = new MyArrayList();
         }
+        this.threshold = threshold;
     }
 
     public boolean add(E element) {
-        if (size / (double) buckets.length > THRESHOLD) {
+        if (size / (double) buckets.length > threshold) {
             rehash();
         }
 

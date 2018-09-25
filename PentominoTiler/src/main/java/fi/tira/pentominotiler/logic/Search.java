@@ -28,10 +28,12 @@ public class Search {
      *
      * @param initialBoard an empty Board
      */
-    public Search(Board initialBoard, int triedSetSize) {
+    public Search(Board initialBoard) {
         this.initialBoard = initialBoard;
         this.solutions = new MyArrayList<>();
-        this.tried = new MyHashSet<>(triedSetSize);
+        this.tried = initialBoard.getRows() == 6 ? // The 6x10 board requires more resources.
+                new MyHashSet<>(4500000, 3.0) :
+                new MyHashSet<>(1000000, 2.0);
         this.pieces = PieceUtils
                 .allPieces()
                 .stream()
@@ -43,10 +45,6 @@ public class Search {
                 })
                 .collect(Collectors.toList());
         this.indexOrder = createOrderIndex(initialBoard);
-    }
-
-    public Search(Board initialBoard) {
-        this(initialBoard, 1000000);
     }
 
     /**
@@ -111,7 +109,7 @@ public class Search {
                     if (board.canPlace(candidate, row, col)) {
                         Board newBoard = board.placePiece(candidate, row, col, i);
                         List<String> symmetries = newBoard.symmetryStrings();
-                        if (symmetries.stream().noneMatch(s -> tried.contains(s))) {
+                        if (!tried.contains(newBoard.toString())) {
                             tried.addAll(symmetries);
                             search(newBoard);
                         }

@@ -8,17 +8,21 @@ import java.util.AbstractList;
  * @param <T>
  */
 public class MyArrayList<T> extends AbstractList<T> {
-    
+
     private static final int DEFAULT_SIZE = 4;
-    
+
     private int nextIndex;
     private T[] array;
 
     public MyArrayList() {
-        this.nextIndex = 0;
-        this.array = (T[]) new Object[DEFAULT_SIZE];
+        this(DEFAULT_SIZE);
     }
-    
+
+    public MyArrayList(int initialSize) {
+        this.nextIndex = 0;
+        this.array = (T[]) new Object[initialSize];
+    }
+
     @Override
     public boolean add(T element) {
         if (nextIndex >= array.length) {
@@ -27,7 +31,7 @@ public class MyArrayList<T> extends AbstractList<T> {
         array[nextIndex++] = element;
         return true;
     }
-    
+
     private void extendArray() {
         if (array.length >= Integer.MAX_VALUE) {
             throw new IllegalStateException("Collection is full.");
@@ -38,7 +42,7 @@ public class MyArrayList<T> extends AbstractList<T> {
         }
         this.array = newArray;
     }
-    
+
     @Override
     public T get(int index) {
         return array[index];
@@ -49,7 +53,4 @@ public class MyArrayList<T> extends AbstractList<T> {
         return nextIndex;
     }
 
-            
-
-    
 }

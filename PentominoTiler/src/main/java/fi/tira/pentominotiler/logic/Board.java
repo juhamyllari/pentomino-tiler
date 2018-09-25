@@ -188,8 +188,9 @@ public class Board {
      * @return a list of Strings
      */
     public List<String> symmetryStrings() {
-        List<String> symmetries = new MyArrayList<>();
+        List<String> symmetries = new MyArrayList<>(3);
         char[][] flippedOverX = flipArrayOverX(array);
+//        symmetries.add(arrayToString(array));
         symmetries.add(arrayToString(flippedOverX));
         symmetries.add(arrayToString(flipArrayOverY(array)));
         symmetries.add(arrayToString(flipArrayOverY(flippedOverX)));
