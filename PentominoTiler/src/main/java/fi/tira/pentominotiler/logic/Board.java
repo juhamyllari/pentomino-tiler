@@ -182,15 +182,14 @@ public class Board {
 
     /**
      * Returns a list containing String representations of the Board in each of
-     * its three alternative symmetries. The original (not mirrored) version is
-     * always unique and is therefore omitted.
+     * its three alternative symmetries. The original (not mirrored or rotated)
+     * version is always unique in the search and is therefore omitted.
      *
-     * @return a list of Strings
+     * @return mirrored and rotated versions of the board
      */
     public List<String> symmetryStrings() {
         List<String> symmetries = new MyArrayList<>(3);
         char[][] flippedOverX = flipArrayOverX(array);
-//        symmetries.add(arrayToString(array));
         symmetries.add(arrayToString(flippedOverX));
         symmetries.add(arrayToString(flipArrayOverY(array)));
         symmetries.add(arrayToString(flipArrayOverY(flippedOverX)));

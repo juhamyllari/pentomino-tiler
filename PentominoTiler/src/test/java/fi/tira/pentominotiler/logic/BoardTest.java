@@ -63,11 +63,14 @@ public class BoardTest {
 
     @Test
     public void testSymmetryStrings() {
-        ArrayPiece piece = PieceUtils.stringToArrayPiece("#0000#0000#0000#0000#0000");
+        String input = "#0000#0000#0000#0000#0000";
+        ArrayPiece piece = PieceUtils.stringToArrayPiece(input);
         Board b1 = new Board(6, 10, Board.LETTER_SYMBOLS).placePiece(piece, 0, 0, 1);
         List<String> lst = b1.symmetryStrings();
-        assertEquals(4, lst.size());
-        assertEquals(b1.toString(), lst.get(0));
+        assertEquals(3, lst.size());
+        assertEquals("0000000000I000000000I000000000I000000000I000000000I000000000", lst.get(0));
+        assertEquals("000000000I000000000I000000000I000000000I000000000I0000000000", lst.get(1));
+        assertEquals("0000000000000000000I000000000I000000000I000000000I000000000I", lst.get(2));
     }
 
     @Test
