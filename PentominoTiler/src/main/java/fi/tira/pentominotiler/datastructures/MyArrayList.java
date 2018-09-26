@@ -3,7 +3,10 @@ package fi.tira.pentominotiler.datastructures;
 import java.util.AbstractList;
 
 /**
- *
+ * A rudimentary list data structure implemented using an array.
+ * MyArrayList only supports adding elements, querying for size, getting elements
+ * by their index and iterating over elements. Element removal is not required
+ * by Pentomino Tiler and is therefore not implemented.
  * @author juha
  * @param <T>
  */
@@ -14,10 +17,17 @@ public class MyArrayList<T> extends AbstractList<T> {
     private int nextIndex;
     private T[] array;
 
+    /**
+     * Construct a MyArrayList of default (initial) size.
+     */
     public MyArrayList() {
         this(DEFAULT_SIZE);
     }
 
+    /**
+     * Construct a MyArrayList of the specified (initial) size.
+     * @param initialSize
+     */
     public MyArrayList(int initialSize) {
         this.nextIndex = 0;
         this.array = (T[]) new Object[initialSize];
