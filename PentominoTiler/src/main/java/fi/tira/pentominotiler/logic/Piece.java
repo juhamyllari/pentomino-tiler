@@ -3,10 +3,10 @@ package fi.tira.pentominotiler.logic;
 import java.util.Arrays;
 
 /**
- * The ArrayPiece class implements a pentomino piece as an array of Block objects.
+ * The Piece class implements a pentomino piece as an array of Block objects.
  * @author juha
  */
-public class ArrayPiece {
+public class Piece {
 
     private Block[] blocks;
     private int numberOfBlocks;
@@ -15,7 +15,7 @@ public class ArrayPiece {
      * This constructor is used to create a full (size 5) pentomino piece.
      * @param blocks
      */
-    public ArrayPiece(Block[] blocks) {
+    public Piece(Block[] blocks) {
         this.blocks = blocks;
         this.numberOfBlocks = 5;
     }
@@ -25,7 +25,7 @@ public class ArrayPiece {
      * @param blocks
      * @param numberOfBlocks
      */
-    public ArrayPiece(Block[] blocks, int numberOfBlocks) {
+    public Piece(Block[] blocks, int numberOfBlocks) {
         this.blocks = blocks;
         this.numberOfBlocks = numberOfBlocks;
     }
@@ -50,21 +50,21 @@ public class ArrayPiece {
      * Create a new, translated piece.
      * @param rowOffset
      * @param colOffset
-     * @return an ArrayPiece translated by the specified amount
+     * @return an Piece translated by the specified amount
      */
-    public ArrayPiece move(int rowOffset, int colOffset) {
+    public Piece move(int rowOffset, int colOffset) {
         Block[] newBlocks = new Block[blocks.length];
         for (int i = 0; i < blocks.length; i++) {
             newBlocks[i] = blocks[i].move(rowOffset, colOffset);
         }
-        return new ArrayPiece(newBlocks);
+        return new Piece(newBlocks);
     }
 
     /**
      * Create a new pieced translated to touch both axes in the first quadrant.
-     * @return a new ArrayPiece
+     * @return a new Piece
      */
-    public ArrayPiece align() {
+    public Piece align() {
         Block[] newArray = new Block[5];
         return this.move(-this.minRow(), -this.minCol());
     }
@@ -108,26 +108,26 @@ public class ArrayPiece {
 
     /**
      * Flip piece over the x axis and move to touch both axes in the first quadrant.
-     * @return a new ArrayPiece
+     * @return a new Piece
      */
-    public ArrayPiece flipOverX() {
-        ArrayPiece aligned = this.align();
+    public Piece flipOverX() {
+        Piece aligned = this.align();
         Block[] newBlocks = Arrays.stream(aligned.blocks)
                 .map(block -> block.flipOverX())
                 .toArray(Block[]::new);
-        return new ArrayPiece(newBlocks).align();
+        return new Piece(newBlocks).align();
     }
     
     /**
      * Rotate the piece 90 degrees counterclockwise and move to touch both axes in the first quadrant.
-     * @return a new ArrayPiece
+     * @return a new Piece
      */
-    public ArrayPiece rotate90() {
-        ArrayPiece aligned = this.align();
+    public Piece rotate90() {
+        Piece aligned = this.align();
         Block[] newBlocks = Arrays.stream(aligned.blocks)
                 .map(block -> block.rotate90())
                 .toArray(Block[]::new);
-        return new ArrayPiece(newBlocks).align();
+        return new Piece(newBlocks).align();
     }
     
     public void printPiece() {

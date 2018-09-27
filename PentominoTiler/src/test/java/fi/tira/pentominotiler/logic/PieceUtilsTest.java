@@ -41,23 +41,23 @@ public class PieceUtilsTest {
         }
         
         String input = "#0000#0000#0000#0000#0000";
-        ArrayPiece created = PieceUtils.stringToArrayPiece(input);
+        Piece created = PieceUtils.stringToPiece(input);
         assertArrayEquals(expectedBlocks, created.getBlocks());
     }
 
     @Test
     public void testAllPieces() {
-        List<ArrayPiece> lst = PieceUtils.allPieces();
+        List<Piece> lst = PieceUtils.allPieces();
         assertEquals(12, lst.size());
         assertEquals(lst.get(0).toString(), "0#000###000#0000000000000");
     }
     
     @Test
     public void testNonRedundant() {
-        ArrayPiece x = PieceUtils.stringToArrayPiece("0#000###000#0000000000000");
-        ArrayPiece i = PieceUtils.stringToArrayPiece("#####00000000000000000000");
-        ArrayPiece u = PieceUtils.stringToArrayPiece("##000#0000##0000000000000");
-        ArrayPiece p = PieceUtils.stringToArrayPiece("##000##000#00000000000000");
+        Piece x = PieceUtils.stringToPiece("0#000###000#0000000000000");
+        Piece i = PieceUtils.stringToPiece("#####00000000000000000000");
+        Piece u = PieceUtils.stringToPiece("##000#0000##0000000000000");
+        Piece p = PieceUtils.stringToPiece("##000##000#00000000000000");
         
         assertEquals(1, PieceUtils.nonRedundant(x).size());
         assertEquals(2, PieceUtils.nonRedundant(i).size());
@@ -72,8 +72,8 @@ public class PieceUtilsTest {
             input[i] = new Block(i, 0);
         }
 
-        ArrayPiece piece = new ArrayPiece(input);
-        List<ArrayPiece> output = PieceUtils.allOrientations(piece);
+        Piece piece = new Piece(input);
+        List<Piece> output = PieceUtils.allOrientations(piece);
         assertEquals(output.size(), 8);
     }
 

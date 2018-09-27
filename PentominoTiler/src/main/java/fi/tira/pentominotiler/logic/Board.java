@@ -83,7 +83,7 @@ public class Board {
      * @param col
      * @return can place
      */
-    public boolean canPlace(ArrayPiece piece, int row, int col) {
+    public boolean canPlace(Piece piece, int row, int col) {
         boolean allowed = true;
         for (Block block : piece.getBlocks()) {
             int effectiveRow = row + block.getRow();
@@ -110,7 +110,7 @@ public class Board {
      * @param symbolIndex
      * @return a new Board
      */
-    public Board placePiece(ArrayPiece piece, int row, int col, int symbolIndex) {
+    public Board placePiece(Piece piece, int row, int col, int symbolIndex) {
         char[][] newArray = copyBoardArray(this);
         for (Block block : piece.getBlocks()) {
             int effectiveRow = row + block.getRow();

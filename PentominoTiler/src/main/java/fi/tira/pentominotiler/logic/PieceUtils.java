@@ -4,18 +4,18 @@ import fi.tira.pentominotiler.datastructures.MyArrayList;
 import java.util.List;
 
 /**
- * A utility class for handling ArrayPiece objects.
+ * A utility class for handling Piece objects.
  * @author juha
  */
 public class PieceUtils {
     
     /**
-     * Converts a string representation of a piece to an ArrayPiece.
+     * Converts a string representation of a piece to an Piece.
      * The validity of the piece is not checked.
      * @param str a String of length 25 with "0" for "no block" and "#" for "block"
-     * @return an ArrayPiece
+     * @return an Piece
      */
-    public static ArrayPiece stringToArrayPiece(String str) {
+    public static Piece stringToPiece(String str) {
         Block[] blocks = new Block[5];
         int blockIndex = 0;
         for (int i = 0; i < str.length(); i++) {
@@ -25,39 +25,39 @@ public class PieceUtils {
                 blocks[blockIndex++] = new Block(row, col);
             }
         }
-        return new ArrayPiece(blocks);
+        return new Piece(blocks);
     }
     
     /**
      * Create all the 12 pentominoes from strings (provided internally).
      * @return the 12 pieces
      */
-    public static List<ArrayPiece> allPieces() {
-        MyArrayList<ArrayPiece> pieces = new MyArrayList<>();
-        pieces.add(stringToArrayPiece("0#000###000#0000000000000"));
-        pieces.add(stringToArrayPiece("#####00000000000000000000"));
-        pieces.add(stringToArrayPiece("0#0000#000###000000000000"));
-        pieces.add(stringToArrayPiece("00#0000#00###000000000000"));
-        pieces.add(stringToArrayPiece("0##00##000#00000000000000"));
-        pieces.add(stringToArrayPiece("00#00###00#00000000000000"));
-        pieces.add(stringToArrayPiece("##000#0000##0000000000000"));
-        pieces.add(stringToArrayPiece("##000##000#00000000000000"));
-        pieces.add(stringToArrayPiece("##0000###0000000000000000"));
-        pieces.add(stringToArrayPiece("##0000#0000#0000#00000000"));
-        pieces.add(stringToArrayPiece("0#000##0000##000000000000"));
-        pieces.add(stringToArrayPiece("0#000####0000000000000000"));
+    public static List<Piece> allPieces() {
+        MyArrayList<Piece> pieces = new MyArrayList<>();
+        pieces.add(stringToPiece("0#000###000#0000000000000"));
+        pieces.add(stringToPiece("#####00000000000000000000"));
+        pieces.add(stringToPiece("0#0000#000###000000000000"));
+        pieces.add(stringToPiece("00#0000#00###000000000000"));
+        pieces.add(stringToPiece("0##00##000#00000000000000"));
+        pieces.add(stringToPiece("00#00###00#00000000000000"));
+        pieces.add(stringToPiece("##000#0000##0000000000000"));
+        pieces.add(stringToPiece("##000##000#00000000000000"));
+        pieces.add(stringToPiece("##0000###0000000000000000"));
+        pieces.add(stringToPiece("##0000#0000#0000#00000000"));
+        pieces.add(stringToPiece("0#000##0000##000000000000"));
+        pieces.add(stringToPiece("0#000####0000000000000000"));
         return pieces;
     }
     
     /**
-     * Creates all the 8 orientations of an ArrayPiece.
+     * Creates all the 8 orientations of an Piece.
      * @param piece a valid pentomino
      * @return all orientations of the piece
      */
-    public static List<ArrayPiece> allOrientations(ArrayPiece piece) {
+    public static List<Piece> allOrientations(Piece piece) {
         piece = piece.align();
-        MyArrayList<ArrayPiece> pieces = new MyArrayList<>();
-        ArrayPiece flipped = piece.flipOverX();
+        MyArrayList<Piece> pieces = new MyArrayList<>();
+        Piece flipped = piece.flipOverX();
         pieces.add(piece);
         pieces.add(flipped);
         pieces.add(piece.rotate90());
@@ -70,17 +70,17 @@ public class PieceUtils {
     }
     
     /**
-     * Creates all the non-redundant orientations of an ArrayPiece.
+     * Creates all the non-redundant orientations of an Piece.
      * (There are 1–8, depending on the piece.)
      * @param piece a valid pentomino
      * @return the 1–8 non-redundant orientations of the piece
      */
-    public static List<ArrayPiece> nonRedundant(ArrayPiece piece) {
-        List<ArrayPiece> all = allOrientations(piece);
-        List<ArrayPiece> unique = new MyArrayList<>();
-        for (ArrayPiece candidate : all) {
+    public static List<Piece> nonRedundant(Piece piece) {
+        List<Piece> all = allOrientations(piece);
+        List<Piece> unique = new MyArrayList<>();
+        for (Piece candidate : all) {
             boolean found = false;
-            for (ArrayPiece p : unique) {
+            for (Piece p : unique) {
                 if (candidate.toString().equals(p.toString())) {
                     found = true;
                     break;
@@ -100,8 +100,8 @@ public class PieceUtils {
      * @param piece
      * @return a list of 5 translations of the piece
      */
-    public static List<ArrayPiece> centered(ArrayPiece piece) {
-        List<ArrayPiece> result = new MyArrayList<>();
+    public static List<Piece> centered(Piece piece) {
+        List<Piece> result = new MyArrayList<>();
         for (Block block : piece.getBlocks()) {
             result.add(piece.move(-block.getRow(), -block.getCol()));
         }

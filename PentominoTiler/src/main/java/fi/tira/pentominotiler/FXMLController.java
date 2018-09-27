@@ -1,6 +1,6 @@
 package fi.tira.pentominotiler;
 
-import fi.tira.pentominotiler.logic.ArrayPiece;
+import fi.tira.pentominotiler.logic.Piece;
 import fi.tira.pentominotiler.logic.Block;
 import java.net.URL;
 import java.util.ResourceBundle;

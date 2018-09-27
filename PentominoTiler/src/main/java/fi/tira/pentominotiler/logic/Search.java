@@ -18,7 +18,7 @@ public class Search {
     private Board initialBoard;
     private List<Board> solutions;
     private MyHashSet<String> tried;
-    private final List<List<ArrayPiece>> pieces;
+    private final List<List<Piece>> pieces;
     private final int[] indexOrder;
 
     /**
@@ -38,8 +38,8 @@ public class Search {
                 .allPieces()
                 .stream()
                 .map(p -> {
-                    List<ArrayPiece> orientations = PieceUtils.nonRedundant(p);
-                    List<ArrayPiece> centered = new MyArrayList<>();
+                    List<Piece> orientations = PieceUtils.nonRedundant(p);
+                    List<Piece> centered = new MyArrayList<>();
                     orientations.forEach(pc -> centered.addAll(PieceUtils.centered(pc)));
                     return centered;
                 })
@@ -62,7 +62,7 @@ public class Search {
         int rowsToCover = rows % 2 == 0 ? rows / 2 : rows / 2 + 1;
         int colsToCover = cols % 2 == 0 ? cols / 2 : cols / 2 + 1;
 
-        ArrayPiece centeredX = pieces.get(0).get(2);
+        Piece centeredX = pieces.get(0).get(2);
 
         Instant startTime = Instant.now();
 
@@ -105,7 +105,7 @@ public class Search {
         int col = index % board.getCols();
         for (int i = 0; i < 12; i++) {
             if (!board.isUsed(i)) {
-                for (ArrayPiece candidate : pieces.get(i)) {
+                for (Piece candidate : pieces.get(i)) {
                     if (board.canPlace(candidate, row, col)) {
                         Board newBoard = board.placePiece(candidate, row, col, i);
                         List<String> symmetries = newBoard.symmetryStrings();

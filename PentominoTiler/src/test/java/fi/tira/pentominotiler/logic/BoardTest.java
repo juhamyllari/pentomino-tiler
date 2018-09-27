@@ -35,7 +35,7 @@ public class BoardTest {
 
     @Test
     public void testCanPlace() {
-        ArrayPiece piece = PieceUtils.stringToArrayPiece("#0000#0000#0000#0000#0000");
+        Piece piece = PieceUtils.stringToPiece("#0000#0000#0000#0000#0000");
         Board b1 = new Board(6, 10, Board.LETTER_SYMBOLS);
         assertEquals(true, b1.canPlace(piece, 0, 0));
         assertEquals(false, b1.canPlace(piece, 2, 0));
@@ -45,7 +45,7 @@ public class BoardTest {
 
     @Test
     public void testPlacePiece() {
-        ArrayPiece piece = PieceUtils.stringToArrayPiece("#0000#0000#0000#0000#0000");
+        Piece piece = PieceUtils.stringToPiece("#0000#0000#0000#0000#0000");
         Board b1 = new Board(6, 10, Board.LETTER_SYMBOLS).placePiece(piece, 0, 0, 1);
         assertEquals('I', b1.charAtLinearIndex(0));
         assertEquals(0, b1.charAtLinearIndex(1));
@@ -53,7 +53,7 @@ public class BoardTest {
 
     @Test
     public void testToString() {
-        ArrayPiece piece = PieceUtils.stringToArrayPiece("#0000#0000#0000#0000#0000");
+        Piece piece = PieceUtils.stringToPiece("#0000#0000#0000#0000#0000");
         Board b1 = new Board(6, 10, Board.LETTER_SYMBOLS).placePiece(piece, 0, 0, 1);
         String str = b1.toString();
         assertEquals(60, str.length());
@@ -64,7 +64,7 @@ public class BoardTest {
     @Test
     public void testSymmetryStrings() {
         String input = "#0000#0000#0000#0000#0000";
-        ArrayPiece piece = PieceUtils.stringToArrayPiece(input);
+        Piece piece = PieceUtils.stringToPiece(input);
         Board b1 = new Board(6, 10, Board.LETTER_SYMBOLS).placePiece(piece, 0, 0, 1);
         List<String> lst = b1.symmetryStrings();
         assertEquals(3, lst.size());
@@ -75,7 +75,7 @@ public class BoardTest {
 
     @Test
     public void testGetUnused() {
-        ArrayPiece piece = PieceUtils.stringToArrayPiece("#0000#0000#0000#0000#0000");
+        Piece piece = PieceUtils.stringToPiece("#0000#0000#0000#0000#0000");
         Board b1 = new Board(6, 10, Board.LETTER_SYMBOLS);
         Board b2 = b1.placePiece(piece, 0, 0, 1);
         assertEquals(12, b1.getUnused());
@@ -84,7 +84,7 @@ public class BoardTest {
 
     @Test
     public void testIsUsed() {
-        ArrayPiece piece = PieceUtils.stringToArrayPiece("#0000#0000#0000#0000#0000");
+        Piece piece = PieceUtils.stringToPiece("#0000#0000#0000#0000#0000");
         Board b1 = new Board(6, 10, Board.LETTER_SYMBOLS);
         Board b2 = b1.placePiece(piece, 0, 0, 1);
         assertEquals(false, b1.isUsed(0));
@@ -107,7 +107,7 @@ public class BoardTest {
 
     @Test
     public void testCharAtLinearIndex() {
-        ArrayPiece piece = PieceUtils.stringToArrayPiece("0#000###000#0000000000000");
+        Piece piece = PieceUtils.stringToPiece("0#000###000#0000000000000");
         Board b1 = new Board(6, 10, Board.LETTER_SYMBOLS).placePiece(piece, 0, 0, 0);
         assertEquals(0, b1.charAtLinearIndex(0));
         assertEquals('X', b1.charAtLinearIndex(1));

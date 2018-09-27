@@ -39,7 +39,7 @@ public class ArrayPieceTest {
             input[i] = new Block(0, i);
         }
 
-        ArrayPiece piece = new ArrayPiece(input);
+        Piece piece = new Piece(input);
         Block[] got = piece.getBlocks();
         assertArrayEquals(input, got);
     }
@@ -56,7 +56,7 @@ public class ArrayPieceTest {
             secondInput[i] = new Block(0, i);
         }
 
-        ArrayPiece piece = new ArrayPiece(firstInput);
+        Piece piece = new Piece(firstInput);
         piece.setBlocks(secondInput);
         Block[] got = piece.getBlocks();
         assertArrayEquals(secondInput, got);
@@ -78,7 +78,7 @@ public class ArrayPieceTest {
             expected[i] = new Block(rowOffset, i + colOffset);
         }
 
-        ArrayPiece piece = new ArrayPiece(input).move(rowOffset, colOffset);
+        Piece piece = new Piece(input).move(rowOffset, colOffset);
         assertArrayEquals(expected, piece.getBlocks());
     }
 
@@ -90,7 +90,7 @@ public class ArrayPieceTest {
             input[i] = new Block(0, i);
         }
 
-        ArrayPiece piece = new ArrayPiece(input).move(7, -2);
+        Piece piece = new Piece(input).move(7, -2);
 
         assertArrayEquals(input, piece.align().getBlocks());
     }
@@ -102,7 +102,7 @@ public class ArrayPieceTest {
             input[i] = new Block(i, 0);
         }
 
-        ArrayPiece piece = new ArrayPiece(input);
+        Piece piece = new Piece(input);
 
         String expected = "#0000#0000#0000#0000#0000";
         String result = piece.toString();
@@ -113,7 +113,7 @@ public class ArrayPieceTest {
     public void testFlipOverX() {
         String input = "#0000####0000000000000000";
         String flippedInput = "####0#0000000000000000000";
-        ArrayPiece pieceFlipped = PieceUtils.stringToArrayPiece(input).flipOverX();
+        Piece pieceFlipped = PieceUtils.stringToPiece(input).flipOverX();
         String flippedPieceString = pieceFlipped.toString();
         assertEquals(flippedInput, flippedPieceString);
     }
@@ -128,7 +128,7 @@ public class ArrayPieceTest {
         for (int i = 0; i < 5; i++) {
             input2[i] = new Block(0, i);
         }
-        assertEquals(new ArrayPiece(input1).rotate90().toString(), new ArrayPiece(input2).toString());
+        assertEquals(new Piece(input1).rotate90().toString(), new Piece(input2).toString());
     }
 
 }
