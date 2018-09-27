@@ -33,6 +33,11 @@ public class MyArrayList<T> extends AbstractList<T> {
         this.array = (T[]) new Object[initialSize];
     }
 
+    /**
+     * Add an element to the end of the list.
+     * @param element
+     * @return true
+     */
     @Override
     public boolean add(T element) {
         if (nextIndex >= array.length) {
@@ -53,11 +58,20 @@ public class MyArrayList<T> extends AbstractList<T> {
         this.array = newArray;
     }
 
+    /**
+     * Get the element at the specified index.
+     * @param index
+     * @return elements[index]
+     */
     @Override
     public T get(int index) {
         return array[index];
     }
 
+    /**
+     * Get the length of the list.
+     * @return length(list)
+     */
     @Override
     public int size() {
         return nextIndex;
