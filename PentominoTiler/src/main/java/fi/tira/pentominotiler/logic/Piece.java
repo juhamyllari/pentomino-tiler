@@ -87,6 +87,13 @@ public class Piece {
         return min;
     }
 
+    /**
+     * Convert the Piece to a String.
+     * The String representation is only meaningful if the whole piece is
+     * contained in the first five rows and columns of the first quadrant.
+     * 
+     * @return the piece as a String
+     */
     @Override
     public String toString() {
         char[] chars = new char[25];

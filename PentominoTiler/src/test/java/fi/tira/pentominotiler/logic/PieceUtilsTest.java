@@ -1,5 +1,6 @@
 package fi.tira.pentominotiler.logic;
 
+import java.util.Arrays;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -79,10 +80,20 @@ public class PieceUtilsTest {
 
     @Test
     public void testStringToPiece() {
+        String input = "#####00000000000000000000";
+        Piece i = PieceUtils.stringToPiece(input);
+        assertEquals(input, i.toString());
     }
 
     @Test
     public void testCentered() {
+        Piece x = PieceUtils.stringToPiece("0#000###000#0000000000000");
+        List<Piece> lst = PieceUtils.centered(x);
+        assertEquals(5, lst.size());
+        Block origin = new Block(0, 0);
+        lst.stream().map(piece -> piece.getBlocks()).forEachOrdered((blocks) -> {
+            assertEquals(true, Arrays.stream(blocks).anyMatch(block -> block.equals(origin)));
+        });
     }
 
 }
