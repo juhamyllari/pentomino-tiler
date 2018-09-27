@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * The Piece class implements a pentomino piece as an array of Block objects.
+ * 
  * @author juha
  */
 public class Piece {
@@ -13,6 +14,7 @@ public class Piece {
 
     /**
      * This constructor is used to create a full (size 5) pentomino piece.
+     * 
      * @param blocks
      */
     public Piece(Block[] blocks) {
@@ -22,6 +24,7 @@ public class Piece {
 
     /**
      * This constructor can be used to create partial pieces.
+     * 
      * @param blocks
      * @param numberOfBlocks
      */
@@ -30,27 +33,16 @@ public class Piece {
         this.numberOfBlocks = numberOfBlocks;
     }
 
-    /**
-     * Getter for the Block array.
-     * @return the Block array
-     */
     public Block[] getBlocks() {
         return blocks;
     }
 
     /**
-     * Set the Block object array.
-     * @param blocks
-     */
-    public void setBlocks(Block[] blocks) {
-        this.blocks = blocks;
-    }
-
-    /**
      * Create a new, translated piece.
+     * 
      * @param rowOffset
      * @param colOffset
-     * @return an Piece translated by the specified amount
+     * @return a piece translated by the specified amount
      */
     public Piece move(int rowOffset, int colOffset) {
         Block[] newBlocks = new Block[blocks.length];
@@ -62,7 +54,8 @@ public class Piece {
 
     /**
      * Create a new pieced translated to touch both axes in the first quadrant.
-     * @return a new Piece
+     * 
+     * @return a new piece aligned with both axes
      */
     public Piece align() {
         Block[] newArray = new Block[5];
@@ -71,6 +64,7 @@ public class Piece {
 
     /**
      * Returns the smallest row value of any block in the piece.
+     * 
      * @return min(row values of all blocks)
      */
     private int minRow() {
@@ -83,6 +77,7 @@ public class Piece {
 
     /**
      * Returns the smallest column value of any block in the piece.
+     * 
      * @return min(col value of all blocks)
      */
     private int minCol() {
@@ -93,6 +88,7 @@ public class Piece {
         return min;
     }
 
+    @Override
     public String toString() {
         char[] chars = new char[25];
         for (int i = 0; i < chars.length; i++) {
@@ -108,6 +104,7 @@ public class Piece {
 
     /**
      * Flip piece over the x axis and move to touch both axes in the first quadrant.
+     * 
      * @return a new Piece
      */
     public Piece flipOverX() {
@@ -120,6 +117,7 @@ public class Piece {
     
     /**
      * Rotate the piece 90 degrees counterclockwise and move to touch both axes in the first quadrant.
+     * 
      * @return a new Piece
      */
     public Piece rotate90() {
@@ -128,17 +126,6 @@ public class Piece {
                 .map(block -> block.rotate90())
                 .toArray(Block[]::new);
         return new Piece(newBlocks).align();
-    }
-    
-    public void printPiece() {
-        String stringForm = this.toString();
-        for (int i = 0; i < stringForm.length(); i++) {
-            if (i % 5 == 0) {
-                System.out.println("");
-            }
-            System.out.print(stringForm.charAt(i));
-        }
-        System.out.println("");
     }
 
 }

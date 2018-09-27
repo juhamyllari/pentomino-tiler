@@ -26,8 +26,6 @@ public class MainApp extends Application {
          */
         Search mySearch = new Search(new Board(6, 10, Board.LETTER_SYMBOLS));
         mySearch.runSearch();
-        // Uncomment the line below to show all solutions.
-        System.out.println("max bucket size: " + mySearch.getTried().maxBucketSize());
 
         /*
         The testing ground ends here.

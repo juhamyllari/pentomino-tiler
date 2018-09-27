@@ -31,7 +31,7 @@ public class Search {
     public Search(Board initialBoard) {
         this.initialBoard = initialBoard;
         this.solutions = new MyArrayList<>();
-        this.tried = initialBoard.getRows() == 6 ? // The 6x10 board requires more resources.
+        this.tried = initialBoard.getRows() == 6 ? // The 6x10 board is resource intensive.
                 new MyHashSet<>(4500000, 3.0) :
                 new MyHashSet<>(1000000, 2.0);
         this.pieces = PieceUtils
@@ -48,10 +48,10 @@ public class Search {
     }
 
     /**
-     * Finds all solutions to the tiling problem. Preplaces the "x" pentomino in
-     * each of its legal positions in the first quadrant (some positions may be
-     * outside the first quadrant if the number of rows or columns is odd) and
-     * calls search separately on each placement. In the search proper, pieces
+     * Finds all solutions to the tiling problem. Preplaces the "X" pentomino in
+     * each of its legal positions in or near the first quadrant (some positions
+     * may be outside the first quadrant if the number of rows or columns is odd)
+     * and calls search separately on each placement. In the search proper, pieces
      * are placed on squares of increasing Euclidian distance from the origin.
      */
     public void runSearch() {
@@ -79,10 +79,6 @@ public class Search {
         System.out.println("Size of 'tried' set: " + tried.size());
         System.out.println("Search finished. Found " + solutions.size() + " solutions.");
         System.out.println("The search took " + Duration.between(startTime, stopTime).toMillis() + " milliseconds.");
-    }
-
-    public void runWithoutPreplacement() {
-        timedSearch(initialBoard);
     }
 
     private void timedSearch(Board board) {

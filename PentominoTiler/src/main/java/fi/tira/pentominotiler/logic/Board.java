@@ -4,8 +4,8 @@ import fi.tira.pentominotiler.datastructures.MyArrayList;
 import java.util.List;
 
 /**
- * Represents a pentomino board.
- *
+ * A Board object represents a pentomino board.
+ * 
  * @author juha
  */
 public class Board {
@@ -39,8 +39,9 @@ public class Board {
     /**
      * Constructs a Board object of the specified dimensions with the specified
      * set of symbols for the pieces. Two symbol arrays are provided in the
-     * class.
-     *
+     * class. The permitted Board dimensions are (3, 20), (4, 15), (5, 12)
+     * and (6, 10).
+     * 
      * @param rows
      * @param cols
      * @param symbols
@@ -81,7 +82,7 @@ public class Board {
      * @param piece
      * @param row
      * @param col
-     * @return can place
+     * @return true if the piece can be placed
      */
     public boolean canPlace(Piece piece, int row, int col) {
         boolean allowed = true;
@@ -108,7 +109,7 @@ public class Board {
      * @param row
      * @param col
      * @param symbolIndex
-     * @return a new Board
+     * @return a board with the new piece
      */
     public Board placePiece(Piece piece, int row, int col, int symbolIndex) {
         char[][] newArray = copyBoardArray(this);

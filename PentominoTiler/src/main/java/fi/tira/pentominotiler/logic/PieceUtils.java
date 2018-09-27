@@ -10,10 +10,11 @@ import java.util.List;
 public class PieceUtils {
     
     /**
-     * Converts a string representation of a piece to an Piece.
+     * Converts a string representation of a piece to a Piece object.
      * The validity of the piece is not checked.
+     * 
      * @param str a String of length 25 with "0" for "no block" and "#" for "block"
-     * @return an Piece
+     * @return the piece
      */
     public static Piece stringToPiece(String str) {
         Block[] blocks = new Block[5];
@@ -30,6 +31,7 @@ public class PieceUtils {
     
     /**
      * Create all the 12 pentominoes from strings (provided internally).
+     * 
      * @return the 12 pieces
      */
     public static List<Piece> allPieces() {
@@ -50,7 +52,8 @@ public class PieceUtils {
     }
     
     /**
-     * Creates all the 8 orientations of an Piece.
+     * Creates all the 8 orientations of a Piece.
+     * 
      * @param piece a valid pentomino
      * @return all orientations of the piece
      */
@@ -70,8 +73,9 @@ public class PieceUtils {
     }
     
     /**
-     * Creates all the non-redundant orientations of an Piece.
+     * Creates all the non-redundant orientations of a Piece.
      * (There are 1–8, depending on the piece.)
+     * 
      * @param piece a valid pentomino
      * @return the 1–8 non-redundant orientations of the piece
      */
@@ -97,8 +101,9 @@ public class PieceUtils {
      * For each block in the piece, the method centers the piece on that block.
      * The output is a list of 5 distinct copies of the piece, each translated
      * so as to move a single block to the origin.
+     * 
      * @param piece
-     * @return a list of 5 translations of the piece
+     * @return the 5 translations of the piece
      */
     public static List<Piece> centered(Piece piece) {
         List<Piece> result = new MyArrayList<>();
@@ -107,6 +112,5 @@ public class PieceUtils {
         }
         return result;
     } 
-
 
 }

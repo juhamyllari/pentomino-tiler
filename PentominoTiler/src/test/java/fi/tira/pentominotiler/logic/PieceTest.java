@@ -11,9 +11,9 @@ import static org.junit.Assert.*;
  *
  * @author juha
  */
-public class ArrayPieceTest {
+public class PieceTest {
 
-    public ArrayPieceTest() {
+    public PieceTest() {
     }
 
     @BeforeClass
@@ -42,24 +42,6 @@ public class ArrayPieceTest {
         Piece piece = new Piece(input);
         Block[] got = piece.getBlocks();
         assertArrayEquals(input, got);
-    }
-
-    @Test
-    public void testSetBlocks() {
-        Block[] firstInput = new Block[5];
-        for (int i = 0; i < 5; i++) {
-            firstInput[i] = new Block(0, i);
-        }
-
-        Block[] secondInput = new Block[5];
-        for (int i = 0; i < 5; i++) {
-            secondInput[i] = new Block(0, i);
-        }
-
-        Piece piece = new Piece(firstInput);
-        piece.setBlocks(secondInput);
-        Block[] got = piece.getBlocks();
-        assertArrayEquals(secondInput, got);
     }
 
     @Test
