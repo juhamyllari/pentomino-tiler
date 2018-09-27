@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * A Board object represents a pentomino board.
- * 
+ *
  * @author juha
  */
 public class Board {
@@ -39,9 +39,9 @@ public class Board {
     /**
      * Constructs a Board object of the specified dimensions with the specified
      * set of symbols for the pieces. Two symbol arrays are provided in the
-     * class. The permitted Board dimensions are (3, 20), (4, 15), (5, 12)
-     * and (6, 10).
-     * 
+     * class. The permitted Board dimensions are (3, 20), (4, 15), (5, 12) and
+     * (6, 10).
+     *
      * @param rows
      * @param cols
      * @param symbols
@@ -51,7 +51,7 @@ public class Board {
                 || rows > cols
                 || rows < 3) {
             throw new IllegalArgumentException("Invalid board dimensions"
-                    + " (" + rows + ", " + cols + ")." );
+                    + " (" + rows + ", " + cols + ").");
         }
         this.array = new char[rows][cols];
         this.rows = rows;
@@ -65,15 +65,17 @@ public class Board {
      * Prints the Board. Blocks are represented with the symbol of the
      * corresponding piece. Empty squares are shown as '0'.
      */
-    public void printBoard() {
+    public String printableBoard() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 char c = array[i][j] == 0 ? '0' : array[i][j];
-                System.out.print(c);
+                sb.append(c);
             }
-            System.out.println("");
+            sb.append('\n');
         }
-        System.out.println("");
+        sb.append('\n');
+        return sb.toString();
     }
 
     /**

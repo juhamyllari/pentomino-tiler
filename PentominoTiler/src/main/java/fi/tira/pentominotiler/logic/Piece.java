@@ -58,7 +58,6 @@ public class Piece {
      * @return a new piece aligned with both axes
      */
     public Piece align() {
-        Block[] newArray = new Block[5];
         return this.move(-this.minRow(), -this.minCol());
     }
 

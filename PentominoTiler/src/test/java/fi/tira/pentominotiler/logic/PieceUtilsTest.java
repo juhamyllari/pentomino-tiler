@@ -77,4 +77,12 @@ public class PieceUtilsTest {
         assertEquals(output.size(), 8);
     }
 
+    @Test
+    public void testStringToPiece() {
+    }
+
+    @Test
+    public void testCentered() {
+    }
+
 }

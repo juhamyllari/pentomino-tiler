@@ -92,7 +92,6 @@ public class Search {
     private void search(Board board) {
         if (board.getUnused() == 0) {
             System.out.println("Found solution number " + (solutions.size() + 1));
-            System.out.println("Tried set size is " + tried.size());
             solutions.add(board);
             return;
         }

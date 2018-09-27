@@ -113,4 +113,12 @@ public class PieceTest {
         assertEquals(new Piece(input1).rotate90().toString(), new Piece(input2).toString());
     }
 
+    @Test
+    public void testAlign() {
+        String input = "0#000###000#0000000000000";
+        Piece piece = PieceUtils.stringToPiece(input).move(-3, -4);
+        Piece aligned = piece.align();
+        assertEquals(input, aligned.toString());
+    }
+
 }

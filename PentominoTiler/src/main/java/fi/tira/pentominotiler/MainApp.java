@@ -26,7 +26,8 @@ public class MainApp extends Application {
          */
         Search mySearch = new Search(new Board(6, 10, Board.LETTER_SYMBOLS));
         mySearch.runSearch();
-
+//        mySearch.getSolutions().forEach(b -> System.out.print(b.printableBoard()));
+        
         /*
         The testing ground ends here.
         

@@ -8,8 +8,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * The actual search is not unit tested at this point!
- * This is because it does not yet terminate.
  * @author juha
  */
 public class SearchTest {
@@ -35,15 +33,18 @@ public class SearchTest {
 
     @Test
     public void testSearch() {
-        Board bd = new Board(6, 10, Board.LETTER_SYMBOLS);
+        Board bd = new Board(3, 20, Board.LETTER_SYMBOLS);
         Search s = new Search(bd);
+        s.runSearch();
+        assertEquals(2, s.getSolutions().size());
     }
 
     @Test
     public void testGetSolutions() {
-        Board bd = new Board(6, 10, Board.LETTER_SYMBOLS);
+        Board bd = new Board(3, 20, Board.LETTER_SYMBOLS);
         Search s = new Search(bd);
-        assertEquals(0, s.getSolutions().size());
+        s.runSearch();
+        assertEquals(60, s.getSolutions().get(1).toString().length());
     }
 
 }

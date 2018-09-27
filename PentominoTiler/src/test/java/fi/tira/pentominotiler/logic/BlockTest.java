@@ -97,4 +97,8 @@ public class BlockTest {
         assertEquals("(-1, -2)", block.toString());
     }
 
+    @Test
+    public void testHashCode() {
+    }
+
 }
