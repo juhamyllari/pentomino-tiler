@@ -49,10 +49,11 @@ public class Search {
 
     /**
      * Finds all solutions to the tiling problem. Preplaces the "X" pentomino in
-     * each of its legal positions in or near the first quadrant (some positions
-     * may be outside the first quadrant if the number of rows or columns is odd)
-     * and calls search separately on each placement. In the search proper, pieces
-     * are placed on squares of increasing Euclidian distance from the origin.
+     * each of its legal positions in or near the quadrant nearest the origin
+     * (some positions may be outside the quadrant if the number of rows or
+     * columns is odd) and calls search separately on each placement. In the
+     * search proper, pieces are placed on squares of increasing Euclidian
+     * distance from the origin.
      */
     public void runSearch() {
 
