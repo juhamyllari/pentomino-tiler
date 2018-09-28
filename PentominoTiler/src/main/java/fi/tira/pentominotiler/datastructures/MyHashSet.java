@@ -7,6 +7,7 @@ import java.util.Collection;
  * Removal of elements is not required by Pentomino Tiler and is therefore not
  * implemented. For this reason, MyArrayList objects, rather than linked lists,
  * are used as buckets.
+ * 
  * @author juha
  * @param <E> element type
  */
@@ -31,6 +32,7 @@ public class MyHashSet<E> {
      * The internal array is doubled in size when
      * (number of elements) / (array size)
      * exceeds the load factor.
+     * 
      * @param initialSize
      * @param loadFactor
      */
@@ -45,6 +47,7 @@ public class MyHashSet<E> {
 
     /**
      * Add an element to the set.
+     * 
      * @param element
      * @return true unless element was already present
      */
@@ -65,6 +68,7 @@ public class MyHashSet<E> {
 
     /**
      * Add all elements in a Collection.
+     * 
      * @param c
      */
     public void addAll(Collection c) {
@@ -73,6 +77,7 @@ public class MyHashSet<E> {
 
     /**
      * Check whether the set contains the specified element.
+     * 
      * @param element
      * @return true if element is present
      */
@@ -97,6 +102,7 @@ public class MyHashSet<E> {
 
     /**
      * Get the cardinality of the set.
+     * 
      * @return number of elements
      */
     public int size() {
@@ -111,6 +117,7 @@ public class MyHashSet<E> {
      * Get the size of the largest bucket.
      * If the return value is much larger than the load factor, the hashing scheme
      * may be performing poorly (i.e. there are too many collisions).
+     * 
      * @return max(bucket size)
      */
     public int maxBucketSize() {
