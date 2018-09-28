@@ -99,6 +99,7 @@ public class BlockTest {
 
     @Test
     public void testHashCode() {
+        assertEquals(new Block(-10, -7).hashCode(), new Block(-10, -7).hashCode());
     }
 
 }
