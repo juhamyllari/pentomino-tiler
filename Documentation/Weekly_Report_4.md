@@ -8,7 +8,7 @@ This week I focused on the following:
 
 ### Performance
 
-Last weed I was unable to make the most demanding search problem (the (6, 10) board) run to completion. The problem was that some unnecessary lookups were performed on the pruning HashSet (now MyHashSet). Removing these improved performance drastically and made it possible for the search to terminate correctly.
+Last weed I was unable to make the most demanding search problem (the (6, 10) board) run to completion. The problem was that some unnecessary lookups were performed on the pruning HashSet (now MyHashSet). Removing these improved performance drastically and made it possible for the search to terminate correctly. Although Pentomino Tiler still lacks a user interface, it can finally be run!
 
 The parameters of the set object have a significant impact on search performance. (More on this in the Testing Document.) Discovering this was quite informative as I had previously not given the issue much thought.
 
