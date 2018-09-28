@@ -161,8 +161,10 @@ public class Search {
     }
 
     /**
-     * Returns the tried set. This method exists for troubleshooting purposes
-     * and will likely be removed later.
+     * Returns the tried set. The set contains a String representation of each 
+     * partially filled board such that a mirrored and/or rotated version of the
+     * board has been discovered by the search. This method exists for
+     * troubleshooting purposes and will likely be removed later.
      *
      * @return the symmetry strings of placements tried
      */
