@@ -66,6 +66,8 @@ public class FXMLController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // The radio buttons contain as their data
+        // the number of rows on the board.
         rb1.setUserData(3);
         rb2.setUserData(4);
         rb3.setUserData(5);
