@@ -43,6 +43,8 @@ public class FXMLController implements Initializable {
         search = new Search(board);
         
         Task<Integer> searchTask = new Task<Integer>() {
+            // The return value of the call method is currently not used for anything.
+            // This may change.
             @Override
             protected Integer call() throws Exception {
                 search.foundProperty().addListener(
