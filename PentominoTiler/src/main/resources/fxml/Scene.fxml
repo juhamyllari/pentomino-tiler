@@ -12,6 +12,7 @@
             <fx:define>
                 <ToggleGroup fx:id="boardDims"/>
             </fx:define>
+            <Label text="Please select the dimensions of the board you want to tile."></Label>
             <RadioButton text="(3, 20)" toggleGroup="$boardDims" fx:id="rb1" selected="true" />
             <RadioButton text="(4, 15)" toggleGroup="$boardDims" fx:id="rb2" />
             <RadioButton text="(5, 12)" toggleGroup="$boardDims" fx:id="rb3" />
