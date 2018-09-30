@@ -7,6 +7,8 @@ import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  * A Search object represents a single tiling problem.
@@ -20,6 +22,7 @@ public class Search {
     private MyHashSet<String> tried;
     private final List<List<Piece>> pieces;
     private final int[] indexOrder;
+    private final IntegerProperty found = new SimpleIntegerProperty(0);
 
     /**
      * Constructs a Search object. The shape of the Board object defines the
@@ -31,9 +34,10 @@ public class Search {
     public Search(Board initialBoard) {
         this.initialBoard = initialBoard;
         this.solutions = new MyArrayList<>();
-        this.tried = initialBoard.getRows() == 6 ? // The 6x10 board is resource intensive.
-                new MyHashSet<>(4500000, 3.0) :
-                new MyHashSet<>(1000000, 2.0);
+        this.tried = initialBoard.getRows() == 6
+                ? // The 6x10 board is resource intensive.
+                new MyHashSet<>(4500000, 3.0)
+                : new MyHashSet<>(1000000, 2.0);
         this.pieces = PieceUtils
                 .allPieces()
                 .stream()
@@ -92,8 +96,9 @@ public class Search {
 
     private void search(Board board) {
         if (board.getUnused() == 0) {
-            System.out.println("Found solution number " + (solutions.size() + 1));
             solutions.add(board);
+            found.set(found.get() + 1);
+            System.out.println("Found solution number " + found.get());
             return;
         }
         int index = getNextIndex(board);
@@ -161,7 +166,7 @@ public class Search {
     }
 
     /**
-     * Returns the tried set. The set contains a String representation of each 
+     * Returns the tried set. The set contains a String representation of each
      * partially filled board such that a mirrored and/or rotated version of the
      * board has been discovered by the search. This method exists for
      * troubleshooting purposes and will likely be removed later.
@@ -170,6 +175,10 @@ public class Search {
      */
     public MyHashSet<String> getTried() {
         return tried;
+    }
+    
+    public IntegerProperty foundProperty() {
+        return found;
     }
 
 }

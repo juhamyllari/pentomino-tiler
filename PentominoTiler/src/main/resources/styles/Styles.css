@@ -1,3 +1,10 @@
-.button {
+.radio-button{
+    -fx-font: 20px sans-serif;
+}
+.button{
+    -fx-font: 20px sans-serif;
     -fx-font-weight: bold;
+}
+.label{
+    -fx-font: 20px sans-serif;
 }

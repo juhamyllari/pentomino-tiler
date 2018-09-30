@@ -1,7 +1,5 @@
 package fi.tira.pentominotiler;
 
-import fi.tira.pentominotiler.logic.Board;
-import fi.tira.pentominotiler.logic.Search;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -21,20 +19,6 @@ public class MainApp extends Application {
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
 
-        /*
-        The GUI does not do anything interesting yet. This is a testing ground for elements of the program logic.
-         */
-        Search mySearch = new Search(new Board(6, 10, Board.LETTER_SYMBOLS));
-        mySearch.runSearch();
-        
-        //Uncomment the line below to show all solutions.
-//        mySearch.getSolutions().forEach(b -> System.out.print(b.printableBoard()));
-        
-        /*
-        The testing ground ends here.
-        
-         */
-        // Uncomment the line below to activate the GUI
         stage.show();
     }
 
