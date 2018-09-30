@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="800" prefWidth="1000" xmlns:fx="http://javafx.com/fxml" fx:controller="fi.tira.pentominotiler.FXMLController">
     <children>
-        <VBox layoutX="100" layoutY="100">
+        <VBox layoutX="100" layoutY="100" spacing="20">
             <fx:define>
                 <ToggleGroup fx:id="boardDims"/>
             </fx:define>
