@@ -2,8 +2,6 @@ package fi.tira.pentominotiler.gui;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import static javafx.scene.paint.Color.AZURE;
-import static javafx.scene.paint.Color.BISQUE;
 import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.BLANCHEDALMOND;
 import static javafx.scene.paint.Color.BURLYWOOD;
@@ -15,6 +13,8 @@ import static javafx.scene.paint.Color.FORESTGREEN;
 import static javafx.scene.paint.Color.FUCHSIA;
 import static javafx.scene.paint.Color.GAINSBORO;
 import static javafx.scene.paint.Color.INDIANRED;
+import static javafx.scene.paint.Color.MEDIUMBLUE;
+import static javafx.scene.paint.Color.MEDIUMSEAGREEN;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -42,10 +42,10 @@ public class GraphicBlock extends StackPane {
         // 'X', 'I', 'T', 'V', 'W', 'Z', 'U', 'P', 'N', 'L', 'F', 'Y'
         Color colour;
         switch (symbol) {
-            case 'X': colour = AZURE;
+            case 'X': colour = MEDIUMBLUE;
             break;
             
-            case 'I': colour = BISQUE;
+            case 'I': colour = MEDIUMSEAGREEN;
             break;
             
             case 'T': colour = BLANCHEDALMOND;
