@@ -132,12 +132,25 @@ public class Search {
 
     private int[] createOrderIndex(Board bd) {
         int boardSize = bd.getRows() * bd.getCols();
-        int[] indexArray = IntStream
-                .rangeClosed(0, boardSize - 1)
-                .boxed()
-                .sorted((i1, i2) -> compareIndices(i1, i2, bd.getCols()))
-                .mapToInt(i -> i)
-                .toArray();
+        int[] indexArray = new int[boardSize];
+        for (int i = 0; i < boardSize; i++) {
+            indexArray[i] = i;
+        }
+        
+        // Sort indexArray with insertion sort (manually implemented.
+        // Use the compareIndices method (Euclidian distance) as comparison.
+        int i = 1;
+        int j, k;
+        while (i < boardSize) {
+            j = i;
+            while (j > 0 && compareIndices(indexArray[j-1], indexArray[j], bd.getCols()) > 0) {
+                k = indexArray[j-1];
+                indexArray[j-1] = indexArray[j];
+                indexArray[j] = k;
+                j--;
+            }
+            i++;
+        }
         return indexArray;
     }
 
