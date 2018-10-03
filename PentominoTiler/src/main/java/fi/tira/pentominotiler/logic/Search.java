@@ -6,7 +6,6 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -137,7 +136,7 @@ public class Search {
             indexArray[i] = i;
         }
         
-        // Sort indexArray with insertion sort (manually implemented.
+        // Sort indexArray with insertion sort (manually implemented).
         // Use the compareIndices method (Euclidian distance) as comparison.
         int i = 1;
         int j, k;
