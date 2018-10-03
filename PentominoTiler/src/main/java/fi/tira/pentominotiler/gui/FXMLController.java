@@ -77,6 +77,7 @@ public class FXMLController implements Initializable {
 
         searchTask.setOnSucceeded(e -> {
             drawBoard(search.getSolutions().get(0));
+            solutionIndex.set(0);
             updateBoardText();
             solutionsBox.setVisible(true);
         });
