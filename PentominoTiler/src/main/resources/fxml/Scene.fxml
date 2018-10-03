@@ -13,7 +13,7 @@
                 <fx:define>
                     <ToggleGroup fx:id="boardDims"/>
                 </fx:define>
-                <Label text="Please select the dimensions of the board."></Label>
+                <Label text="Please select the dimensions of the board." fx:id="dimensionLabel"></Label>
                 <RadioButton text="(3, 20)" toggleGroup="$boardDims" fx:id="rb1" selected="true" />
                 <RadioButton text="(4, 15)" toggleGroup="$boardDims" fx:id="rb2" />
                 <RadioButton text="(5, 12)" toggleGroup="$boardDims" fx:id="rb3" />
@@ -21,12 +21,16 @@
             
                 <!--<RadioButton layoutX="126" layoutY="100" fx:id="rb1" selected="true" text="Radio 1"></RadioButton>-->
                 <Button layoutX="126" layoutY="190" text="Run search" onAction="#handleRunButton" fx:id="runButton" />
-                <Label layoutX="126" layoutY="240" minHeight="16" minWidth="69" fx:id="label" />
+                <Label layoutX="126" layoutY="240" minHeight="16" minWidth="69" fx:id="searchLabel" />
             </VBox>
-            <VBox alignment="center">
-                <Pane fx:id="boardPane" >
-                
-                </Pane>
+            <VBox alignment="center" spacing="20" visible="false" fx:id="solutionsBox">
+                <Label fx:id="boardLabel"></Label>
+                <Pane fx:id="boardPane"  ></Pane>
+                <HBox>
+                    <Button text="Next" onAction="#handleNextButton" fx:id="nextSolutionButton" ></Button>
+                    <Button text="Previous" onAction="#handlePreviousButton" fx:id="previousSolutionButton" ></Button>
+                    <Button text="Random" onAction="#handleRandomButton" fx:id="previousSolutionButton" ></Button>
+                </HBox>
             </VBox>
         </HBox>
     </children>
