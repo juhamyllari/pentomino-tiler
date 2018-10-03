@@ -62,23 +62,6 @@ public class Board {
     }
 
     /**
-     * Prints the Board. Blocks are represented with the symbol of the
-     * corresponding piece. Empty squares are shown as '0'.
-     */
-    public String printableBoard() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                char c = array[i][j] == 0 ? '0' : array[i][j];
-                sb.append(c);
-            }
-            sb.append('\n');
-        }
-        sb.append('\n');
-        return sb.toString();
-    }
-
-    /**
      * Returns true if the piece can be placed in the specified location.
      *
      * @param piece

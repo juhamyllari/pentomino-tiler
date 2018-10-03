@@ -113,12 +113,4 @@ public class BoardTest {
         assertEquals('X', b1.charAtLinearIndex(1));
         assertEquals('X', b1.charAtLinearIndex(10));
     }
-
-    @Test
-    public void testPrintableBoard() {
-        Piece piece = PieceUtils.stringToPiece("0#000###000#0000000000000");
-        Board b = new Board(6, 10, Board.LETTER_SYMBOLS).placePiece(piece, 0, 0, 0);
-        String printable = b.printableBoard();
-        assertEquals("0X00000000\nXXX0000000\n0X00000000\n0000000000\n0000000000\n0000000000\n\n", printable);
-    }
 }
