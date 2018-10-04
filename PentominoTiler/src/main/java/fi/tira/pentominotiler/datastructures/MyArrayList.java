@@ -7,6 +7,7 @@ import java.util.AbstractList;
  * MyArrayList only supports adding elements, querying for size, getting elements
  * by their index and iterating over elements. Element removal is not required
  * by Pentomino Tiler and is therefore not implemented.
+ * 
  * @author juha
  * @param <T>
  */
@@ -26,6 +27,7 @@ public class MyArrayList<T> extends AbstractList<T> {
 
     /**
      * Construct a MyArrayList of the specified (initial) size.
+     * 
      * @param initialSize
      */
     public MyArrayList(int initialSize) {
@@ -35,6 +37,7 @@ public class MyArrayList<T> extends AbstractList<T> {
 
     /**
      * Add an element to the end of the list.
+     * 
      * @param element
      * @return true
      */
@@ -60,6 +63,7 @@ public class MyArrayList<T> extends AbstractList<T> {
 
     /**
      * Get the element at the specified index.
+     * 
      * @param index
      * @return elements[index]
      */
@@ -70,6 +74,7 @@ public class MyArrayList<T> extends AbstractList<T> {
 
     /**
      * Get the length of the list.
+     * 
      * @return length(list)
      */
     @Override
