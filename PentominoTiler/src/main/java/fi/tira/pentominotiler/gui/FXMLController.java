@@ -58,18 +58,16 @@ public class FXMLController implements Initializable {
         Board board = new Board(rows, cols, Board.LETTER_SYMBOLS);
         search = new Search(board);
 
-        Task<Integer> searchTask = new Task<Integer>() {
-            // The return value of the call method is currently not used for anything.
-            // This may change.
+        Task<Void> searchTask = new Task<Void>() {
             @Override
-            protected Integer call() throws Exception {
+            protected Void call() throws Exception {
                 search.foundProperty().addListener(
                         (arg, oldVal, newVal)
                         -> updateMessage("Searching. Found " + newVal.toString() + " solutions."));
                 search.runSearch();
                 int solutions = search.getSolutions().size();
                 updateMessage("Done. Found " + solutions + " solutions in " + search.getDuration() / 1000.0 + " seconds.");
-                return solutions;
+                return null;
             }
         };
 
