@@ -1,6 +1,7 @@
 package fi.tira.pentominotiler.datastructures;
 
-import java.util.AbstractList;
+import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * A rudimentary list data structure implemented using an array.
@@ -11,13 +12,93 @@ import java.util.AbstractList;
  * @author juha
  * @param <T>
  */
-public class MyArrayList<T> extends AbstractList<T> {
+public class MyArrayList<T> implements Collection<T> {
 
     private static final int DEFAULT_SIZE = 4;
 
     private int nextIndex;
     private T[] array;
 
+    @Override
+    public boolean isEmpty() {
+        return nextIndex == 0;
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        for (T element : this) {
+            if (element.equals(o)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new MyIterator();
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        for (T t : c) {
+            add(t);
+        }
+        return true;
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object[] toArray() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private class MyIterator implements Iterator {
+
+        private int index = 0;
+        
+        @Override
+        public boolean hasNext() {
+            return index < nextIndex;
+        }
+
+        @Override
+        public Object next() {
+            return array[index++];
+        }
+        
+    }
+            
+    
     /**
      * Construct a MyArrayList of default (initial) size.
      */
@@ -67,7 +148,6 @@ public class MyArrayList<T> extends AbstractList<T> {
      * @param index
      * @return elements[index]
      */
-    @Override
     public T get(int index) {
         return array[index];
     }

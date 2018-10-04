@@ -1,7 +1,6 @@
 package fi.tira.pentominotiler.logic;
 
 import fi.tira.pentominotiler.datastructures.MyArrayList;
-import java.util.List;
 
 /**
  * A Board object represents a pentomino board.
@@ -175,8 +174,8 @@ public class Board {
      *
      * @return mirrored and rotated versions of the board
      */
-    public List<String> symmetryStrings() {
-        List<String> symmetries = new MyArrayList<>(3);
+    public MyArrayList<String> symmetryStrings() {
+        MyArrayList<String> symmetries = new MyArrayList<>(3);
         char[][] flippedOverX = flipArrayOverX(array);
         symmetries.add(arrayToString(flippedOverX));
         symmetries.add(arrayToString(flipArrayOverY(array)));

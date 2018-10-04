@@ -43,7 +43,7 @@ public class MyHashSetTest {
 
     @Test
     public void testAddAll() {
-        List<Integer> lst = new MyArrayList<>();
+        MyArrayList<Integer> lst = new MyArrayList<>();
         for (int i = 0; i < 10; i++) {
             lst.add(i);
         }

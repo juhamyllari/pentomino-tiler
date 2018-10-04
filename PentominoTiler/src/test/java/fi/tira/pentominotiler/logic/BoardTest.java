@@ -1,5 +1,6 @@
 package fi.tira.pentominotiler.logic;
 
+import fi.tira.pentominotiler.datastructures.MyArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -66,7 +67,7 @@ public class BoardTest {
         String input = "#0000#0000#0000#0000#0000";
         Piece piece = PieceUtils.stringToPiece(input);
         Board b1 = new Board(6, 10, Board.LETTER_SYMBOLS).placePiece(piece, 0, 0, 1);
-        List<String> lst = b1.symmetryStrings();
+        MyArrayList<String> lst = b1.symmetryStrings();
         assertEquals(3, lst.size());
         assertEquals("0000000000I000000000I000000000I000000000I000000000I000000000", lst.get(0));
         assertEquals("000000000I000000000I000000000I000000000I000000000I0000000000", lst.get(1));

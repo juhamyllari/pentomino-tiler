@@ -1,7 +1,6 @@
 package fi.tira.pentominotiler.logic;
 
 import fi.tira.pentominotiler.datastructures.MyArrayList;
-import java.util.List;
 
 /**
  * A utility class for handling Piece objects.
@@ -34,7 +33,7 @@ public class PieceUtils {
      * 
      * @return the 12 pieces
      */
-    public static List<Piece> allPieces() {
+    public static MyArrayList<Piece> allPieces() {
         MyArrayList<Piece> pieces = new MyArrayList<>();
         pieces.add(stringToPiece("0#000###000#0000000000000"));
         pieces.add(stringToPiece("#####00000000000000000000"));
@@ -57,7 +56,7 @@ public class PieceUtils {
      * @param piece a valid pentomino
      * @return all orientations of the piece
      */
-    public static List<Piece> allOrientations(Piece piece) {
+    public static MyArrayList<Piece> allOrientations(Piece piece) {
         piece = piece.align();
         MyArrayList<Piece> pieces = new MyArrayList<>();
         Piece flipped = piece.flipOverX();
@@ -79,9 +78,9 @@ public class PieceUtils {
      * @param piece a valid pentomino
      * @return the 1–8 non-redundant orientations of the piece
      */
-    public static List<Piece> nonRedundant(Piece piece) {
-        List<Piece> all = allOrientations(piece);
-        List<Piece> unique = new MyArrayList<>();
+    public static MyArrayList<Piece> nonRedundant(Piece piece) {
+        MyArrayList<Piece> all = allOrientations(piece);
+        MyArrayList<Piece> unique = new MyArrayList<>();
         for (Piece candidate : all) {
             boolean found = false;
             for (Piece p : unique) {
@@ -105,8 +104,8 @@ public class PieceUtils {
      * @param piece
      * @return the 5 translations of the piece
      */
-    public static List<Piece> centered(Piece piece) {
-        List<Piece> result = new MyArrayList<>();
+    public static MyArrayList<Piece> centered(Piece piece) {
+        MyArrayList<Piece> result = new MyArrayList<>();
         for (Block block : piece.getBlocks()) {
             result.add(piece.move(-block.getRow(), -block.getCol()));
         }

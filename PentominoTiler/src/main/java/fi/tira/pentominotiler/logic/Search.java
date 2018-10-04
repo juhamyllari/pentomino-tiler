@@ -4,10 +4,8 @@ import fi.tira.pentominotiler.datastructures.MyArrayList;
 import fi.tira.pentominotiler.datastructures.MyHashSet;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.List;
 import java.util.stream.Collectors;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
@@ -18,9 +16,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Search {
 
     private Board initialBoard;
-    private List<Board> solutions;
+    private MyArrayList<Board> solutions;
     private MyHashSet<String> tried;
-    private final List<List<Piece>> pieces;
+    private final MyArrayList<MyArrayList<Piece>> pieces;
     private final int[] indexOrder;
     private final IntegerProperty found = new SimpleIntegerProperty(0);
     private long duration;
@@ -43,12 +41,12 @@ public class Search {
                 .allPieces()
                 .stream()
                 .map(p -> {
-                    List<Piece> orientations = PieceUtils.nonRedundant(p);
-                    List<Piece> centered = new MyArrayList<>();
+                    MyArrayList<Piece> orientations = PieceUtils.nonRedundant(p);
+                    MyArrayList<Piece> centered = new MyArrayList<>();
                     orientations.forEach(pc -> centered.addAll(PieceUtils.centered(pc)));
                     return centered;
                 })
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(MyArrayList::new));
         this.indexOrder = createOrderIndex(initialBoard);
     }
 
@@ -113,7 +111,7 @@ public class Search {
                 for (Piece candidate : pieces.get(i)) {
                     if (board.canPlace(candidate, row, col)) {
                         Board newBoard = board.placePiece(candidate, row, col, i);
-                        List<String> symmetries = newBoard.symmetryStrings();
+                        MyArrayList<String> symmetries = newBoard.symmetryStrings();
                         if (!tried.contains(newBoard.toString())) {
                             tried.addAll(symmetries);
                             search(newBoard);
@@ -178,7 +176,7 @@ public class Search {
      *
      * @return solutions
      */
-    public List<Board> getSolutions() {
+    public MyArrayList<Board> getSolutions() {
         return solutions;
     }
 

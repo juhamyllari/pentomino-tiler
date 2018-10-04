@@ -1,5 +1,6 @@
 package fi.tira.pentominotiler.logic;
 
+import fi.tira.pentominotiler.datastructures.MyArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.After;
@@ -48,7 +49,7 @@ public class PieceUtilsTest {
 
     @Test
     public void testAllPieces() {
-        List<Piece> lst = PieceUtils.allPieces();
+        MyArrayList<Piece> lst = PieceUtils.allPieces();
         assertEquals(12, lst.size());
         assertEquals(lst.get(0).toString(), "0#000###000#0000000000000");
     }
@@ -74,7 +75,7 @@ public class PieceUtilsTest {
         }
 
         Piece piece = new Piece(input);
-        List<Piece> output = PieceUtils.allOrientations(piece);
+        MyArrayList<Piece> output = PieceUtils.allOrientations(piece);
         assertEquals(output.size(), 8);
     }
 
@@ -88,7 +89,7 @@ public class PieceUtilsTest {
     @Test
     public void testCentered() {
         Piece x = PieceUtils.stringToPiece("0#000###000#0000000000000");
-        List<Piece> lst = PieceUtils.centered(x);
+        MyArrayList<Piece> lst = PieceUtils.centered(x);
         assertEquals(5, lst.size());
         Block origin = new Block(0, 0);
         lst.stream().map(piece -> piece.getBlocks()).forEachOrdered((blocks) -> {
