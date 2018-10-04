@@ -12,11 +12,17 @@ import static org.junit.Assert.*;
  */
 public class SearchTest {
 
+    static Board bd;
+    static Search s;
+
     public SearchTest() {
     }
 
     @BeforeClass
     public static void setUpClass() {
+        bd = new Board(3, 20, Board.LETTER_SYMBOLS);
+        s = new Search(bd);
+        s.runSearch();
     }
 
     @AfterClass
@@ -25,6 +31,7 @@ public class SearchTest {
 
     @Before
     public void setUp() {
+
     }
 
     @After
@@ -33,18 +40,31 @@ public class SearchTest {
 
     @Test
     public void testSearch() {
-        Board bd = new Board(3, 20, Board.LETTER_SYMBOLS);
-        Search s = new Search(bd);
-        s.runSearch();
         assertEquals(2, s.getSolutions().size());
     }
 
     @Test
     public void testGetSolutions() {
-        Board bd = new Board(3, 20, Board.LETTER_SYMBOLS);
-        Search s = new Search(bd);
-        s.runSearch();
         assertEquals(60, s.getSolutions().get(1).toString().length());
+    }
+
+    @Test
+    public void testRunSearch() {
+    }
+
+    @Test
+    public void testGetTried() {
+        assertEquals(true, s.getTried().size() > 0 && s.getTried().size() < 1e6);
+    }
+
+    @Test
+    public void testFoundProperty() {
+        assertEquals(2, s.foundProperty().get());
+    }
+
+    @Test
+    public void testGetDuration() {
+        assertEquals(true, s.getDuration() > 0L);
     }
 
 }
