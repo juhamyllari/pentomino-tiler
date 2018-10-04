@@ -2,6 +2,7 @@ package fi.tira.pentominotiler.logic;
 
 /**
  * A Block object represents one of the five blocks (squares) which make up a pentomino piece.
+ * 
  * @author juha
  */
 public class Block {
@@ -11,6 +12,7 @@ public class Block {
 
     /**
      * Create a Block object by specifying its row and column coordinates.
+     * 
      * @param row
      * @param col
      */
@@ -37,6 +39,7 @@ public class Block {
     
     /**
      * Translate block by (rowOffset, colOffset)
+     * 
      * @param rowOffset
      * @param colOffset
      * @return a new Block
@@ -47,6 +50,7 @@ public class Block {
     
     /**
      * Flip over the x axis.
+     * 
      * @return a new Block
      */
     public Block flipOverX() {
@@ -55,6 +59,7 @@ public class Block {
     
     /**
      * Rotate 90 degrees counterclockwise.
+     * 
      * @return a new Block
      */
     public Block rotate90() {

@@ -24,6 +24,7 @@ public class FXMLController implements Initializable {
     private final Group blockGroup = new Group();
     private final IntegerProperty solutionIndex = new SimpleIntegerProperty(0);
 
+    // See the initialize method for a comment on the RadioButtons.
     @FXML
     private RadioButton rb1;
 
@@ -58,6 +59,7 @@ public class FXMLController implements Initializable {
         Board board = new Board(rows, cols, Board.LETTER_SYMBOLS);
         search = new Search(board);
 
+        // Run the search as a separate Task.
         Task<Void> searchTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -71,6 +73,7 @@ public class FXMLController implements Initializable {
             }
         };
 
+        // Show solutions once search terminates.
         searchTask.setOnSucceeded(e -> {
             drawBoard(search.getSolutions().get(0));
             solutionIndex.set(0);
@@ -78,6 +81,7 @@ public class FXMLController implements Initializable {
             solutionsBox.setVisible(true);
         });
 
+        // Display the number of solutions found so far.
         searchLabel.textProperty().bind(searchTask.messageProperty());
 
         Thread th = new Thread(searchTask);

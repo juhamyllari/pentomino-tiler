@@ -146,14 +146,16 @@ public class Board {
     }
 
     private static String arrayToString(char[][] array) {
-        StringBuilder sb = new StringBuilder();
+        char[] chars = new char[60];
+        int i = 0;
         for (int row = 0; row < array.length; row++) {
             for (int col = 0; col < array[0].length; col++) {
                 char c = array[row][col] == 0 ? '0' : array[row][col];
-                sb.append(c);
+                chars[i] = c;
+                i++;
             }
         }
-        return sb.toString();
+        return new String(chars);
     }
 
     /**
