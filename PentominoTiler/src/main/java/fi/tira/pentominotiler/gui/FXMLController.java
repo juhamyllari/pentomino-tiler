@@ -16,15 +16,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.*;
 
 public class FXMLController implements Initializable {
 
     private Search search;
-    private Group blockGroup = new Group();
-    private IntegerProperty solutionIndex = new SimpleIntegerProperty(0);
+    private final Group blockGroup = new Group();
+    private final IntegerProperty solutionIndex = new SimpleIntegerProperty(0);
 
     @FXML
     private RadioButton rb1;
@@ -70,7 +68,7 @@ public class FXMLController implements Initializable {
                         -> updateMessage("Searching. Found " + newVal.toString() + " solutions."));
                 search.runSearch();
                 int solutions = search.getSolutions().size();
-                updateMessage("Done. Found " + solutions + " solutions.");
+                updateMessage("Done. Found " + solutions + " solutions in " + search.getDuration() / 1000.0 + " seconds.");
                 return solutions;
             }
         };

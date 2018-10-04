@@ -7,6 +7,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
@@ -22,6 +23,7 @@ public class Search {
     private final List<List<Piece>> pieces;
     private final int[] indexOrder;
     private final IntegerProperty found = new SimpleIntegerProperty(0);
+    private long duration;
 
     /**
      * Constructs a Search object. The shape of the Board object defines the
@@ -59,6 +61,8 @@ public class Search {
      * distance from the origin.
      */
     public void runSearch() {
+        
+        duration = 0L;
 
         int rows = initialBoard.getRows();
         int cols = initialBoard.getCols();
@@ -80,9 +84,10 @@ public class Search {
 
         Instant stopTime = Instant.now();
 
-        System.out.println("Size of 'tried' set: " + tried.size());
-        System.out.println("Search finished. Found " + solutions.size() + " solutions.");
-        System.out.println("The search took " + Duration.between(startTime, stopTime).toMillis() + " milliseconds.");
+//        System.out.println("Size of 'tried' set: " + tried.size());
+//        System.out.println("Search finished. Found " + solutions.size() + " solutions.");
+        duration = Duration.between(startTime, stopTime).toMillis();
+        System.out.println("The search took " + duration + " milliseconds.");
     }
 
     private void timedSearch(Board board) {
@@ -191,6 +196,10 @@ public class Search {
     
     public IntegerProperty foundProperty() {
         return found;
+    }
+    
+    public long getDuration() {
+        return duration;
     }
 
 }
