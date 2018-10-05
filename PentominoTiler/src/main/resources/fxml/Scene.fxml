@@ -14,10 +14,10 @@
                     <ToggleGroup fx:id="boardDims"/>
                 </fx:define>
                 <Label text="Please select the dimensions of the board." fx:id="dimensionLabel"></Label>
-                <RadioButton text="(3, 20)" toggleGroup="$boardDims" fx:id="rb1" selected="true" />
-                <RadioButton text="(4, 15)" toggleGroup="$boardDims" fx:id="rb2" />
-                <RadioButton text="(5, 12)" toggleGroup="$boardDims" fx:id="rb3" />
-                <RadioButton text="(6, 10)" toggleGroup="$boardDims" fx:id="rb4" />
+                <RadioButton text="3×20" toggleGroup="$boardDims" fx:id="rb1" selected="true" />
+                <RadioButton text="4×15" toggleGroup="$boardDims" fx:id="rb2" />
+                <RadioButton text="5×12" toggleGroup="$boardDims" fx:id="rb3" />
+                <RadioButton text="6×10" toggleGroup="$boardDims" fx:id="rb4" />
             
                 <!--<RadioButton layoutX="126" layoutY="100" fx:id="rb1" selected="true" text="Radio 1"></RadioButton>-->
                 <Button layoutX="126" layoutY="190" text="Run search" onAction="#handleRunButton" fx:id="runButton" />
