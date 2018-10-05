@@ -10,7 +10,7 @@ import java.util.Iterator;
  * Pentomino Tiler and is therefore not implemented.
  *
  * @author juha
- * @param <T>
+ * @param <T> element type
  */
 public class MyArrayList<T> implements Collection<T> {
 

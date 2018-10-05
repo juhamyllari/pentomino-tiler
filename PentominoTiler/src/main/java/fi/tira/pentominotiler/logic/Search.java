@@ -10,6 +10,11 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  * A Search object represents a single tiling problem.
+ * To run the search, call the method runSearch(). Getters are provided for
+ * retrieving the solutions and the duration of the search in milliseconds.
+ * The Integer Property "found" (retrievable by foundProperty()) keeps a running
+ * count of the number of solutions found – this is convenient for displaying
+ * the progress of the search in a GUI.
  *
  * @author juha
  */
@@ -24,7 +29,7 @@ public class Search {
     private long duration;
 
     /**
-     * Constructs a Search object. The shape of the Board object defines the
+     * Construct a Search object. The shape of the Board object defines the
      * search problem. The board must be empty (i.e. no pieces may be placed on
      * it).
      *
@@ -51,7 +56,7 @@ public class Search {
     }
 
     /**
-     * Finds all solutions to the tiling problem. Preplaces the "X" pentomino in
+     * Find all solutions to the tiling problem. Preplaces the "X" pentomino in
      * each of its legal positions in or near the quadrant nearest the origin
      * (some positions may be outside the quadrant if the number of rows or
      * columns is odd) and calls search separately on each placement. In the
@@ -75,25 +80,14 @@ public class Search {
         for (int row = 1; row < rowsToCover; row++) {
             for (int col = 1; col < colsToCover; col++) {
                 if (!(row == 1 && col == 1)) {
-                    timedSearch(initialBoard.placePiece(centeredX, row, col, 0));
+                    search(initialBoard.placePiece(centeredX, row, col, 0));
                 }
             }
         }
 
         Instant stopTime = Instant.now();
-
-//        System.out.println("Size of 'tried' set: " + tried.size());
-//        System.out.println("Search finished. Found " + solutions.size() + " solutions.");
         duration = Duration.between(startTime, stopTime).toMillis();
         System.out.println("The search took " + duration + " milliseconds.");
-    }
-
-    private void timedSearch(Board board) {
-        Instant startTime = Instant.now();
-        search(board);
-        Instant stopTime = Instant.now();
-        long timeElapsed = Duration.between(startTime, stopTime).toMillis();
-        System.out.println("Subsearch took " + timeElapsed + " milliseconds.");
     }
 
     private void search(Board board) {
