@@ -134,6 +134,10 @@ public class MyArrayList<T> implements Collection<T> {
         return nextIndex;
     }
 
+    /**
+     * Replace the internal array with a new array twice as long.
+     * Existing elements are copied into the new array.
+     */
     private void extendArray() {
         if (array.length >= Integer.MAX_VALUE) {
             throw new IllegalStateException("Collection is full.");
