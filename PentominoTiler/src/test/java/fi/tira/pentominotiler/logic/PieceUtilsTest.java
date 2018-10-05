@@ -75,7 +75,7 @@ public class PieceUtilsTest {
         }
 
         Piece piece = new Piece(input);
-        MyArrayList<Piece> output = PieceUtils.allOrientations(piece);
+        MyArrayList<Piece> output = PieceUtils.allVariants(piece);
         assertEquals(output.size(), 8);
     }
 

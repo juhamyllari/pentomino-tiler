@@ -42,16 +42,16 @@ public class Block {
      * 
      * @param rowOffset
      * @param colOffset
-     * @return a new Block
+     * @return a new translated block
      */
     public Block move(int rowOffset, int colOffset) {
         return new Block(row + rowOffset, col + colOffset);
     }
     
     /**
-     * Flip over the x axis.
+     * Flip over the x (columns) axis.
      * 
-     * @return a new Block
+     * @return a new block with the row coordinate flipped
      */
     public Block flipOverX() {
         return new Block(-row, col);
@@ -60,7 +60,7 @@ public class Block {
     /**
      * Rotate 90 degrees counterclockwise.
      * 
-     * @return a new Block
+     * @return a new rotated block
      */
     public Block rotate90() {
         return new Block(col, -row);
