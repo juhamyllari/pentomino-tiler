@@ -70,7 +70,6 @@ public class Board {
      * @return true if the piece can be placed
      */
     public boolean canPlace(Piece piece, int row, int col) {
-        boolean allowed = true;
         for (Block block : piece.getBlocks()) {
             int effectiveRow = row + block.getRow();
             int effectiveCol = col + block.getCol();
@@ -79,11 +78,10 @@ public class Board {
                     || effectiveCol < 0
                     || effectiveCol >= cols
                     || array[effectiveRow][effectiveCol] != 0) {
-                allowed = false;
-                break;
+                return false;
             }
         }
-        return allowed;
+        return true;
     }
 
     /**
