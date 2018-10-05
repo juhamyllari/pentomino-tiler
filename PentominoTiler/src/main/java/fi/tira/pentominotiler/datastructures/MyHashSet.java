@@ -109,8 +109,17 @@ public class MyHashSet<E> {
         return size;
     }
 
+    /**
+     * Return abs(element hash code % (set internal array length)).
+     * This can be used as an index into the internal array.
+     * 
+     * @param element
+     * @param arrayLength
+     * @return abs(hash code % (array length))
+     */
     private int hash(E element, int arrayLength) {
-        return Math.abs(element.hashCode()) % arrayLength;
+        int hashRemainder = element.hashCode() % arrayLength;
+        return hashRemainder >= 0 ? hashRemainder : -hashRemainder;
     }
 
     /**
