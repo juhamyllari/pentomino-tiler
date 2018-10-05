@@ -18,7 +18,9 @@ import static javafx.scene.paint.Color.MEDIUMSEAGREEN;
 import javafx.scene.shape.Rectangle;
 
 /**
- *
+ * A GraphicBlock is the graphical representation of one Block.
+ * A Piece is therefore represented as five contiguous GraphicBlocks.
+ * 
  * @author juha
  */
 public class GraphicBlock extends StackPane {
@@ -39,7 +41,7 @@ public class GraphicBlock extends StackPane {
     }
     
     private Color getColour(char symbol) {
-        // 'X', 'I', 'T', 'V', 'W', 'Z', 'U', 'P', 'N', 'L', 'F', 'Y'
+        // The pieces are 'X', 'I', 'T', 'V', 'W', 'Z', 'U', 'P', 'N', 'L', 'F', and 'Y'.
         Color colour;
         switch (symbol) {
             case 'X': colour = MEDIUMBLUE;

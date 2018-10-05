@@ -9,12 +9,12 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
- * A Search object represents a single tiling problem.
- * To run the search, call the method runSearch(). Getters are provided for
- * retrieving the solutions and the duration of the search in milliseconds.
- * The Integer Property "found" (retrievable by foundProperty()) keeps a running
- * count of the number of solutions found – this is convenient for displaying
- * the progress of the search in a GUI.
+ * A Search object represents a single tiling problem. To run the search, call
+ * the method runSearch(). Getters are provided for retrieving the solutions and
+ * the duration of the search in milliseconds. The Integer Property "found"
+ * (retrievable by foundProperty()) keeps a running count of the number of
+ * solutions found – this is convenient for displaying the progress of the
+ * search in a GUI.
  *
  * @author juha
  */
@@ -64,7 +64,7 @@ public class Search {
      * distance from the origin.
      */
     public void runSearch() {
-        
+
         duration = 0L;
 
         int rows = initialBoard.getRows();
@@ -90,8 +90,19 @@ public class Search {
         System.out.println("The search took " + duration + " milliseconds.");
     }
 
+    /**
+     * The search method is the heart of the search algorithm. It is recursive
+     * and takes as its sole argument a board which may be filled partially,
+     * completely or not at all. If the board is full, the method adds it to the
+     * list of solutions, increments the "found" counter and returns. If not, it
+     * queries the board for the next empty square and tries to fill it, calling
+     * itself for every legal placement of an unused piece into that square.
+     *
+     * @param board
+     */
     private void search(Board board) {
         if (board.getUnused() == 0) {
+            // Solution found.
             solutions.add(board);
             found.set(found.get() + 1);
             System.out.println("Found solution number " + found.get());
@@ -116,6 +127,14 @@ public class Search {
         }
     }
 
+    /**
+     * Query the board for the next empty square.
+     * The order in which the search method tries to fill the squares of the
+     * board is contained in the field indexOrder.
+     *
+     * @param bd the board
+     * @return the index of the next empty square
+     */
     private int getNextIndex(Board bd) {
         int boardSize = bd.getRows() * bd.getCols();
         for (int i = 0; i < boardSize; i++) {
@@ -126,22 +145,28 @@ public class Search {
         return -1;
     }
 
+    /**
+     * Sort square indices by increasing Euclidian distance from the origin.
+     * 
+     * @param bd the board
+     * @return the ordered array
+     */
     private int[] createOrderIndex(Board bd) {
         int boardSize = bd.getRows() * bd.getCols();
         int[] indexArray = new int[boardSize];
         for (int i = 0; i < boardSize; i++) {
             indexArray[i] = i;
         }
-        
+
         // Sort indexArray with insertion sort (manually implemented).
         // Use the compareIndices method (Euclidian distance) as comparison.
         int i = 1;
         int j, k;
         while (i < boardSize) {
             j = i;
-            while (j > 0 && compareIndices(indexArray[j-1], indexArray[j], bd.getCols()) > 0) {
-                k = indexArray[j-1];
-                indexArray[j-1] = indexArray[j];
+            while (j > 0 && compareIndices(indexArray[j - 1], indexArray[j], bd.getCols()) > 0) {
+                k = indexArray[j - 1];
+                indexArray[j - 1] = indexArray[j];
                 indexArray[j] = k;
                 j--;
             }
@@ -149,7 +174,15 @@ public class Search {
         }
         return indexArray;
     }
-
+    
+    /**
+     * Compare indices by Euclidian distance from the origin.
+     * 
+     * @param i1
+     * @param i2
+     * @param cols number of columns
+     * @return -1 if i1 is closer, 1 if i2 is closer, 0 otherwise
+     */
     private int compareIndices(int i1, int i2, int cols) {
         int row1 = i1 / cols;
         int row2 = i2 / cols;
@@ -166,7 +199,8 @@ public class Search {
     }
 
     /**
-     * Returns the solutions to the problem.
+     * Return the solutions to the problem.
+     * If the search has not yet been run, an empty list is returned.
      *
      * @return solutions
      */
@@ -175,7 +209,7 @@ public class Search {
     }
 
     /**
-     * Returns the tried set. The set contains a String representation of each
+     * Return the tried set. The set contains a String representation of each
      * partially filled board such that a mirrored and/or rotated version of the
      * board has been discovered by the search. This method exists for
      * troubleshooting purposes and will likely be removed later.
@@ -185,11 +219,22 @@ public class Search {
     public MyHashSet<String> getTried() {
         return tried;
     }
-    
+
+    /**
+     * Get the Property containing the number of solutions found so far.
+     * 
+     * @return 
+     */
     public IntegerProperty foundProperty() {
         return found;
     }
-    
+
+    /**
+     * Get the duration of the search.
+     * The search must be run before using this method.
+     * 
+     * @return the search duration
+     */
     public long getDuration() {
         return duration;
     }

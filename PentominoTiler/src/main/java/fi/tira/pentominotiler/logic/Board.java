@@ -3,7 +3,8 @@ package fi.tira.pentominotiler.logic;
 import fi.tira.pentominotiler.datastructures.MyArrayList;
 
 /**
- * A Board object represents a pentomino board.
+ * A Board object represents a pentomino board. The board may be filled
+ * partially, fully or not at all.
  *
  * @author juha
  */
@@ -36,7 +37,7 @@ public class Board {
     }
 
     /**
-     * Constructs a Board object of the specified dimensions with the specified
+     * Construct a Board object of the specified dimensions with the specified
      * set of symbols for the pieces. Two symbol arrays are provided in the
      * class. The permitted Board dimensions are (3, 20), (4, 15), (5, 12) and
      * (6, 10).
@@ -61,7 +62,7 @@ public class Board {
     }
 
     /**
-     * Returns true if the piece can be placed in the specified location.
+     * Return true if the piece can be placed in the specified location.
      *
      * @param piece
      * @param row
@@ -86,7 +87,7 @@ public class Board {
     }
 
     /**
-     * Returns a new Board with the piece placed in the specified location. The
+     * Return a new Board with the piece placed in the specified location. The
      * symbol of the piece is symbols[symbolIndex].
      *
      * @param piece
@@ -110,6 +111,14 @@ public class Board {
         return new Board(newArray, newUsed, unused - 1, symbols);
     }
 
+    /**
+     * Copy the internal array of a Board object. The array represents each
+     * square of the board as a char. Each square contains either the symbol
+     * (e.g. 'X') of the piece placed there or 0 if it is empty.
+     *
+     * @param b the board
+     * @return a copy of the array
+     */
     private static char[][] copyBoardArray(Board b) {
         char[][] newArray = new char[b.rows][b.cols];
         for (int i = 0; i < b.rows; i++) {
@@ -120,6 +129,12 @@ public class Board {
         return newArray;
     }
 
+    /**
+     * Return a copy of a board array flipped over the X (columns) axis.
+     *
+     * @param array the original array
+     * @return a flipped copy of the array
+     */
     private static char[][] flipArrayOverX(char[][] array) {
         int nrows = array.length;
         int ncols = array[0].length;
@@ -132,6 +147,12 @@ public class Board {
         return newArray;
     }
 
+    /**
+     * Return a copy of a board array flipped over the Y (rows) axis.
+     *
+     * @param array the original array
+     * @return a flipped copy of the array
+     */
     private static char[][] flipArrayOverY(char[][] array) {
         int nrows = array.length;
         int ncols = array[0].length;
@@ -144,6 +165,13 @@ public class Board {
         return newArray;
     }
 
+    /**
+     * Convert a board array to a String representation.
+     * See toString for specifications.
+     * 
+     * @param array the array
+     * @return a String representation
+     */
     private static String arrayToString(char[][] array) {
         char[] chars = new char[60];
         int i = 0;
@@ -158,33 +186,34 @@ public class Board {
     }
 
     /**
-     * Returns a String representation of the Board. Blocks are represented with
+     * Return a String representation of the Board. Blocks are represented with
      * the symbol of the corresponding piece. Empty squares are shown as '0'.
      *
      * @return a String representation
      */
+    @Override
     public String toString() {
         return arrayToString(array);
     }
 
     /**
-     * Returns a list containing String representations of the Board in each of
-     * its three alternative symmetries. The original (not mirrored or rotated)
-     * version is always unique in the search and is therefore omitted.
+     * Return a list containing String representations of the Board in each of
+     * its three alternative orientations. The original (not mirrored or
+     * rotated) version is always unique in the search and is therefore omitted.
      *
      * @return mirrored and rotated versions of the board
      */
     public MyArrayList<String> symmetryStrings() {
-        MyArrayList<String> symmetries = new MyArrayList<>(3);
+        MyArrayList<String> orientations = new MyArrayList<>(3);
         char[][] flippedOverX = flipArrayOverX(array);
-        symmetries.add(arrayToString(flippedOverX));
-        symmetries.add(arrayToString(flipArrayOverY(array)));
-        symmetries.add(arrayToString(flipArrayOverY(flippedOverX)));
-        return symmetries;
+        orientations.add(arrayToString(flippedOverX));
+        orientations.add(arrayToString(flipArrayOverY(array)));
+        orientations.add(arrayToString(flipArrayOverY(flippedOverX)));
+        return orientations;
     }
 
     /**
-     * Returns the number of pieces not yet placed on the board.
+     * Return the number of pieces not yet placed on the board.
      *
      * @return number of unused pieces
      */
@@ -193,7 +222,7 @@ public class Board {
     }
 
     /**
-     * Returns true if the piece has already been placed. The piece is specified
+     * Return true if the piece has already been placed. The piece is specified
      * by its symbol index (0-11).
      *
      * @param index
@@ -203,16 +232,26 @@ public class Board {
         return used[index];
     }
 
+    /**
+     * Get the number of columns on the board.
+     *
+     * @return the number of columns
+     */
     public int getCols() {
         return cols;
     }
 
+    /**
+     * Get the number of rows on the board.
+     *
+     * @return the number of rows
+     */
     public int getRows() {
         return rows;
     }
 
     /**
-     * Returns the contents of the board square specified by a linear index.
+     * Return the contents of the board square specified by a linear index.
      *
      * @param index
      * @return array[index / ncols][index % ncols]
