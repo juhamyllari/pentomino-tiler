@@ -29,7 +29,7 @@
                 <HBox>
                     <Button text="Next" onAction="#handleNextButton" fx:id="nextSolutionButton" ></Button>
                     <Button text="Previous" onAction="#handlePreviousButton" fx:id="previousSolutionButton" ></Button>
-                    <Button text="Random" onAction="#handleRandomButton" fx:id="previousSolutionButton" ></Button>
+                    <Button text="Random" onAction="#handleRandomButton" fx:id="randomSolutionButton" ></Button>
                 </HBox>
             </VBox>
         </HBox>
