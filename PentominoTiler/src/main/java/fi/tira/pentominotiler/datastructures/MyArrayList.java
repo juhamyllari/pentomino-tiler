@@ -4,11 +4,11 @@ import java.util.Collection;
 import java.util.Iterator;
 
 /**
- * A rudimentary list data structure implemented using an array.
- * MyArrayList only supports adding elements, querying for size, getting elements
- * by their index and iterating over elements. Element removal is not required
- * by Pentomino Tiler and is therefore not implemented.
- * 
+ * A rudimentary list data structure implemented using an array. MyArrayList
+ * only supports adding elements, querying for size, getting elements by their
+ * index and iterating over elements. Element removal is not required by
+ * Pentomino Tiler and is therefore not implemented.
+ *
  * @author juha
  * @param <T>
  */
@@ -18,6 +18,23 @@ public class MyArrayList<T> implements Collection<T> {
 
     private int nextIndex;
     private T[] array;
+
+    /**
+     * Construct a MyArrayList of default (initial) size.
+     */
+    public MyArrayList() {
+        this(DEFAULT_SIZE);
+    }
+
+    /**
+     * Construct a MyArrayList of the specified (initial) size.
+     *
+     * @param initialSize
+     */
+    public MyArrayList(int initialSize) {
+        this.nextIndex = 0;
+        this.array = (T[]) new Object[initialSize];
+    }
 
     @Override
     public boolean isEmpty() {
@@ -41,84 +58,50 @@ public class MyArrayList<T> implements Collection<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        for (T t : c) {
-            add(t);
+        for (T element : c) {
+            add(element);
         }
         return true;
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public <T> T[] toArray(T[] a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean remove(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private class MyIterator implements Iterator {
-
-        private int index = 0;
-        
-        @Override
-        public boolean hasNext() {
-            return index < nextIndex;
-        }
-
-        @Override
-        public Object next() {
-            return array[index++];
-        }
-        
-    }
-            
-    
-    /**
-     * Construct a MyArrayList of default (initial) size.
-     */
-    public MyArrayList() {
-        this(DEFAULT_SIZE);
-    }
-
-    /**
-     * Construct a MyArrayList of the specified (initial) size.
-     * 
-     * @param initialSize
-     */
-    public MyArrayList(int initialSize) {
-        this.nextIndex = 0;
-        this.array = (T[]) new Object[initialSize];
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
      * Add an element to the end of the list.
-     * 
+     *
      * @param element
      * @return true
      */
@@ -129,6 +112,26 @@ public class MyArrayList<T> implements Collection<T> {
         }
         array[nextIndex++] = element;
         return true;
+    }
+
+    /**
+     * Get the element at the specified index.
+     *
+     * @param index
+     * @return elements[index]
+     */
+    public T get(int index) {
+        return array[index];
+    }
+
+    /**
+     * Get the length of the list.
+     *
+     * @return length(list)
+     */
+    @Override
+    public int size() {
+        return nextIndex;
     }
 
     private void extendArray() {
@@ -142,24 +145,20 @@ public class MyArrayList<T> implements Collection<T> {
         this.array = newArray;
     }
 
-    /**
-     * Get the element at the specified index.
-     * 
-     * @param index
-     * @return elements[index]
-     */
-    public T get(int index) {
-        return array[index];
-    }
+    private class MyIterator implements Iterator {
 
-    /**
-     * Get the length of the list.
-     * 
-     * @return length(list)
-     */
-    @Override
-    public int size() {
-        return nextIndex;
+        private int index = 0;
+
+        @Override
+        public boolean hasNext() {
+            return index < nextIndex;
+        }
+
+        @Override
+        public Object next() {
+            return array[index++];
+        }
+
     }
 
 }
