@@ -39,8 +39,7 @@ public class Search {
         this.initialBoard = initialBoard;
         this.solutions = new MyArrayList<>();
         this.tried = initialBoard.getRows() == 6
-                ? // The 6x10 board is resource intensive.
-                new MyHashSet<>(4500000, 3.0)
+                ? new MyHashSet<>(4500000, 3.0) // The 6x10 board is resource intensive.
                 : new MyHashSet<>(1000000, 2.0);
         this.pieces = PieceUtils
                 .allPieces()
