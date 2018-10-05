@@ -8,6 +8,7 @@ Links to weekly reports:
 * [Week 2](Documentation/Weekly_Report_2.md)
 * [Week 3](Documentation/Weekly_Report_3.md)
 * [Week 4](Documentation/Weekly_Report_4.md)
+* [Week 5](Documentation/Weekly_Report_5.md)
 
 Links to documentation:
 * [Requirements Document](Documentation/Requirements_Document.md)
