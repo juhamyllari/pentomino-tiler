@@ -4,6 +4,8 @@ import fi.tira.pentominotiler.datastructures.MyArrayList;
 import fi.tira.pentominotiler.datastructures.MyHashSet;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.function.BiPredicate;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -51,7 +53,8 @@ public class Search {
                     return centered;
                 })
                 .collect(Collectors.toCollection(MyArrayList::new));
-        this.indexOrder = createOrderIndex(initialBoard);
+        this.indexOrder = createOrderIndexWithPredicate(initialBoard,
+                (i1, i2) -> compareEuclidian((int) i1, (int) i2));
     }
 
     /**
@@ -127,9 +130,9 @@ public class Search {
     }
 
     /**
-     * Query the board for the next empty square.
-     * The order in which the search method tries to fill the squares of the
-     * board is contained in the field indexOrder.
+     * Query the board for the next empty square. The order in which the search
+     * method tries to fill the squares of the board is contained in the field
+     * indexOrder.
      *
      * @param bd the board
      * @return the index of the next empty square
@@ -145,12 +148,15 @@ public class Search {
     }
 
     /**
-     * Sort square indices by increasing Euclidian distance from the origin.
-     * 
+     * Sort square indices by the provided comparison operator. The comparison
+     * operator takes two Integers and returns a positive Integer if the former
+     * is larger, 0 if they are equal and a negative integer otherwise.
+     *
      * @param bd the board
+     * @param comparison the comparison operator
      * @return the ordered array
      */
-    private int[] createOrderIndex(Board bd) {
+    private int[] createOrderIndexWithPredicate(Board bd, BinaryOperator<Integer> comparison) {
         int boardSize = bd.getRows() * bd.getCols();
         int[] indexArray = new int[boardSize];
         for (int i = 0; i < boardSize; i++) {
@@ -158,12 +164,11 @@ public class Search {
         }
 
         // Sort indexArray with insertion sort (manually implemented).
-        // Use the compareIndices method (Euclidian distance) as comparison.
         int i = 1;
         int j, k;
         while (i < boardSize) {
             j = i;
-            while (j > 0 && compareIndices(indexArray[j - 1], indexArray[j], bd.getCols()) > 0) {
+            while (j > 0 && comparison.apply(indexArray[j - 1], indexArray[j]) > 0) {
                 k = indexArray[j - 1];
                 indexArray[j - 1] = indexArray[j];
                 indexArray[j] = k;
@@ -173,16 +178,17 @@ public class Search {
         }
         return indexArray;
     }
-    
+
     /**
      * Compare indices by Euclidian distance from the origin.
-     * 
+     *
      * @param i1
      * @param i2
      * @param cols number of columns
      * @return -1 if i1 is closer, 1 if i2 is closer, 0 otherwise
      */
-    private int compareIndices(int i1, int i2, int cols) {
+    private int compareEuclidian(int i1, int i2) {
+        int cols = this.initialBoard.getCols();
         int row1 = i1 / cols;
         int row2 = i2 / cols;
         int col1 = i1 % cols;
@@ -198,8 +204,32 @@ public class Search {
     }
 
     /**
-     * Return the solutions to the problem.
-     * If the search has not yet been run, an empty list is returned.
+     * Compare indices by Manhattan distance from the origin.
+     *
+     * @param i1
+     * @param i2
+     * @param cols number of columns
+     * @return -1 if i1 is closer, 1 if i2 is closer, 0 otherwise
+     */
+    private int compareManhattan(int i1, int i2) {
+        int cols = this.initialBoard.getCols();
+        int row1 = i1 / cols;
+        int row2 = i2 / cols;
+        int col1 = i1 % cols;
+        int col2 = i2 % cols;
+        double cmp = (row1 + col1) - (row2 + col2);
+        if (cmp < 0) {
+            return -1;
+        } else if (cmp > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * Return the solutions to the problem. If the search has not yet been run,
+     * an empty list is returned.
      *
      * @return solutions
      */
@@ -221,17 +251,17 @@ public class Search {
 
     /**
      * Get the Property containing the number of solutions found so far.
-     * 
-     * @return 
+     *
+     * @return
      */
     public IntegerProperty foundProperty() {
         return found;
     }
 
     /**
-     * Get the duration of the search.
-     * The search must be run before using this method.
-     * 
+     * Get the duration of the search. The search must be run before using this
+     * method.
+     *
      * @return the search duration
      */
     public long getDuration() {
