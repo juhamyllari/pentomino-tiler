@@ -181,7 +181,10 @@ public class Search {
 
     /**
      * Compare indices by Euclidian distance from the origin.
-     *
+     * Although Euclidian distance from the origin on the plane is defined as
+     * sqrt(x^2 + y^2), we are only interested in ordering the indices. The
+     * square root function, being monotonous, is therefore omitted.
+     * 
      * @param i1
      * @param i2
      * @param cols number of columns
@@ -193,7 +196,7 @@ public class Search {
         int row2 = i2 / cols;
         int col1 = i1 % cols;
         int col2 = i2 % cols;
-        double cmp = Math.sqrt(row1 * row1 + col1 * col1) - Math.sqrt(row2 * row2 + col2 * col2);
+        double cmp = (row1 * row1 + col1 * col1) - (row2 * row2 + col2 * col2);
         if (cmp < 0) {
             return -1;
         } else if (cmp > 0) {
