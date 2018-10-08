@@ -4,7 +4,6 @@ import fi.tira.pentominotiler.datastructures.MyArrayList;
 import fi.tira.pentominotiler.datastructures.MyHashSet;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.function.BinaryOperator;
 import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 import javafx.beans.property.IntegerProperty;
@@ -89,7 +88,7 @@ public class Search {
 
         Instant stopTime = Instant.now();
         duration = Duration.between(startTime, stopTime).toMillis();
-        System.out.println("The search took " + duration + " milliseconds.");
+//        System.out.println("The search took " + duration + " milliseconds.");
     }
 
     /**
@@ -107,7 +106,7 @@ public class Search {
             // Solution found.
             solutions.add(board);
             found.set(found.get() + 1);
-            System.out.println("Found solution number " + found.get());
+//            System.out.println("Found solution number " + found.get());
             return;
         }
         int index = getNextIndex(board);
