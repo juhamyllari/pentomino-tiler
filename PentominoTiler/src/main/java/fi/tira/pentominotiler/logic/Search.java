@@ -4,8 +4,8 @@ import fi.tira.pentominotiler.datastructures.MyArrayList;
 import fi.tira.pentominotiler.datastructures.MyHashSet;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.function.BiPredicate;
 import java.util.function.BinaryOperator;
+import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -26,7 +26,7 @@ public class Search {
     private MyArrayList<Board> solutions;
     private MyHashSet<String> tried;
     private final MyArrayList<MyArrayList<Piece>> pieces;
-    private final int[] indexOrder;
+    private int[] indexOrder;
     private final IntegerProperty found = new SimpleIntegerProperty(0);
     private long duration;
 
@@ -53,8 +53,8 @@ public class Search {
                     return centered;
                 })
                 .collect(Collectors.toCollection(MyArrayList::new));
-        this.indexOrder = createOrderIndexWithPredicate(initialBoard,
-                (i1, i2) -> compareEuclidian((int) i1, (int) i2));
+        this.indexOrder = orderIndices(initialBoard,
+                ind -> euclidianDistanceSquared(ind));
     }
 
     /**
@@ -148,7 +148,7 @@ public class Search {
     }
 
     /**
-     * Sort square indices by the provided comparison operator. The comparison
+     * Sort square indices by the provided heuristic. The comparison
      * operator takes two Integers and returns a positive Integer if the former
      * is larger, 0 if they are equal and a negative integer otherwise.
      *
@@ -156,7 +156,7 @@ public class Search {
      * @param comparison the comparison operator
      * @return the ordered array
      */
-    private int[] createOrderIndexWithPredicate(Board bd, BinaryOperator<Integer> comparison) {
+    private int[] orderIndices(Board bd, IntFunction<Double> heuristic) {
         int boardSize = bd.getRows() * bd.getCols();
         int[] indexArray = new int[boardSize];
         for (int i = 0; i < boardSize; i++) {
@@ -168,7 +168,7 @@ public class Search {
         int j, k;
         while (i < boardSize) {
             j = i;
-            while (j > 0 && comparison.apply(indexArray[j - 1], indexArray[j]) > 0) {
+            while (j > 0 && heuristic.apply(indexArray[j - 1]) > heuristic.apply(indexArray[j])) {
                 k = indexArray[j - 1];
                 indexArray[j - 1] = indexArray[j];
                 indexArray[j] = k;
@@ -178,56 +178,34 @@ public class Search {
         }
         return indexArray;
     }
-
+    
     /**
-     * Compare indices by Euclidian distance from the origin.
-     * Although Euclidian distance from the origin on the plane is defined as
-     * sqrt(x^2 + y^2), we are only interested in ordering the indices. The
-     * square root function, being monotonous, is therefore omitted.
+     * Calculate (the square of) the Euclidian distance of the indexed square
+     * from the origin. Although the Euclidian distance from the origin on the
+     * plane is defined as sqrt(x^2 + y^2), we omit the square root function
+     * as it (being monotone) does not affect the order of the indices.
      * 
-     * @param i1
-     * @param i2
-     * @param cols number of columns
-     * @return -1 if i1 is closer, 1 if i2 is closer, 0 otherwise
+     * @param index
+     * @return row^2 + col^2
      */
-    private int compareEuclidian(int i1, int i2) {
-        int cols = this.initialBoard.getCols();
-        int row1 = i1 / cols;
-        int row2 = i2 / cols;
-        int col1 = i1 % cols;
-        int col2 = i2 % cols;
-        double cmp = (row1 * row1 + col1 * col1) - (row2 * row2 + col2 * col2);
-        if (cmp < 0) {
-            return -1;
-        } else if (cmp > 0) {
-            return 1;
-        } else {
-            return 0;
-        }
+    private double euclidianDistanceSquared(int index) {
+        int cols = initialBoard.getCols();
+        int row = index / cols;
+        int col = index % cols;
+        return (double) (row * row + col * col);
     }
-
+    
     /**
-     * Compare indices by Manhattan distance from the origin.
-     *
-     * @param i1
-     * @param i2
-     * @param cols number of columns
-     * @return -1 if i1 is closer, 1 if i2 is closer, 0 otherwise
+     * Calculate the Manhattan distance of the indexed square from the origin.
+     * 
+     * @param index
+     * @return row + col
      */
-    private int compareManhattan(int i1, int i2) {
-        int cols = this.initialBoard.getCols();
-        int row1 = i1 / cols;
-        int row2 = i2 / cols;
-        int col1 = i1 % cols;
-        int col2 = i2 % cols;
-        double cmp = (row1 + col1) - (row2 + col2);
-        if (cmp < 0) {
-            return -1;
-        } else if (cmp > 0) {
-            return 1;
-        } else {
-            return 0;
-        }
+    private double manhattanDistance(int index) {
+        int cols = initialBoard.getCols();
+        int row = index / cols;
+        int col = index % cols;
+        return (double) (row + col);
     }
 
     /**
@@ -269,6 +247,16 @@ public class Search {
      */
     public long getDuration() {
         return duration;
+    }
+
+    /**
+     * Set the search heuristic to Manhattan distance from the origin. This
+     * feature is only provided for performance testing purposes. The
+     * recommended (and default) heuristic is Euclidian distance from the
+     * origin.
+     */
+    public void setHeuristicToManhattan() {
+        this.indexOrder = orderIndices(initialBoard, ind -> manhattanDistance(ind));
     }
 
 }
