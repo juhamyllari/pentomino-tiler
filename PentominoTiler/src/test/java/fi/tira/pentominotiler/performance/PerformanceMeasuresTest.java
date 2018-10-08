@@ -18,7 +18,7 @@ public class PerformanceMeasuresTest {
 
     public PerformanceMeasuresTest() {
         System.out.println("Running performance tests. This may take some time.\n");
-        PerformanceMeasures.comparePerformance(3, 20, 10);
+        PerformanceMeasures.comparePerformance(3, 20, 100);
     }
 
     @BeforeClass
