@@ -147,9 +147,7 @@ public class Search {
     }
 
     /**
-     * Sort square indices by the provided heuristic. The comparison
-     * operator takes two Integers and returns a positive Integer if the former
-     * is larger, 0 if they are equal and a negative integer otherwise.
+     * Sort square indices by the provided heuristic.
      *
      * @param bd the board
      * @param comparison the comparison operator
