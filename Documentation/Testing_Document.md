@@ -22,12 +22,12 @@ The search algorithm uses a set (MyHashSet) to prune search branches where a mir
 
 ### Comparing Heuristics
 
-By default, Pentomino Tiler tiles the board starting from the origin and proceeding in order of increasing Euclidian distance (sqrt(row^2 + column^2)). In addition to this Euclidian heuristic, Pentomino Tiler supports running performance tests using a Manhattan heuristic (i.e. the board is filled in order of increasing Manhattan distance from the origin (row + column)).
+By default, Pentomino Tiler tiles the board starting from the origin and proceeding in order of increasing Euclidean distance (sqrt(row^2 + column^2)). In addition to this Euclidean heuristic, Pentomino Tiler supports running performance tests using a Manhattan heuristic (i.e. the board is filled in order of increasing Manhattan distance from the origin (row + column)).
 
-The Euclidian heuristic performs better on all board shapes. On 12.10.2018 the following running times were obtained:
-* (3, 20) board: 20.01 ms (Euclidian) vs 33.48 ms (Manhattan) – average of 100 tests
-* (4, 15) board: 534.25 ms (Euclidian) vs 1106.0 ms (Manhattan) – average of 20 tests
-* (5, 12) board: 3067.8 ms (Euclidian) vs 9620.65 ms (Manhattan) – average of 20 tests
-* (6, 10) board: 19303.0 ms (Euclidian) vs 28597.0 ms (Manhattan) – average of 5 tests
+The Euclidean heuristic performs better on all board shapes. On 12.10.2018 the following running times were obtained:
+* (3, 20) board: 20.01 ms (Euclidean) vs 33.48 ms (Manhattan) – average of 100 tests
+* (4, 15) board: 534.25 ms (Euclidean) vs 1106.0 ms (Manhattan) – average of 20 tests
+* (5, 12) board: 3067.8 ms (Euclidean) vs 9620.65 ms (Manhattan) – average of 20 tests
+* (6, 10) board: 19303.0 ms (Euclidean) vs 28597.0 ms (Manhattan) – average of 5 tests
 
 The testing method ignores the first results on each testing round as they tend to be significantly larger (i.e. the search tends to be much slower) than in later iterations. This difference is likely a result of JIT compilation.
