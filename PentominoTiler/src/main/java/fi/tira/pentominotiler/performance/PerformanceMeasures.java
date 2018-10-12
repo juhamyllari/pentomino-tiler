@@ -22,9 +22,9 @@ public class PerformanceMeasures {
     public static void comparePerformance(int rows, int cols, int times) {
         Board board = new Board(rows, cols, Board.LETTER_SYMBOLS);
 
-        System.out.println("Search durations for the Euclidian heuristic:");
-        MyArrayList<Long> durationsEuclidian = PerformanceMeasures.testPerformance(board, false, times);
-        System.out.println("Average: " + PerformanceMeasures.average(durationsEuclidian) + " ms\n");
+        System.out.println("Search durations for the Euclidean heuristic:");
+        MyArrayList<Long> durationsEuclidean = PerformanceMeasures.testPerformance(board, false, times);
+        System.out.println("Average: " + PerformanceMeasures.average(durationsEuclidean) + " ms\n");
 
         System.out.println("Search durations for the Manhattan heuristic:");
         MyArrayList<Long> durationsManhattan = PerformanceMeasures.testPerformance(board, true, times);

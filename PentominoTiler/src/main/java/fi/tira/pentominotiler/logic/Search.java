@@ -53,7 +53,7 @@ public class Search {
                 })
                 .collect(Collectors.toCollection(MyArrayList::new));
         this.indexOrder = orderIndices(initialBoard,
-                ind -> euclidianDistanceSquared(ind));
+                ind -> euclideanDistanceSquared(ind));
     }
 
     /**
@@ -61,7 +61,7 @@ public class Search {
      * each of its legal positions in or near the quadrant nearest the origin
      * (some positions may be outside the quadrant if the number of rows or
      * columns is odd) and calls search separately on each placement. In the
-     * search proper, pieces are placed on squares of increasing Euclidian
+     * search proper, pieces are placed on squares of increasing Euclidean
      * distance from the origin.
      */
     public void runSearch() {
@@ -177,15 +177,15 @@ public class Search {
     }
     
     /**
-     * Calculate (the square of) the Euclidian distance of the indexed square
-     * from the origin. Although the Euclidian distance from the origin on the
+     * Calculate (the square of) the Euclidean distance of the indexed square
+     * from the origin. Although the Euclidean distance from the origin on the
      * plane is defined as sqrt(x^2 + y^2), we omit the square root function
      * as it (being monotone) does not affect the order of the indices.
      * 
      * @param index
      * @return row^2 + col^2
      */
-    private double euclidianDistanceSquared(int index) {
+    private double euclideanDistanceSquared(int index) {
         int cols = initialBoard.getCols();
         int row = index / cols;
         int col = index % cols;
@@ -249,7 +249,7 @@ public class Search {
     /**
      * Set the search heuristic to Manhattan distance from the origin. This
      * feature is only provided for performance testing purposes. The
-     * recommended (and default) heuristic is Euclidian distance from the
+     * recommended (and default) heuristic is Euclidean distance from the
      * origin.
      */
     public void setHeuristicToManhattan() {
