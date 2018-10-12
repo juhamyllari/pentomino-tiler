@@ -68,7 +68,7 @@ public class FXMLController implements Initializable {
                         -> updateMessage("Searching.\nFound " + newVal.toString() + " solutions."));
                 search.runSearch();
                 int solutions = search.getSolutions().size();
-                updateMessage("Done.\nFound " + solutions + " solutions\nin " + search.getDuration() / 1000.0 + " seconds.");
+                updateMessage("Done.\nFound " + solutions + " solutions in " + search.getDuration() / 1000.0 + " seconds.");
                 return null;
             }
         };
