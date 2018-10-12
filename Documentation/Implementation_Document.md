@@ -24,9 +24,9 @@ If tiling B can be derived from tiling A by rotation or mirroring, A and B are n
 
 Of the 12 pentomino pieces, the "X" piece (shaped like '+') has only one orientation; it is symmetrical with respect to rotation and mirroring. The tiling problem can therefore be significantly constrained by placing the X in each of its legal positions and running the search separately on each placement. Pentomino Tiler automatically does this, placing the X into each legal position in the quadrant closest to the origin of the board (or next to said quadrant, if the number of rows or columns is odd).
 
-#### Euclidian Heuristic
+#### Euclidean Heuristic
 
-It was stated above that each step of the recursive search attempts to fill the first empty square of the (possibly partially filled) board. However, we did not specify what "first" means in this context. Pentomino Tiler numbers the squares of the board according to their Euclidian distance from the origin. The board is therefore filled starting from the origin and proceeding away from it.
+It was stated above that each step of the recursive search attempts to fill the first empty square of the (possibly partially filled) board. However, we did not specify what "first" means in this context. Pentomino Tiler numbers the squares of the board according to their Euclidean distance from the origin. The board is therefore filled starting from the origin and proceeding away from it.
 
 ## Time and Space Complexity
 
