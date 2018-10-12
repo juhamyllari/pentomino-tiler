@@ -65,10 +65,10 @@ public class FXMLController implements Initializable {
             protected Void call() throws Exception {
                 search.foundProperty().addListener(
                         (arg, oldVal, newVal)
-                        -> updateMessage("Searching. Found " + newVal.toString() + " solutions."));
+                        -> updateMessage("Searching.\nFound " + newVal.toString() + " solutions."));
                 search.runSearch();
                 int solutions = search.getSolutions().size();
-                updateMessage("Done. Found " + solutions + " solutions in " + search.getDuration() / 1000.0 + " seconds.");
+                updateMessage("Done.\nFound " + solutions + " solutions\nin " + search.getDuration() / 1000.0 + " seconds.");
                 return null;
             }
         };
