@@ -10,7 +10,7 @@ This week I focused on the following:
 
 I implemented a Manhattan heuristic for the search and created methods for testing and comparing the performance of each heuristic. I then simplified the sorting procedure for improved code legibility.
 
-The Euclidian heuristic performs better across the board (pun intended), but the Manhattan heuristic is not untenable either. The Testing Document contains a summary of the results.
+The Euclidean heuristic performs better across the board (pun intended), but the Manhattan heuristic is not untenable either. The Testing Document contains a summary of the results.
 
 ## Next Steps
 
