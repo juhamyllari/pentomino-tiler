@@ -24,7 +24,7 @@ The search algorithm uses a set (MyHashSet) to prune search branches where a mir
 
 By default, Pentomino Tiler tiles the board starting from the origin and proceeding in order of increasing Euclidian distance (sqrt(row^2 + column^2)). In addition to this Euclidian heuristic, Pentomino Tiler supports running performance tests using a Manhattan heuristic (i.e. the board is filled in order of increasing Manhattan distance from the origin (row + column)).
 
-The Euclidian heuristic performs better on all board shapes. On 12.10.2018 the following results were obtained:
+The Euclidian heuristic performs better on all board shapes. On 12.10.2018 the following running times were obtained:
 * (3, 20) board: 20.01 ms (Euclidian) vs 33.48 ms (Manhattan) – average of 100 tests
 * (4, 15) board: 534.25 ms (Euclidian) vs 1106.0 ms (Manhattan) – average of 20 tests
 * (5, 12) board: 3067.8 ms (Euclidian) vs 9620.65 ms (Manhattan) – average of 20 tests
