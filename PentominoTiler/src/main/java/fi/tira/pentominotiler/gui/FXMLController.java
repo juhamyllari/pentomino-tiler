@@ -3,7 +3,6 @@ package fi.tira.pentominotiler.gui;
 import fi.tira.pentominotiler.logic.Board;
 import fi.tira.pentominotiler.logic.Search;
 import java.net.URL;
-import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -113,7 +112,12 @@ public class FXMLController implements Initializable {
     
     @FXML
     private void handleRandomButton(ActionEvent event) {
-        int index = new Random().nextInt(search.getSolutions().size());
+        // To ensure compliance with course requirements, Math.random() is
+        // not used. System.nanoTime() should be sufficiently random for the
+        // current purpose as security is not an issue with this method.
+        long time = System.nanoTime();
+        int preIndex = (int) (time % search.getSolutions().size());
+        int index = preIndex >= 0 ? preIndex : -preIndex;
         solutionIndex.set(index);
         updateBoardText();
         drawBoard(search.getSolutions().get(solutionIndex.get()));
