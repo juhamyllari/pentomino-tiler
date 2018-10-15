@@ -7,10 +7,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="800" prefWidth="1200" xmlns:fx="http://javafx.com/fxml" fx:controller="fi.tira.pentominotiler.gui.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="800" prefWidth="1400" xmlns:fx="http://javafx.com/fxml" fx:controller="fi.tira.pentominotiler.gui.FXMLController">
     <children>
         <HBox layoutX="50" layoutY="50" spacing="50">
-            <VBox layoutX="100" layoutY="100" spacing="20">
+            <VBox layoutX="100" layoutY="100" spacing="20" prefHeight="600" prefWidth="500">
                 <fx:define>
                     <ToggleGroup fx:id="boardDims"/>
                 </fx:define>
@@ -23,7 +23,7 @@
                 <Button layoutX="126" layoutY="190" text="Run search" onAction="#handleRunButton" fx:id="runButton" />
                 <Label layoutX="126" layoutY="240" minHeight="16" minWidth="69" fx:id="searchLabel" />
             </VBox>
-            <VBox alignment="center" spacing="20" visible="false" fx:id="solutionsBox">
+            <VBox spacing="20" visible="false" fx:id="solutionsBox">
                 <Label fx:id="boardLabel"></Label>
                 <Pane fx:id="boardPane"  ></Pane>
                 <HBox>
