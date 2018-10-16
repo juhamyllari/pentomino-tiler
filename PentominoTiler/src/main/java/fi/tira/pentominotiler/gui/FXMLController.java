@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -35,6 +36,18 @@ public class FXMLController implements Initializable {
 
     @FXML
     private RadioButton rb4;
+    
+    @FXML
+    private Button runButton;
+    
+    @FXML
+    private Button nextSolutionButton;
+    
+    @FXML
+    private Button previousSolutionButton;
+    
+    @FXML
+    private Button randomSolutionButton;
 
     @FXML
     private ToggleGroup boardDims;
@@ -53,6 +66,7 @@ public class FXMLController implements Initializable {
 
     @FXML
     private void handleRunButton(ActionEvent event) {
+        enableButtons(false);
         int rows = (Integer) boardDims.getSelectedToggle().getUserData();
         int cols = 60 / rows;
         Board board = new Board(rows, cols, Board.LETTER_SYMBOLS);
@@ -78,6 +92,7 @@ public class FXMLController implements Initializable {
             solutionIndex.set(0);
             updateBoardText();
             solutionsBox.setVisible(true);
+            enableButtons(true);
         });
 
         // Display the number of solutions found so far.
@@ -86,6 +101,14 @@ public class FXMLController implements Initializable {
         Thread th = new Thread(searchTask);
         th.setDaemon(true);
         th.start();
+    }
+    
+    private void enableButtons(boolean enable) {
+        boolean disable = !enable;
+        runButton.setDisable(disable);
+        nextSolutionButton.setDisable(disable);
+        previousSolutionButton.setDisable(disable);
+        randomSolutionButton.setDisable(disable);
     }
 
     @FXML
