@@ -12,6 +12,7 @@ Links to weekly reports:
 * [Week 6](Documentation/Weekly_Report_6.md)
 
 Links to documentation:
+* [Usage](Documentation/Usage.md)
 * [Requirements Document](Documentation/Requirements_Document.md)
 * [Implementation Document](Documentation/Implementation_Document.md)
 * [Testing Document](Documentation/Testing_Document.md)
