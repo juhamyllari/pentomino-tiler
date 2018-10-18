@@ -85,6 +85,15 @@ public class MyHashSet<E> {
         MyArrayList<E> bucket = buckets[hash(element, buckets.length)];
         return bucket.contains(element);
     }
+    
+    public boolean containsAny(Collection<E> c) {
+        for (E element : c) {
+            if (this.contains(element)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void rehash() {
         MyArrayList<E>[] newBuckets = new MyArrayList[2 * buckets.length];

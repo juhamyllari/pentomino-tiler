@@ -88,7 +88,10 @@ public class Search {
 
         Instant stopTime = Instant.now();
         duration = Duration.between(startTime, stopTime).toMillis();
-//        System.out.println("The search took " + duration + " milliseconds.");
+        
+        // Let the tried set be garbage collected.
+        this.tried = null;
+        System.gc();
     }
 
     /**
@@ -118,8 +121,8 @@ public class Search {
                     if (board.canPlace(candidate, row, col)) {
                         Board newBoard = board.placePiece(candidate, row, col, i);
                         MyArrayList<String> symmetries = newBoard.symmetryStrings();
-                        if (!tried.contains(newBoard.toString())) {
-                            tried.addAll(symmetries);
+                        if (!tried.containsAny(symmetries)) {
+                            tried.add(newBoard.toString());
                             search(newBoard);
                         }
                     }
@@ -213,18 +216,6 @@ public class Search {
      */
     public MyArrayList<Board> getSolutions() {
         return solutions;
-    }
-
-    /**
-     * Return the tried set. The set contains a String representation of each
-     * partially filled board such that a mirrored and/or rotated version of the
-     * board has been discovered by the search. This method exists for
-     * troubleshooting purposes and will likely be removed later.
-     *
-     * @return the symmetry strings of placements tried
-     */
-    public MyHashSet<String> getTried() {
-        return tried;
     }
 
     /**

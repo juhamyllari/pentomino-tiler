@@ -53,11 +53,6 @@ public class SearchTest {
     }
 
     @Test
-    public void testGetTried() {
-        assertEquals(true, s.getTried().size() > 0 && s.getTried().size() < 1e6);
-    }
-
-    @Test
     public void testFoundProperty() {
         assertEquals(2, s.foundProperty().get());
     }
