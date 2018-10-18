@@ -7,6 +7,10 @@ Pentomino Tiler will be released as a .jar file later. At the moment the recomme
 mvn compile
 java -jar target/PentominoTiler-1.0-SNAPSHOT.jar
 ```
+Pentomino Tiler requires about 1.5 GB of memory. If your Java memory settings are very conservative, the application may stall when tiling the most demanding (6×10) board. In this case consider adjusting the heap size manually:
+```
+java -jar -Xmx2g target/PentominoTiler-1.0-SNAPSHOT.jar
+```
 
 ## Using the Application
 
