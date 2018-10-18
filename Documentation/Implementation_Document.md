@@ -1,7 +1,5 @@
 # Implementation Document
 
-This document is under construction.
-
 ## General Application Structure
 
 ### Setting Up the Search
@@ -30,8 +28,16 @@ It was stated above that each step of the recursive search attempts to fill the 
 
 ## Time and Space Complexity
 
-The search is exponential (i.e. O(2^n)) in both time and space complexity.
+The search is exponential (i.e. 2^poly(n), n signifying the number of pentomino pieces) in both time and space complexity. In Pentomino Tiler n is always 12, but conceptually we can of course consider larger values of n as well. (We still take the number of unique pieces to be 12 but allow for larger boards with a correspondingly larger budget of pieces.) A simple analysis of the computational complexity would then be as follows:
+
+The search algorithm has a recursive depth of (roughly) n, as each call that is not a leaf of the recursion tree adds exactly one piece to the board. The branching factor is determined by the number of legal placements one call can make. This is bounded from above by a constant:
+```
+(number of unique pentomino pieces) * (maximum unique orientations a piece can have) * (blocks in a piece)
+= 12 * 8 * 5
+= 480.
+```
+The number of calls is therefore O(2^n). Each call has time complexity O(n), as determining the nearest empty square takes linear time.
 
 ## Limitations
 
-## Sources
+It was stated in the [Requirements Document](Requirements_Document.md) that the user is allowed to choose from 2–3 search predefined search heuristics. Two heuristics (based on the Euclidean and Manhattan distances from the origin) were indeed implemented, but allowing the choice turned out to be a bad idea. The search process itself is not visualized in any way, meaning that the user would only see the discovered solutions rack up comparatively quickly (using the Euclidean heuristic) or comparatively slowly (using the Manhattan heuristic). The choice was therefore disallowed, and searches in the GUI always use the Euclidean heuristic.
