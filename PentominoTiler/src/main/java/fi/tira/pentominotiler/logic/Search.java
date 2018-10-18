@@ -109,7 +109,6 @@ public class Search {
             // Solution found.
             solutions.add(board);
             found.set(found.get() + 1);
-//            System.out.println("Found solution number " + found.get());
             return;
         }
         int index = getNextIndex(board);
@@ -221,7 +220,7 @@ public class Search {
     /**
      * Get the Property containing the number of solutions found so far.
      *
-     * @return
+     * @return property(number of solutions)
      */
     public IntegerProperty foundProperty() {
         return found;
