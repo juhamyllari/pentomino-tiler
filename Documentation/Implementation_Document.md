@@ -2,6 +2,8 @@
 
 ## General Application Structure
 
+The user interacts with a simple JavaFX GUI. The workflow is described in the [Usage Document](Usage.md).
+
 ### Setting Up the Search
 
 The parameters of a search problem are contained in a Search object. The search object has methods for running the search and retrieving the results. The Search constructor takes as its sole parameter a Board object which represents the pentomino board to be tiled.
