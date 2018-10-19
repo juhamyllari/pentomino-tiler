@@ -22,13 +22,17 @@ public class PerformanceMeasures {
     public static void comparePerformance(int rows, int cols, int times) {
         Board board = new Board(rows, cols, Board.LETTER_SYMBOLS);
 
+        System.out.println("***************************************");
+        System.out.println("Testing performance on a (" + rows + ", " +  cols + ") board.");
+        System.out.println("***************************************");
+        
         System.out.println("Search durations for the Euclidean heuristic:");
         MyArrayList<Long> durationsEuclidean = PerformanceMeasures.testPerformance(board, false, times);
-        System.out.println("Average: " + PerformanceMeasures.average(durationsEuclidean) + " ms\n");
+        System.out.println("Average for the Euclidean heuristic: " + PerformanceMeasures.average(durationsEuclidean) + " ms\n");
 
         System.out.println("Search durations for the Manhattan heuristic:");
         MyArrayList<Long> durationsManhattan = PerformanceMeasures.testPerformance(board, true, times);
-        System.out.println("Average: " + PerformanceMeasures.average(durationsManhattan) + " ms\n");
+        System.out.println("Average for the Manhattan heuristic: " + PerformanceMeasures.average(durationsManhattan) + " ms\n");
     }
 
     /**
@@ -51,7 +55,7 @@ public class PerformanceMeasures {
                 System.out.println("Iteration " + i + ": " + search.getDuration() + " ms");
                 list.add(search.getDuration());
             } else {
-                System.out.println("Ignoring zeroth iteration.");
+                System.out.println("Ignoring iteration 0.");
             }
         }
         return list;
