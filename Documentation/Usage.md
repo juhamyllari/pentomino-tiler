@@ -2,7 +2,7 @@
 
 ## Starting the Application
 
-Pentomino Tiler will be released as a .jar file later. At the moment the recommended way to run the application is to click "Run Project" in NetBeans (or press F6). Alternatively one may complile and run the project on the command line. In the directory PentominoTiler (containing pom.xml) run the following:
+Pentomino Tiler will be released as a .jar file later. At the moment the recommended way to run the application is to click "Run Project" in NetBeans (or press F6). Alternatively one may complile and run the project on the command line. In the directory `<project directory>/PentominoTiler` (containing pom.xml) run the following:
 ```
 mvn compile
 java -jar target/PentominoTiler-1.0-SNAPSHOT.jar

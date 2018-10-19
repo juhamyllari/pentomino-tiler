@@ -1,5 +1,13 @@
 # Testing Document
 
+## Running the Tests
+
+To run all tests, issue the command
+```
+mvn test
+```
+in `<project directory>/PentominoTiler`. The perfomance tests may take several minutes.
+
 ## Unit Testing
 
 The program logic and the self-implemented data structures have been unit tested using JUnit.
