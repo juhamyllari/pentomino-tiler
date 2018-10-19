@@ -34,7 +34,7 @@ The Euclidean heuristic performs better on all board shapes. On 12.10.2018 the f
 * 5×12 board: 2336.4 ms (Euclidean) vs 7477.9 ms (Manhattan) – average of 10 tests
 * 6×10 board: 14537.6 ms (Euclidean) vs 15967.4 ms (Manhattan) – average of 5 tests
 
-![Plot of search times by heuristic ](https://github.com/juhamyllari/pentomino-tiler/blob/master/Documentation/duration.png)
-![Log plot of search times by heuristic](https://github.com/juhamyllari/pentomino-tiler/blob/master/Documentation/logduration.png)
+![Plot of search times by heuristic ](https://github.com/juhamyllari/pentomino-tiler/blob/master/Documentation/durations.png)
+![Log plot of search times by heuristic](https://github.com/juhamyllari/pentomino-tiler/blob/master/Documentation/logdurations.png)
 
 The testing method ignores the first results on each testing round as they tend to be significantly larger (i.e. the search tends to be much slower) than in later iterations. This difference is likely a result of JIT compilation.
