@@ -2,7 +2,7 @@
 
 ## Starting the Application
 
-Pentomino Tiler will be released as a .jar file later. At the moment the recommended way to run the application is to click "Run Project" in NetBeans (or press F6). Alternatively one may complile and run the project on the command line. In the directory `<project directory>/PentominoTiler` (containing pom.xml) run the following:
+Pentomino Tiler will be released as a .jar file later. At the moment the recommended way to run the application is to click "Run Project" in NetBeans (or press F6). Alternatively one may compile and run the project on the command line. In the directory `<project directory>/PentominoTiler` (containing pom.xml) run the following:
 ```
 mvn compile
 java -jar target/PentominoTiler-1.0-SNAPSHOT.jar
@@ -15,6 +15,8 @@ java -jar -Xmx2g target/PentominoTiler-1.0-SNAPSHOT.jar
 ## Using the Application
 
 Click on the radio button corresponding to the board dimensions of your choice. Then click "Run search". The search may take some time; the number of solutions found so far is displayed and continuously updated. Once the search terminates, the first result is displayed. Click on "Next" to see the next solution, "Previous" to see the previous solution or "Random" to see a random solution.
+
+A solution actually corresponds to four tilings which are rotated and/or mirrored versions of each other. For each solution, Pentomino Tiler displays the tiling in which the "X" piece is closest to the upper left corner.
 
 To run a new search, simply select the board dimensions using the radio buttons and click on "Run search" again.
 
