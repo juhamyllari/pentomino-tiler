@@ -4,21 +4,26 @@ This document is under construction.
 
 ## Unit Testing
 
-Each class has been unit tested using JUnit.
+The program logic and the self-implemented data structures have been unit tested using JUnit.
 
 The insertion sort algorithm used in the method "orderIndices" in the Search class was manually tested for correctness for all board shapes in Debug mode in NetBeans. By visual inspection, the time complexity of the algorithm is obviously O(n^2). The sorting is conducted in-place, and the space complexity of the algorithm is O(1) (or O(n) if the original array is included).
 
 ## Performance Testing
 
-Pentomino Tiler can solve 4 tiling problems, corresponding to board dimensions (3, 20), (4, 15), (5, 12) and (6, 10). A board whose shape is close to a square (like (6, 10)) is harder to tile than a more rectangular one (like (3, 20)).
+Pentomino Tiler can solve 4 tiling problems, corresponding to board dimensions 3×20, 4×15, 5×12 and 6×10. A board whose shape is close to a square (like 6×10) is harder to tile than a more rectangular one (like 3×20).
 
-Measured on September 28, the running times of each tiling problem were as follows:
-* (3, 20) board: 0.042 s
-* (4, 15) board: 1.265 s
-* (5, 12) board: 4.551 s
-* (6, 10) board: 26.186 s
+The search algorithm uses a set (MyHashSet) to prune search branches where a mirrored and/or rotated version of the same partially filled board has already been discovered. In the more computationally demanding problems the set grows quite large (several million entries in the 6×10 problem). The speed at which the set can be updated and accessed is critical for performance.
 
-The search algorithm uses a set (MyHashSet) to prune search branches where a mirrored and/or rotated version of the same partially filled board has already been discovered. In the more computationally demanding problems the set grows quite large (13'377'366 entries in the (6, 10) problem). The speed at which the set can be updated and accessed is critical for performance. Using a fill factor of 0.75 for the set causes very poor performance as the internal array grows too large. Currently a fill factor of 3.0 is used for the (6, 10) problem, leading to greatly enhanced performance. In the (6, 10) problem, rehashing the set requires a tremendous amount of memory; it is therefore desirable to set the initial size large enough that rehashing is not required. On the more rectangular boards this is not essential.
+Using a fill factor of 0.75 for the set causes very poor performance as the internal array grows too large. Currently a fill factor of 2.0 is used for the 6×10 problem, leading to greatly enhanced performance. In the 6×10 problem, rehashing the set requires a tremendous amount of memory; it is therefore desirable to set the initial size large enough that rehashing is not required. (In the GUI this is done automatically.)
+
+### Tradeoff: More Set Lookups vs. More Stored Items
+
+In an early implementation of the search algorithm, search nodes leading to duplicate solutions (see [Implementation](Implementation_Document.md) for details) were pruned by looking up each candidate board in the "tried" set; if the board was found in the set, the search call was omitted. If the node was not found, all three alternative (i.e. rotated and/or mirrored) versions of the board were added to the set.
+
+In order to reduce memory usage, an alternative pruning method was devised. Instead of adding the three alternative versions of a board to the "tried" set, only the board itself was added. This, of course, necessitated three set lookups (one for each alternative version of the board) instead of one. In addition to saving memory, this pruning method lead to significantly improved performance on the 6×10 problem.
+
+![Plot of search times by pruning method]
+(pruning.png)
 
 ### Comparing Heuristics
 
