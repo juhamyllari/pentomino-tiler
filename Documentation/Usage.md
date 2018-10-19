@@ -15,7 +15,7 @@ Pentomino Tiler requires about 1.5 GB of memory. If your Java memory settings ar
 java -jar -Xmx2g PentominoTiler-1.0.jar
 ```
 
-Alternatively you may compile and run the project on the command line. In the directory `<project directory>/PentominoTiler` (containing pom.xml) run the following:
+Alternatively you may compile and run the project on the command line. In the directory `<project directory>/PentominoTiler` (containing pom.xml) run the following:
 ```
 mvn compile
 java -jar target/PentominoTiler-1.0-SNAPSHOT.jar
