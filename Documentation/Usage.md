@@ -4,15 +4,24 @@ Pentomino Tiler is a Java application that finds all solutions to the pentomino 
 
 ## Starting the Application
 
-Pentomino Tiler will be released as a .jar file later. At the moment the recommended way to run the application is to click "Run Project" in NetBeans (or press F6). Alternatively one may compile and run the project on the command line. In the directory `<project directory>/PentominoTiler` (containing pom.xml) run the following:
+Pentomino Tiler version 1.0 has been released on GitHub as a jar file. After downloading the file issue the command
+```
+java -jar PentominoTiler-1.0.jar
+```
+to run it.
+
+Pentomino Tiler requires about 1.5 GB of memory. If your Java memory settings are very conservative, the application may stall when tiling the most demanding (6×10) board. In this case consider adjusting the heap size manually:
+```
+java -jar -Xmx2g PentominoTiler-1.0.jar
+```
+
+Alternatively you may compile and run the project on the command line. In the directory `<project directory>/PentominoTiler` (containing pom.xml) run the following:
 ```
 mvn compile
 java -jar target/PentominoTiler-1.0-SNAPSHOT.jar
 ```
-Pentomino Tiler requires about 1.5 GB of memory. If your Java memory settings are very conservative, the application may stall when tiling the most demanding (6×10) board. In this case consider adjusting the heap size manually:
-```
-java -jar -Xmx2g target/PentominoTiler-1.0-SNAPSHOT.jar
-```
+
+Yet another way to run Pentomino Tiler is to import it into NetBeans as a Maven project and run (F6) the project.
 
 ## Using the Application
 
