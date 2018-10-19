@@ -38,6 +38,7 @@ public class GraphicBlock extends StackPane {
     
     /**
      * Set the colour of the block according to the piece to which it belongs.
+     * 
      * @param symbol the letter symbol of the piece
      */
     public void setColourBySymbol(char symbol) {
