@@ -22,8 +22,7 @@ In an early implementation of the search algorithm, search nodes leading to dupl
 
 In order to reduce memory usage, an alternative pruning method was devised. Instead of adding the three alternative versions of a board to the "tried" set, only the board itself was added. This, of course, necessitated three set lookups (one for each alternative version of the board) instead of one. In addition to saving memory, this pruning method lead to significantly improved performance on the 6×10 problem.
 
-![Plot of search times by pruning method]
-(https://github.com/juhamyllari/pentomino-tiler/blob/master/Documentation/pruning.png)
+![Plot of search times by pruning method](https://github.com/juhamyllari/pentomino-tiler/blob/master/Documentation/pruning.png)
 
 ### Comparing Heuristics
 
