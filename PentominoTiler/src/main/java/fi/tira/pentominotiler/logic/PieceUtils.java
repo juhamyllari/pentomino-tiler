@@ -32,7 +32,8 @@ public class PieceUtils {
 
     /**
      * Create all the 12 pentominoes from Strings (provided internally).
-     *
+     * The order of the pieces is 'X', 'I', 'T', 'V', 'W', 'Z', 'U', 'P', 'N',
+     * 'L', 'F', 'Y'.
      * @return the 12 pieces
      */
     public static MyArrayList<Piece> allPieces() {
