@@ -28,11 +28,11 @@ public class PerformanceMeasures {
         
         System.out.println("Search durations for the Euclidean heuristic:");
         MyArrayList<Long> durationsEuclidean = PerformanceMeasures.testPerformance(board, false, times);
-        System.out.println("Average for the Euclidean heuristic: " + PerformanceMeasures.average(durationsEuclidean) + " ms\n");
+        System.out.println("Average of " + times + " iterations for the Euclidean heuristic: " + PerformanceMeasures.average(durationsEuclidean) + " ms\n");
 
         System.out.println("Search durations for the Manhattan heuristic:");
         MyArrayList<Long> durationsManhattan = PerformanceMeasures.testPerformance(board, true, times);
-        System.out.println("Average for the Manhattan heuristic: " + PerformanceMeasures.average(durationsManhattan) + " ms\n");
+        System.out.println("Average of " + times + " iterations for the Manhattan heuristic: " + PerformanceMeasures.average(durationsManhattan) + " ms\n");
     }
 
     /**

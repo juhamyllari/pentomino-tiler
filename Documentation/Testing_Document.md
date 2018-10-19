@@ -29,9 +29,12 @@ In order to reduce memory usage, an alternative pruning method was devised. Inst
 By default, Pentomino Tiler tiles the board starting from the origin and proceeding in order of increasing Euclidean distance (sqrt(row^2 + column^2)). In addition to this Euclidean heuristic, Pentomino Tiler supports running performance tests using a Manhattan heuristic (i.e. the board is filled in order of increasing Manhattan distance from the origin (row + column)).
 
 The Euclidean heuristic performs better on all board shapes. On 12.10.2018 the following running times were obtained:
-* (3, 20) board: 20.01 ms (Euclidean) vs 33.48 ms (Manhattan) – average of 100 tests
-* (4, 15) board: 534.25 ms (Euclidean) vs 1106.0 ms (Manhattan) – average of 20 tests
-* (5, 12) board: 3067.8 ms (Euclidean) vs 9620.65 ms (Manhattan) – average of 20 tests
-* (6, 10) board: 19303.0 ms (Euclidean) vs 28597.0 ms (Manhattan) – average of 5 tests
+* 3×20 board: 20.36 ms (Euclidean) vs 32.72 ms (Manhattan) – average of 100 tests
+* 4×15 board: 469.7 ms (Euclidean) vs 968.4 ms (Manhattan) – average of 20 tests
+* 5×12 board: 2336.4 ms (Euclidean) vs 7477.9 ms (Manhattan) – average of 10 tests
+* 6×10 board: 14537.6 ms (Euclidean) vs 15967.4 ms (Manhattan) – average of 5 tests
+
+![Plot of search times by heuristic ](https://github.com/juhamyllari/pentomino-tiler/blob/master/Documentation/duration.png)
+![Log plot of search times by heuristic](https://github.com/juhamyllari/pentomino-tiler/blob/master/Documentation/logduration.png)
 
 The testing method ignores the first results on each testing round as they tend to be significantly larger (i.e. the search tends to be much slower) than in later iterations. This difference is likely a result of JIT compilation.
