@@ -1,7 +1,5 @@
 # Testing Document
 
-This document is under construction.
-
 ## Unit Testing
 
 The program logic and the self-implemented data structures have been unit tested using JUnit.
