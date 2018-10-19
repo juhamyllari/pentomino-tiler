@@ -1,5 +1,7 @@
 # Using Pentomino Tiler
 
+Pentomino Tiler is a Java application that finds all solutions to the pentomino board tiling problem and allows the user to browse the solutions. The supported board shapes are 3×20, 4×15, 5×12 and 6×10.
+
 ## Starting the Application
 
 Pentomino Tiler will be released as a .jar file later. At the moment the recommended way to run the application is to click "Run Project" in NetBeans (or press F6). Alternatively one may compile and run the project on the command line. In the directory `<project directory>/PentominoTiler` (containing pom.xml) run the following:
