@@ -36,6 +36,10 @@ public class GraphicBlock extends StackPane {
         this.getChildren().add(border);
     }
     
+    /**
+     * Set the colour of the block according to the piece to which it belongs.
+     * @param symbol the letter symbol of the piece
+     */
     public void setColourBySymbol(char symbol) {
         border.setFill(getColour(symbol));
     }
