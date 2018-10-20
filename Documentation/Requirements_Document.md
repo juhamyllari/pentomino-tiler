@@ -8,7 +8,7 @@ The user will be asked to select the shape of the grid to be tiled (6x10 by defa
 * The algorithm would likely not terminate on a human-relevant time scale.
 * The algorithm may contain optimizations that would not work on a larger grid.
 
-The user will be able to select among 2–3 predefined search heuristics. **Added on week 7:** This feature is undesirable and will be omitted.
+~~The user will be able to select among 2–3 predefined search heuristics.~~ **Added on week 7:** This feature is undesirable and will be omitted.
 
 The application will output the number of solutions to the problem. The user will also have the option of viewing example solutions.
 
