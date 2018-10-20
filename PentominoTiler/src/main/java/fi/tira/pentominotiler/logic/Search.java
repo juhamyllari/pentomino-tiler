@@ -227,8 +227,8 @@ public class Search {
     }
 
     /**
-     * Get the duration of the search. The search must be run before using this
-     * method.
+     * Get the duration of the search in milliseconds. The search must be run
+     * before using this method.
      *
      * @return the search duration
      */
