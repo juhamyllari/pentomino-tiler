@@ -111,7 +111,7 @@ public class Search {
             found.set(found.get() + 1);
             return;
         }
-        int index = getNextIndex(board);
+        int index = getNextIndex(board);  // A linear index of the next empty square.
         int row = index / board.getCols();
         int col = index % board.getCols();
         for (int i = 0; i < 12; i++) {
