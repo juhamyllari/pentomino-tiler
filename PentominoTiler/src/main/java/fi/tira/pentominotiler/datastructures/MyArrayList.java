@@ -64,36 +64,64 @@ public class MyArrayList<E> implements Collection<E> {
         return true;
     }
 
+    /**
+     * Method is required by the Collection interface but will not be
+     * implemented.
+     */
     @Override
     public void clear() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * Method is required by the Collection interface but will not be
+     * implemented.
+     */
     @Override
     public Object[] toArray() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * Method is required by the Collection interface but will not be
+     * implemented.
+     */
     @Override
     public <T> T[] toArray(T[] a) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * Method is required by the Collection interface but will not be
+     * implemented.
+     */
     @Override
     public boolean remove(Object o) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * Method is required by the Collection interface but will not be
+     * implemented.
+     */
     @Override
     public boolean containsAll(Collection<?> c) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * Method is required by the Collection interface but will not be
+     * implemented.
+     */
     @Override
     public boolean removeAll(Collection<?> c) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * Method is required by the Collection interface but will not be
+     * implemented.
+     */
     @Override
     public boolean retainAll(Collection<?> c) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -135,8 +163,8 @@ public class MyArrayList<E> implements Collection<E> {
     }
 
     /**
-     * Replace the internal array with a new array twice as long.
-     * Existing elements are copied into the new array.
+     * Replace the internal array with a new array twice as long. Existing
+     * elements are copied into the new array.
      */
     private void extendArray() {
         if (array.length >= Integer.MAX_VALUE) {
