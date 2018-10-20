@@ -26,7 +26,7 @@ Using a fill factor of 0.75 for the set causes very poor performance as the inte
 
 In an early implementation of the search algorithm, search nodes leading to duplicate solutions (see [Implementation](Implementation_Document.md) for details) were pruned by looking up each candidate board in the "tried" set; if the board was found in the set, the search call was omitted. If the node was not found, all three alternative (i.e. rotated and/or mirrored) versions of the board were added to the set.
 
-In order to reduce memory usage, an alternative pruning method was devised. Instead of adding the three alternative versions of a board to the "tried" set, only the board itself was added. This, of course, necessitated three set lookups (one for each alternative version of the board) instead of one. In addition to saving memory, this pruning method lead to significantly improved performance on the 6×10 problem.
+In order to reduce memory usage, an alternative pruning method was devised. Instead of adding the three alternative versions of a board to the "tried" set, only the board itself was added. This, of course, necessitated three set lookups (one for each alternative version of the board) instead of one. In addition to saving memory, this pruning method lead to significantly improved performance on the 6×10 problem, as seen in the graph below.
 
 ![Plot of search times by pruning method](https://github.com/juhamyllari/pentomino-tiler/blob/master/Documentation/pruning.png)
 
