@@ -7,6 +7,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * The MainApp class launches the application.
+ * 
+ * @author juha
+ */
 public class MainApp extends Application {
 
     @Override
