@@ -16,3 +16,4 @@ Links to documentation:
 * [Requirements Document](Documentation/Requirements_Document.md)
 * [Implementation Document](Documentation/Implementation_Document.md)
 * [Testing Document](Documentation/Testing_Document.md)
+* [Javadoc in HTML](http://htmlpreview.github.io/?https://github.com/juhamyllari/pentomino-tiler/blob/master/apidocs/index.html)
