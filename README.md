@@ -1,7 +1,7 @@
 # Pentomino Tiler
-A Java application that tiles a board with pentominoes! (The project is coursework for [TiraLabra](https://github.com/TiraLabra/2018-1))
+A Java application that tiles a board with pentominoes! Pentomino Tiler has a JavaFX GUI.
 
-Pentomino Tiler finally has a (very basic) JavaFX GUI. It isn't pretty but it works!
+Version 1.0 of Pentomino Tiler has been released. The project is coursework for [TiraLabra](https://github.com/TiraLabra/2018-1) and will likely not be updated after the end of October 2018.
 
 Links to weekly reports:
 * [Week 1](Documentation/Weekly_Report_1.md)
