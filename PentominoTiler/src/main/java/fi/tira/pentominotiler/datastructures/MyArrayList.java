@@ -10,14 +10,14 @@ import java.util.Iterator;
  * Pentomino Tiler and is therefore not implemented.
  *
  * @author juha
- * @param <T> element type
+ * @param <E> element type
  */
-public class MyArrayList<T> implements Collection<T> {
+public class MyArrayList<E> implements Collection<E> {
 
     private static final int DEFAULT_SIZE = 4;
 
     private int nextIndex;
-    private T[] array;
+    private E[] array;
 
     /**
      * Construct a MyArrayList of default (initial) size.
@@ -33,7 +33,7 @@ public class MyArrayList<T> implements Collection<T> {
      */
     public MyArrayList(int initialSize) {
         this.nextIndex = 0;
-        this.array = (T[]) new Object[initialSize];
+        this.array = (E[]) new Object[initialSize];
     }
 
     @Override
@@ -43,7 +43,7 @@ public class MyArrayList<T> implements Collection<T> {
 
     @Override
     public boolean contains(Object o) {
-        for (T element : this) {
+        for (E element : this) {
             if (element.equals(o)) {
                 return true;
             }
@@ -52,13 +52,13 @@ public class MyArrayList<T> implements Collection<T> {
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<E> iterator() {
         return new MyIterator();
     }
 
     @Override
-    public boolean addAll(Collection<? extends T> c) {
-        for (T element : c) {
+    public boolean addAll(Collection<? extends E> c) {
+        for (E element : c) {
             add(element);
         }
         return true;
@@ -106,7 +106,7 @@ public class MyArrayList<T> implements Collection<T> {
      * @return true
      */
     @Override
-    public boolean add(T element) {
+    public boolean add(E element) {
         if (nextIndex >= array.length) {
             extendArray();
         }
@@ -120,7 +120,7 @@ public class MyArrayList<T> implements Collection<T> {
      * @param index
      * @return elements[index]
      */
-    public T get(int index) {
+    public E get(int index) {
         return array[index];
     }
 
@@ -142,7 +142,7 @@ public class MyArrayList<T> implements Collection<T> {
         if (array.length >= Integer.MAX_VALUE) {
             throw new IllegalStateException("Collection is full.");
         }
-        T[] newArray = (T[]) new Object[array.length * 2];
+        E[] newArray = (E[]) new Object[array.length * 2];
         for (int i = 0; i < nextIndex; i++) {
             newArray[i] = array[i];
         }
