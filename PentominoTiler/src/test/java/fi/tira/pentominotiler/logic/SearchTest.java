@@ -62,4 +62,12 @@ public class SearchTest {
         assertEquals(true, s.getDuration() > 0L);
     }
 
+    @Test
+    public void testSetHeuristicToManhattan() {
+        // As the Search class does not expose the heuristic, this test only
+        // checks that the method does not cause an exception. The performance
+        // tests confirm that the change takes place.
+        s.setHeuristicToManhattan();
+    }
+
 }
