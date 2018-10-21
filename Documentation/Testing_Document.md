@@ -20,7 +20,7 @@ Pentomino Tiler can solve 4 tiling problems, corresponding to board dimensions 3
 
 The search algorithm uses a set (MyHashSet) to prune search branches where a mirrored and/or rotated version of the same partially filled board has already been discovered. In the more computationally demanding problems the set grows quite large (several million entries in the 6×10 problem). The speed at which the set can be updated and accessed is critical for performance.
 
-Using a fill factor of 0.75 for the set causes very poor performance as the internal array grows too large. Currently a fill factor of 2.0 is used for the 6×10 problem, leading to greatly enhanced performance. In the 6×10 problem, rehashing the set requires a tremendous amount of memory; it is therefore desirable to set the initial size large enough that rehashing is not required. (In the GUI this is done automatically.)
+Using a fill factor of 0.75 for the set causes very poor performance as the internal array grows too large. Currently a fill factor of 3.0 is used for the 6×10 problem, leading to greatly enhanced performance. In the 6×10 problem, rehashing the set requires a tremendous amount of memory; it is therefore desirable to set the initial size large enough that rehashing is not required. (In the GUI this is done automatically.)
 
 ### Tradeoff: More Set Lookups vs. More Stored Items
 
