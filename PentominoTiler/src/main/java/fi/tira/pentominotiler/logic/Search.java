@@ -61,8 +61,8 @@ public class Search {
      * each of its legal positions in or near the quadrant nearest the origin
      * (some positions may be outside the quadrant if the number of rows or
      * columns is odd) and calls search separately on each placement. In the
-     * search proper, pieces are placed on squares of increasing Euclidean
-     * distance from the origin.
+     * search proper, pieces are placed on squares of increasing distance from
+     * the origin.
      */
     public void runSearch() {
 
