@@ -22,17 +22,6 @@ public class Piece {
         this.numberOfBlocks = 5;
     }
 
-    /**
-     * This constructor can be used to create partial pieces.
-     * 
-     * @param blocks
-     * @param numberOfBlocks
-     */
-    public Piece(Block[] blocks, int numberOfBlocks) {
-        this.blocks = blocks;
-        this.numberOfBlocks = numberOfBlocks;
-    }
-
     public Block[] getBlocks() {
         return blocks;
     }
