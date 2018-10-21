@@ -8,7 +8,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * The MainApp class launches the application.
+ * The MainApp class launches the application GUI.
+ * The GUI consists of one scene whose controller class is "FXMLController"
+ * in the package "fi.tira.pentominotiler.gui".
  * 
  * @author juha
  */

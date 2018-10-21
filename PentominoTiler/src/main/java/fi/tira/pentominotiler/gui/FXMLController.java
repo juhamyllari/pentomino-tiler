@@ -18,6 +18,13 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+/**
+ * The controller class for the GUI's sole scene.
+ * Most of the action happens in the method "handleRunButton", which is called
+ * when the "Run search" button is pressed.
+ * 
+ * @author juha
+ */
 public class FXMLController implements Initializable {
 
     private Search search;
